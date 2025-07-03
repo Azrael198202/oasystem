@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.MonthCloseHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.MonthCloseHistory">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="close_month" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="close_day" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="process_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="process_result" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, close_month, close_day, process_id, process_result, reg_account,
+    reg_time, upd_account, upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_month_close_history
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and close_month = #{targetMonth,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_month_close_history
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and close_month = #{targetMonth,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.MonthCloseHistory">
+    insert into t_month_close_history (company_code, user_id, close_month,
+      close_day, process_id, process_result,
+      reg_account, reg_time, upd_account,
+      upd_time)
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{targetMonth,jdbcType=CHAR},
+      #{closeDay,jdbcType=CHAR}, #{processId,jdbcType=VARCHAR}, #{resultKbn,jdbcType=CHAR},
+      #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, #{updAccount,jdbcType=VARCHAR},
+      #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.MonthCloseHistory">
+    insert into t_month_close_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="targetMonth != null">
+        close_month,
+      </if>
+      <if test="closeDay != null">
+        close_day,
+      </if>
+      <if test="processId != null">
+        process_id,
+      </if>
+      <if test="resultKbn != null">
+        process_result,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="targetMonth != null">
+        #{targetMonth,jdbcType=CHAR},
+      </if>
+      <if test="closeDay != null">
+        #{closeDay,jdbcType=CHAR},
+      </if>
+      <if test="processId != null">
+        #{processId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultKbn != null">
+        #{resultKbn,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.MonthCloseHistory">
+    update t_month_close_history
+    <set>
+      <if test="closeDay != null">
+        close_day = #{closeDay,jdbcType=CHAR},
+      </if>
+      <if test="processId != null">
+        process_id = #{processId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultKbn != null">
+        process_result = #{resultKbn,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and close_month = #{targetMonth,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.MonthCloseHistory">
+    update t_month_close_history
+    set close_day = #{closeDay,jdbcType=CHAR},
+      process_id = #{processId,jdbcType=VARCHAR},
+      process_result = #{resultKbn,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and close_month = #{targetMonth,jdbcType=CHAR}
+  </update>
+  <select id="selectTgtMonth" parameterType="map" resultType="String">
+    select
+      max(close_month)
+    from
+      t_month_close_history
+    where user_id = #{ userId, jdbcType=VARCHAR }
+  </select>
+  <select id="paidHolidayHistoryMonth" parameterType="map" resultType="com.demo.pojo.monthCloseHistory.PaidHolidayHistoryMonthDTO">
+    select
+      trim(leading '0' from (substring(replace(STR_TO_DATE(concat(max(close_month),'01'),'%Y%m%d'),'-', ''),5,2))) as last_month,
+      trim(leading '0' from (substring(replace(DATE_ADD(STR_TO_DATE(concat(max(close_month),'01'),'%Y%m%d'),interval 1 month),'-', ''),5,2))) as this_month,
+      trim(leading '0' from (substring(replace(DATE_ADD(STR_TO_DATE(concat(max(close_month),'01'),'%Y%m%d'),interval 2 month),'-', ''),5,2))) as next_month,
+      trim(leading '0' from (substring(replace(DATE_ADD(STR_TO_DATE(concat(max(close_month),'01'),'%Y%m%d'),interval 3 month),'-', ''),5,2))) as month_after_next
+    from t_month_close_history
+    where user_id    = #{ userId, jdbcType=VARCHAR }
+  </select>
+</mapper>

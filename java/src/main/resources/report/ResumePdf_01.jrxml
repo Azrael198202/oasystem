@@ -1,0 +1,2609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ResumePdf_01" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="296208f0-07a0-49cb-88b7-a1b512d460de">
+	<property name="com.jaspersoft.studio.report.description" value="技術履歴書（Ver日立）"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CCFFCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="dtResumeDetail" uuid="cce0345f-c109-443d-b227-856442c5b702">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="develop_period" class="java.lang.String"/>
+		<field name="develop_summary" class="java.lang.String"/>
+		<field name="develop_language" class="java.lang.String"/>
+		<field name="develop_db" class="java.lang.String"/>
+		<field name="develop_os" class="java.lang.String"/>
+		<field name="responsible" class="java.lang.String"/>
+		<field name="requirements_flg" class="java.lang.String"/>
+		<field name="basic_flg" class="java.lang.String"/>
+		<field name="specific_flg" class="java.lang.String"/>
+		<field name="coding_flg" class="java.lang.String"/>
+		<field name="unit_test_flg" class="java.lang.String"/>
+		<field name="interface_test_flg" class="java.lang.String"/>
+		<field name="system_test_flg" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="createDate" class="java.lang.String"/>
+	<parameter name="nearest_station" class="java.lang.String"/>
+	<parameter name="name_kana" class="java.lang.String"/>
+	<parameter name="name_kanji" class="java.lang.String"/>
+	<parameter name="sexual" class="java.lang.String"/>
+	<parameter name="birthday_ymd" class="java.lang.String"/>
+	<parameter name="ages" class="java.lang.String"/>
+	<parameter name="address" class="java.lang.String"/>
+	<parameter name="graduation_ym" class="java.lang.String"/>
+	<parameter name="degree" class="java.lang.String"/>
+	<parameter name="school_name" class="java.lang.String"/>
+	<parameter name="major" class="java.lang.String"/>
+	<parameter name="certification1" class="java.lang.String"/>
+	<parameter name="certification2" class="java.lang.String"/>
+	<parameter name="certification3" class="java.lang.String"/>
+	<parameter name="certification4" class="java.lang.String"/>
+	<parameter name="certification5" class="java.lang.String"/>
+	<parameter name="certification6" class="java.lang.String"/>
+	<parameter name="experience_years" class="java.lang.String"/>
+	<parameter name="responsible" class="java.lang.String"/>
+	<parameter name="lg_jp_business_con" class="java.lang.String"/>
+	<parameter name="lg_jp_daily_con" class="java.lang.String"/>
+	<parameter name="lg_jp_reading" class="java.lang.String"/>
+	<parameter name="lg_jp_listening" class="java.lang.String"/>
+	<parameter name="lg_jp_writting" class="java.lang.String"/>
+	<parameter name="lg_en_business_con" class="java.lang.String"/>
+	<parameter name="lg_en_daily_con" class="java.lang.String"/>
+	<parameter name="lg_en_reading" class="java.lang.String"/>
+	<parameter name="lg_en_listening" class="java.lang.String"/>
+	<parameter name="lg_en_writting" class="java.lang.String"/>
+	<parameter name="tc_os_windows" class="java.lang.String"/>
+	<parameter name="tc_os_unix" class="java.lang.String"/>
+	<parameter name="tc_os_solaris" class="java.lang.String"/>
+	<parameter name="tc_os_hpux" class="java.lang.String"/>
+	<parameter name="tc_os_aix" class="java.lang.String"/>
+	<parameter name="tc_os_linux" class="java.lang.String"/>
+	<parameter name="tc_os_dos" class="java.lang.String"/>
+	<parameter name="tc_os_mac" class="java.lang.String"/>
+	<parameter name="tc_pg_cobol" class="java.lang.String"/>
+	<parameter name="tc_pg_java" class="java.lang.String"/>
+	<parameter name="tc_pg_jsp" class="java.lang.String"/>
+	<parameter name="tc_pg_c" class="java.lang.String"/>
+	<parameter name="tc_pg_vb" class="java.lang.String"/>
+	<parameter name="tc_pg_vc" class="java.lang.String"/>
+	<parameter name="tc_pg_sql" class="java.lang.String"/>
+	<parameter name="tc_pg_net" class="java.lang.String"/>
+	<parameter name="tc_pg_perl" class="java.lang.String"/>
+	<parameter name="tc_pg_xml" class="java.lang.String"/>
+	<parameter name="tc_db_oracle" class="java.lang.String"/>
+	<parameter name="tc_db_hirdb" class="java.lang.String"/>
+	<parameter name="tc_db_sqlserver" class="java.lang.String"/>
+	<parameter name="tc_db_db2" class="java.lang.String"/>
+	<parameter name="tc_db_mysql" class="java.lang.String"/>
+	<parameter name="tc_db_postgresql" class="java.lang.String"/>
+	<parameter name="tc_db_access" class="java.lang.String"/>
+	<parameter name="tc_etc_weblogic" class="java.lang.String"/>
+	<parameter name="tc_etc_j2ee" class="java.lang.String"/>
+	<parameter name="tc_etc_websphere" class="java.lang.String"/>
+	<parameter name="tc_etc_tomcat" class="java.lang.String"/>
+	<parameter name="tc_etc_jp1" class="java.lang.String"/>
+	<parameter name="tc_etc_cosminexus" class="java.lang.String"/>
+	<parameter name="tc_etc_xamarin" class="java.lang.String"/>
+	<parameter name="yobi_item" class="java.lang.String">
+		<parameterDescription><![CDATA[予備項目（今後拡張用）]]></parameterDescription>
+	</parameter>
+	<parameter name="datasourceResumeDetail" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<group name="Group1" isReprintHeaderOnEachPage="true">
+		<groupHeader>
+			<band height="80">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="84" height="80" backcolor="#CCFFCC" uuid="ec9ce015-a0d2-40ac-aa3b-5b1b5b7f8326"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[開発期間]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="525" y="0" width="15" height="80" backcolor="#CCFFCC" uuid="56c9289e-a51e-4915-a653-47b0877b6949"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[結<br>合<br>テ<br>ス<br>ト]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="376" y="0" width="54" height="80" backcolor="#CCFFCC" uuid="5ea0acae-241b-4f89-acc2-712bdaa2a135"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[OS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="483" y="0" width="13" height="80" backcolor="#CCFFCC" uuid="9689d913-dcfe-4bc9-ba04-d89925d7879e"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[詳<br>細<br>設<br>計]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="540" y="0" width="15" height="80" backcolor="#CCFFCC" uuid="8bd3b3b3-7987-4b9b-8266-beec5bd0cdc9"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[運<br>用<br>テ<br>ス<br>ト]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="280" y="0" width="50" height="80" backcolor="#CCFFCC" uuid="21f0e6fd-82aa-4d1f-b3d1-fddc7ac90baa"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[言語]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="330" y="0" width="46" height="80" backcolor="#CCFFCC" uuid="fe72d364-7c5b-44a5-bb66-1e03dd86735a"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DB]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="450" y="0" width="20" height="80" backcolor="#CCFFCC" uuid="a325371a-1ff4-4622-b1ef-4c04a4e3dd10"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[要<br>件<br>・<br>調<br>査]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="84" y="0" width="196" height="80" backcolor="#CCFFCC" uuid="22f5729f-a775-4737-a622-5e4ef2e76d39"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[【システム名】<br>（概要・担当内容・メンバー数）]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="496" y="0" width="14" height="80" backcolor="#CCFFCC" uuid="91fb3e40-57bc-4db9-8ae3-3eab79a6bc17"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[コ<br>ー<br>デ<br>ィ<br>ン<br>グ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="430" y="0" width="20" height="80" backcolor="#CCFFCC" uuid="5bdf88ef-2632-44a6-8002-93698f10060f"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[役<br>割]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="510" y="0" width="15" height="80" backcolor="#CCFFCC" uuid="f0212418-d129-4ee1-9c70-2d42071f7132"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[単<br>体<br>テ<br>ス<br>ト]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="470" y="0" width="13" height="80" backcolor="#CCFFCC" uuid="6b47c720-d66c-4c82-99e9-3e5803558b7c"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font fontName="IPAexゴシック" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[基<br>本<br>設<br>計]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="387" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="88d53d92-3b3e-40c3-91fb-839491c360df">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="20"/>
+				</textElement>
+				<text><![CDATA[技　術　経　歴　書]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="42" width="80" height="15" uuid="db1a683f-23f1-4499-88e2-10856823650c"/>
+				<box rightPadding="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[作成日（更新日）：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="42" width="75" height="15" uuid="4b454a30-a06d-4efd-b363-7c80a0ef7e97"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="IPAexゴシック" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{createDate}==null ? new java.util.Date() : $P{createDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="57" width="84" height="15" backcolor="#CCFFCC" uuid="9941e0fc-82b5-42ea-9058-6444b9885aca">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[フリガナ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="57" width="96" height="15" uuid="3e2384fb-171a-4f49-bc52-4c4748fa90af">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{name_kana}==null?"":$P{name_kana}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="57" width="50" height="15" backcolor="#CCFFCC" uuid="e0ae0e0f-7119-41dd-8dbc-d165c098dba2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[性別]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="57" width="200" height="15" backcolor="#CCFFCC" uuid="6819bfc1-eae8-4e64-9c85-fc1667597380">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[生年月日（年齢）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="430" y="57" width="125" height="15" backcolor="#CCFFCC" uuid="20da042d-6f28-4feb-9e5d-95bf2ccf6b75">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[最寄り駅]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="72" width="84" height="20" backcolor="#CCFFCC" uuid="d887e684-7bb3-4a59-bb27-429a1f335055">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[名前]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="72" width="96" height="20" uuid="3c677dc3-eceb-4140-982f-1c3dc60f0c31">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{name_kanji}==null?"":$P{name_kanji}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="72" width="50" height="20" uuid="06dde01c-7fcd-48b4-aa5f-f578127107a8">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sexual}==null?"":$P{sexual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="72" width="150" height="20" uuid="0f083868-0d50-4645-89aa-02ccb2a331bc">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<rightPen lineStyle="Dotted"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{birthday_ymd}==null?"":$P{birthday_ymd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="72" width="50" height="20" uuid="bf9815ff-e0ca-40a3-a062-b336c940ad52">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ages}==null?"":$P{ages}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="72" width="125" height="20" uuid="cf21b0a8-2280-4d0c-bd43-73f528b01a54">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nearest_station}==null?"":$P{nearest_station}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="92" width="84" height="20" backcolor="#CCFFCC" uuid="2c350549-bce3-49df-8b6e-2939c3e8a002">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[現住所]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="92" width="471" height="20" uuid="cc23074b-b884-4257-9660-739ef477dbaf">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{address}==null?"":$P{address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="112" width="96" height="15" backcolor="#CCFFCC" uuid="0c3f883c-bce2-4411-9da8-aa20725aad18">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[卒業年月]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="112" width="50" height="15" backcolor="#CCFFCC" uuid="fdb95955-b3cc-4af3-80e0-19bf26ac95b5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[学位]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="112" width="84" height="35" backcolor="#CCFFCC" uuid="49db0ce6-b3e5-4a48-9167-dcd1b6129cf8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[最終学歴]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="127" width="96" height="20" uuid="93e25c74-aae6-4e3f-929c-1158365f8bfb">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{graduation_ym}==null?"":$P{graduation_ym}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="127" width="50" height="20" uuid="0f757373-9d56-42a2-a9f0-fc6e519fdcde">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{degree}==null?"":$P{degree}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="112" width="200" height="15" backcolor="#CCFFCC" uuid="7827a3e3-83fe-4aee-aa35-f1f1676201e5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[学校名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="430" y="112" width="125" height="15" backcolor="#CCFFCC" uuid="3642c039-0ecf-495a-be0c-321d4fb0ae70">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[専攻学科]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="127" width="125" height="20" uuid="10326f48-c9b2-4a40-8d4e-ea4bdcf27209">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{major}==null?"":$P{major}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="127" width="200" height="20" uuid="d01708a1-f9df-463a-a490-c97b6ac7538f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{school_name}==null?"":$P{school_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="147" width="146" height="15" uuid="92cc4e30-5526-4adc-90ce-98af21f58b44">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{certification1}==null?"":$P{certification1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="147" width="146" height="15" uuid="a62cb586-1ee9-4816-a429-a59a62d12887">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{certification4}==null?"":$P{certification4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="162" width="146" height="15" uuid="4c112265-d8b5-487a-a0ea-5f57f31484b1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{certification2}==null?"":$P{certification2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="162" width="146" height="15" uuid="19938f4f-0692-4ec3-bc6e-40164f477384">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{certification5}==null?"":$P{certification5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="177" width="146" height="15" uuid="0bd4478f-e2da-4c85-9fbb-ec34066cd24e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{certification3}==null?"":$P{certification3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="177" width="146" height="15" uuid="3dfae73a-9b77-42a8-b007-e672e4d1f0af">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{certification6}==null?"":$P{certification6}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="147" width="84" height="45" backcolor="#CCFFCC" uuid="bdb76c07-b94b-4a6e-9fab-fd809e28f9ab">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[資格]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="376" y="147" width="94" height="15" backcolor="#CCFFCC" uuid="3eec367a-5c62-45cf-95b2-a8796c056d70">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[日本向け開発経験（年数）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="147" width="85" height="15" backcolor="#CCFFCC" uuid="547d186a-8203-4990-94af-8cc3192c17bd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[現役割]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="162" width="94" height="30" uuid="580e99e8-e03a-4250-be9d-16fd52230ec2">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{experience_years}==null?"":$P{experience_years}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="162" width="85" height="30" uuid="728c9221-b38e-4a38-b453-2901046e654f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{responsible}==null?"":$P{responsible}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="192" width="84" height="60" backcolor="#CCFFCC" uuid="cb26b03a-79d8-4cf8-bb90-472350b70330">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[語学能力]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="192" width="246" height="15" backcolor="#CCFFCC" uuid="422b89d6-8a1d-4f07-b537-39770f618fa1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[日本語]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="207" width="50" height="15" backcolor="#CCFFCC" uuid="1e805225-207f-4e0c-b86b-bf1b18849a92">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[業務会話]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="134" y="207" width="46" height="15" backcolor="#CCFFCC" uuid="cd0cb613-4f9f-458e-974c-672cd29dde54">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[日常会話]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="207" width="50" height="15" backcolor="#CCFFCC" uuid="a37aab42-d262-4048-b9d9-8c2cb0d3f33c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[読解能力]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="207" width="50" height="15" backcolor="#CCFFCC" uuid="0be3df76-173b-4543-aa03-39419ebc48f6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[聴解能力]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="207" width="50" height="15" backcolor="#CCFFCC" uuid="e19e3803-95b0-4454-b7bd-2663ea325e52">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[書く能力]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="207" width="46" height="15" backcolor="#CCFFCC" uuid="c10a01a7-1454-4f21-9bfe-120eb3a77b8d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[業務会話]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="376" y="207" width="44" height="15" backcolor="#CCFFCC" uuid="a107cec1-0cd5-4a4b-a1f6-782e450a8845">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[日常会話]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="207" width="50" height="15" backcolor="#CCFFCC" uuid="871c4877-8768-4bd7-bc58-16ec338da8ef">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[読解能力]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="207" width="40" height="15" backcolor="#CCFFCC" uuid="a7155675-95f0-4469-aaa5-7748c86f9505">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[聴解能力]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="510" y="207" width="45" height="15" backcolor="#CCFFCC" uuid="6721119e-db08-438f-b07c-10fc4a39501c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[書く能力]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="192" width="225" height="15" backcolor="#CCFFCC" uuid="57da6e8d-ffe4-4ed5-84ea-2eaec55eeff5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[英語]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="222" width="50" height="15" uuid="cc61efeb-3231-4bb4-a6bb-10c793af6b8c">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_jp_business_con}==null?"":$P{lg_jp_business_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="222" width="46" height="15" uuid="f79d8f1b-c027-45a0-8f54-fc81b3b04e71">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_jp_daily_con}==null?"":$P{lg_jp_daily_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="222" width="50" height="15" uuid="7dacdf76-17ce-4e78-acfb-6e227dd58055">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_jp_reading}==null?"":$P{lg_jp_reading}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="222" width="50" height="15" uuid="5d1ee8fe-ddd5-4eb5-a367-56753149877e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_jp_listening}==null?"":$P{lg_jp_listening}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="222" width="50" height="15" uuid="cfdd5d7a-af53-4959-8b50-1b66121bdf4b">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_jp_writting}==null?"":$P{lg_jp_writting}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="222" width="46" height="15" uuid="4b0dcf67-c56d-41e6-a1e0-11b4dc7f9b1f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_en_business_con}==null?"":$P{lg_en_business_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="222" width="44" height="15" uuid="209f96dd-2a4e-4135-a5df-e011ec2b5149">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_en_daily_con}==null?"":$P{lg_en_daily_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="222" width="50" height="15" uuid="2d5204e6-c328-4635-a54b-f3d0599333d4">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_en_reading}==null?"":$P{lg_en_reading}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="222" width="40" height="15" uuid="5d41b6b2-4721-42d7-bdf6-2c04858482b7">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_en_listening}==null?"":$P{lg_en_listening}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="222" width="45" height="15" uuid="495bfc6c-7f09-40bf-88de-9ddadeb7cf49">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lg_en_writting}==null?"":$P{lg_en_writting}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="237" width="471" height="15" backcolor="#CCFFCC" uuid="aeb3fd0b-76ba-4dba-81ae-2252b4e0a71d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="10">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[言語能力（1、殆ど出来ない　2、簡単な会話は可能　3、ゆっくり話せば業務打ち合わせが大体分かる　4、まったく問題ない　5、母語）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="252" width="30" height="135" backcolor="#CCFFCC" uuid="80893c85-130b-469c-b688-0126589e5e5c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="html">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[技<br>術<br>能<br>力]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="252" width="50" height="15" backcolor="#CCFFCC" uuid="46871122-9297-45e3-8080-2234db4259e3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mac]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="252" width="50" height="15" backcolor="#CCFFCC" uuid="eebfc0f9-f7d4-4059-9005-764503e03655">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AIX]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="267" width="45" height="15" uuid="fb1d7895-3dd0-4b8e-a5b9-2e09489d8eba">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{yobi_item}==null?"":$P{yobi_item}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="252" width="50" height="15" backcolor="#CCFFCC" uuid="219686f2-0838-4c50-a5eb-7175739483a9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Windows]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="252" width="40" height="15" backcolor="#CCFFCC" uuid="7a3a07e8-d291-4456-9b49-4757535170c1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="267" width="44" height="15" uuid="542aa534-b573-4317-af43-059ff7c47a72">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_os_dos}==null?"":$P{tc_os_dos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="267" width="46" height="15" uuid="8ab26bb1-ff7c-473d-862b-fda0f7a59485">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_os_unix}==null?"":$P{tc_os_unix}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="252" width="46" height="15" backcolor="#CCFFCC" uuid="74839c80-d897-44de-ba16-e9e58785fe48">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Linux]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="267" width="50" height="15" uuid="a45f957f-d391-4893-a5f1-acde91dcc459">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_os_mac}==null?"":$P{tc_os_mac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="267" width="50" height="15" uuid="66e908e3-0e55-46ff-b4e5-498d8a959fce">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_os_solaris}==null?"":$P{tc_os_solaris}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="267" width="40" height="15" uuid="4506893e-bd60-4ead-82e6-920c63c83b8e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{yobi_item}==null?"":$P{yobi_item}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="252" width="50" height="15" backcolor="#CCFFCC" uuid="c652f701-73f5-47de-a6b7-2d214479e6bb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HP-UX]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="510" y="252" width="45" height="15" backcolor="#CCFFCC" uuid="bef0f898-2042-4411-9cbe-8d34b3260fa2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="267" width="50" height="15" uuid="881bb03a-11d4-4b5c-84a0-8f805027419f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_os_windows}==null?"":$P{tc_os_windows}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="376" y="252" width="44" height="15" backcolor="#CCFFCC" uuid="b3d356ef-20e3-46c6-9d0e-5792d6673eb5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="252" width="50" height="15" backcolor="#CCFFCC" uuid="8d685737-8e5f-4416-bd0f-e33704e2f3ec">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solaris]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="267" width="50" height="15" uuid="7a765dae-4478-4fe4-ba21-3f5f1380401b">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_os_hpux}==null?"":$P{tc_os_hpux}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="134" y="252" width="46" height="15" backcolor="#CCFFCC" uuid="02be5b01-9130-420e-b99a-d7c07ba761db">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIX]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="267" width="50" height="15" uuid="dd6979e0-51e4-4dd2-b6ed-d004842669f3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_os_aix}==null?"":$P{tc_os_aix}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="267" width="46" height="15" uuid="b5e9df5f-56a1-494b-b8bf-5900cfd5149e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_os_linux}==null?"":$P{tc_os_linux}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="282" width="50" height="15" backcolor="#CCFFCC" uuid="a773fbe6-ed48-4164-8ed4-25d4c9f7064f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[.NET]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="282" width="50" height="15" backcolor="#CCFFCC" uuid="1f0e6ee7-0f7e-4e44-853d-ddf706fd1d19">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VB]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="297" width="45" height="15" uuid="74fc875a-6dfd-4bed-94e9-ece535c4ce04">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_xml}==null?"":$P{tc_pg_xml}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="282" width="50" height="15" backcolor="#CCFFCC" uuid="959b09b5-7532-43d1-81b5-bb00ff10afb3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COBOL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="282" width="40" height="15" backcolor="#CCFFCC" uuid="7130f92d-e6b7-432d-8b16-eba30b998946">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perl]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="297" width="44" height="15" uuid="a2cff7c5-acb8-443a-bdb0-fe89c7f636ed">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_sql}==null?"":$P{tc_pg_sql}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="297" width="46" height="15" uuid="771ca45d-ae37-4253-b31f-581e15537d53">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_java}==null?"":$P{tc_pg_java}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="282" width="46" height="15" backcolor="#CCFFCC" uuid="65378488-82e5-44bd-9248-dca778e15e3e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VC/VC++]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="297" width="50" height="15" uuid="455a7fd5-93b4-4dbb-ae60-263ea4c2b2c4">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_net}==null?"":$P{tc_pg_net}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="297" width="50" height="15" uuid="2ffe84d0-7995-426a-95cd-014cf4cc44ee">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_jsp}==null?"":$P{tc_pg_jsp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="297" width="40" height="15" uuid="21493044-acf9-497c-8633-68278410396f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_perl}==null?"":$P{tc_pg_perl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="282" width="50" height="15" backcolor="#CCFFCC" uuid="f18f6d16-55ea-4684-b12e-d0e5c8b9f769">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C/C++]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="510" y="282" width="45" height="15" backcolor="#CCFFCC" uuid="db25bdee-18fd-4a37-8d4f-5ef72220d505">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[XML]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="297" width="50" height="15" uuid="8250dba9-7ece-4c0d-b5d0-c575ea99008f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_cobol}==null?"":$P{tc_pg_cobol}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="376" y="282" width="44" height="15" backcolor="#CCFFCC" uuid="e173067c-9c5b-4af7-83c2-cdbf80d48385">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SQL/PLSQL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="282" width="50" height="15" backcolor="#CCFFCC" uuid="dbb901e0-a100-4fcd-8c47-2ef2ae7bf346">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JSP]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="297" width="50" height="15" uuid="bdee8e27-6235-47f9-b692-c7b74e440a8a">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_c}==null?"":$P{tc_pg_c}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="134" y="282" width="46" height="15" backcolor="#CCFFCC" uuid="f2639b57-3e51-4f43-b651-e8559a5c43b0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JAVA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="297" width="50" height="15" uuid="9e2e1573-7337-4ca2-b3bc-f5d566349160">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_vb}==null?"":$P{tc_pg_vb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="297" width="46" height="15" uuid="5d64bbb2-d992-4733-ae34-57506d3e929c">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_pg_vc}==null?"":$P{tc_pg_vc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="312" width="50" height="15" backcolor="#CCFFCC" uuid="2a66a465-babf-490d-97f5-902cd8ec34e1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="312" width="50" height="15" backcolor="#CCFFCC" uuid="80fe4a66-99f5-48d0-b2b5-9023523e2e10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MySQL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="327" width="45" height="15" uuid="7790d5eb-abfa-43d9-9325-b24c6ca22edc">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{yobi_item}==null?"":$P{yobi_item}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="312" width="50" height="15" backcolor="#CCFFCC" uuid="8fc59a50-cd72-41b9-8691-3eab1f8913a1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORACLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="312" width="40" height="15" backcolor="#CCFFCC" uuid="bec71113-1183-4e4a-b1b5-c932b24f4ae8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="327" width="44" height="15" uuid="fa65e192-4cd6-4351-91df-9699c3499231">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_db_access}==null?"":$P{tc_db_access}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="327" width="46" height="15" uuid="01ad993d-d2b8-487c-88e7-2912876e8118">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_db_hirdb}==null?"":$P{tc_db_hirdb}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="312" width="46" height="15" backcolor="#CCFFCC" uuid="7372ab0f-df79-4c36-9945-7c63e7d3ac9c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PostgreSQL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="327" width="50" height="15" uuid="ee820622-c7e3-4acb-b684-b606c56aac61">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{yobi_item}==null?"":$P{yobi_item}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="327" width="50" height="15" uuid="99d756bc-c446-4b67-85d6-92e2fdb4c856">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_db_sqlserver}==null?"":$P{tc_db_sqlserver}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="327" width="40" height="15" uuid="b1048f98-cbf9-4d5d-9c05-7fd369729b57">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{yobi_item}==null?"":$P{yobi_item}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="312" width="50" height="15" backcolor="#CCFFCC" uuid="d11e927e-9f03-4552-a46e-c6d283a1d147">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DB2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="510" y="312" width="45" height="15" backcolor="#CCFFCC" uuid="3555cea4-82a2-424f-81e6-78c670a27435">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="327" width="50" height="15" uuid="12f7a536-023c-4556-83a1-1eed16b2891e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_db_oracle}==null?"":$P{tc_db_oracle}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="376" y="312" width="44" height="15" backcolor="#CCFFCC" uuid="f3b7bafa-a482-432c-abb1-df338f1599cb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACCESS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="312" width="50" height="15" backcolor="#CCFFCC" uuid="d616d832-e269-4f7b-a4ca-5181caf48ee7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SQLServer]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="327" width="50" height="15" uuid="3f10b81e-a770-413d-98ed-5e6facf1638f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_db_db2}==null?"":$P{tc_db_db2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="134" y="312" width="46" height="15" backcolor="#CCFFCC" uuid="b8662d5f-2369-4b75-9b82-e92eefc2afa6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HiRDB]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="327" width="50" height="15" uuid="997eee75-5533-4b72-8b52-60e285049e0d">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_db_mysql}==null?"":$P{tc_db_mysql}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="327" width="46" height="15" uuid="21562c54-4cf6-4280-bffc-43d2795e274e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_db_postgresql}==null?"":$P{tc_db_postgresql}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="342" width="50" height="15" backcolor="#CCFFCC" uuid="a83770b1-8860-4c75-8ecb-f5c4131097bd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="342" width="50" height="15" backcolor="#CCFFCC" uuid="039b0d97-b1da-4a6c-8438-c9e31487dd64">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JP1]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="357" width="45" height="15" uuid="624544d9-56e0-4105-a0b3-766ff2fbf77c">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{yobi_item}==null?"":$P{yobi_item}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="342" width="50" height="15" backcolor="#CCFFCC" uuid="1f732292-5772-4733-a30a-3bd8b8028c67">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WebLogic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="342" width="40" height="15" backcolor="#CCFFCC" uuid="97e72544-012f-4c05-9f03-bad31b549756">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="357" width="44" height="15" uuid="b0463fe9-3c07-4898-aa8c-e4f028bc8963">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_etc_xamarin}==null?"":$P{tc_etc_xamarin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="357" width="46" height="15" uuid="e1a1e45b-729f-4a47-a47d-68ad631efe2e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_etc_j2ee}==null?"":$P{tc_etc_j2ee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="342" width="46" height="15" backcolor="#CCFFCC" uuid="d382b400-3234-42c5-8b54-4dd85be58e36">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cosminexus]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="357" width="50" height="15" uuid="8cecefb0-949b-432a-b628-b42b5df5f859">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{yobi_item}==null?"":$P{yobi_item}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="357" width="50" height="15" uuid="b65eeeb3-b1a9-4c73-af7f-b631e96f6e78">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_etc_websphere}==null?"":$P{tc_etc_websphere}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="357" width="40" height="15" uuid="ff78b8d6-3bfd-4323-812d-3823567cc3b5">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{yobi_item}==null?"":$P{yobi_item}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="342" width="50" height="15" backcolor="#CCFFCC" uuid="281ab38b-acb8-4cf4-841a-ae448fa1d141">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tomcat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="510" y="342" width="45" height="15" backcolor="#CCFFCC" uuid="eeeffbb5-6cb4-436e-afca-7bf6a4a888fe">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="357" width="50" height="15" uuid="ba54fb9d-dafc-4457-a63e-f7d75e927ac8">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_etc_weblogic}==null?"":$P{tc_etc_weblogic}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="376" y="342" width="44" height="15" backcolor="#CCFFCC" uuid="2f950c77-4c97-4d83-94dc-53ef45b37824">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Xamarin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="342" width="50" height="15" backcolor="#CCFFCC" uuid="cbd78bbd-6277-4d96-af67-89dbd8607bd6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WebSphere]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="357" width="50" height="15" uuid="64fc3849-c6d1-49b4-bdd4-ecda41492658">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_etc_tomcat}==null?"":$P{tc_etc_tomcat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="134" y="342" width="46" height="15" backcolor="#CCFFCC" uuid="02e2c3c9-9bba-4309-9205-635c3cf5bd7c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[J2EE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="357" width="50" height="15" uuid="7bb3d75f-73f9-4736-b36d-6a49f058ea0f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_etc_jp1}==null?"":$P{tc_etc_jp1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="357" width="46" height="15" uuid="d9f4c04c-9463-42fd-9e7b-0128b18a9a9e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tc_etc_cosminexus}==null?"":$P{tc_etc_cosminexus}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="252" width="54" height="30" backcolor="#CCFFCC" uuid="cecb683b-4315-4beb-aa97-3fa104341158">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="282" width="54" height="30" backcolor="#CCFFCC" uuid="7bf523a2-06a7-4bb0-bcd3-476a63a8b2ff">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[言語]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="312" width="54" height="30" backcolor="#CCFFCC" uuid="25e57a22-bf4b-4fa1-aec3-3ffa07b715f0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="342" width="54" height="45" backcolor="#CCFFCC" uuid="0097dd11-17a7-4262-befe-27ec500b2f59">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[その他]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="84" y="372" width="471" height="15" backcolor="#CCFFCC" uuid="900abf88-f2ce-4fb2-931c-412d92c25894">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="10">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="IPAexゴシック" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[技術スキル（A、指導できる　　B、作業できる　　C、ソース読める　　D、不可）]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<componentElement>
+				<reportElement x="0" y="0" width="555" height="60" uuid="3699e60b-91b1-4438-a945-423c3016f104">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="dtResumeDetail" uuid="59bf0a95-1e14-487d-9ed3-e4af9e31f516">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{datasourceResumeDetail})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="84" uuid="4b341f4b-a8ee-4366-b7d0-352383280951">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="84" height="60" uuid="41804421-5dc0-437e-a7b9-48395dfe29dd">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{develop_period}==null?"":$F{develop_period}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="196" uuid="e602febe-f74c-446c-8954-8fe103b7ac31">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="196" height="60" uuid="3b9a5c9c-be65-4dac-b3a5-eb1082a7c999">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box leftPadding="10">
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{develop_summary}==null?"":$F{develop_summary}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="d613499b-6d08-40e6-97a7-d24c74517f3c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="50" height="60" uuid="022c043b-596a-4ab3-8d60-05680870a03e">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{develop_language}==null?"":$F{develop_language}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="46" uuid="b0fb9d49-9f74-483b-9d0d-cd13be111724">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="46" height="60" uuid="45bcc0d0-d4a3-41f6-8dfe-6dd029bd6248">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{develop_db}==null?"":$F{develop_db}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="54" uuid="16bf2e37-260a-4d09-9b10-1b6e9ba7bbb5">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="54" height="60" uuid="36c27910-3e69-4e5c-88eb-6ea22d182e9e">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{develop_os}==null?"":$F{develop_os}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="20" uuid="1c91566e-fe92-4682-acc4-a2072b2bf6e2">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="20" height="60" uuid="7328dfae-02cf-4fd5-98e6-90c5c39ad6c7">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{responsible}==null?"":$F{responsible}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="20" uuid="9b5fe000-b8c3-492d-b0d0-cef87f9cd873">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="20" height="60" uuid="49394f25-d759-4e3e-a0ce-458b1578be29">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{requirements_flg}==null?"":$F{requirements_flg}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="13" uuid="8af86f21-f253-4d0d-a45c-7f2159185ab8">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column8"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="13" height="60" uuid="0fceb5e1-6761-4c71-9d9b-e10eb8b1abf0">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{basic_flg}==null?"":$F{basic_flg}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="13" uuid="1b08b4d1-8168-42ee-a6e8-46de70f1ede4">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column9"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="13" height="60" uuid="80d25ace-2c19-4c94-8da2-e9606707ee62">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{specific_flg}==null?"":$F{specific_flg}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="14" uuid="b9f4e620-d4f0-484a-bb45-caadcbdbb4bb">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column10"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="14" height="60" uuid="c4943126-96e9-48d2-b7e7-c101816e6be4">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{coding_flg}==null?"":$F{coding_flg}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="0af1be04-f97f-47af-b634-2ebbe65060fb">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column11"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="15" height="60" uuid="317046d9-de09-40de-aa20-72d385d46e8d">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{unit_test_flg}==null?"":$F{unit_test_flg}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="07a1c0b3-f1ba-4fae-bda2-145b51aaaef9">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column12"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="15" height="60" uuid="b47a4468-6ddb-4c06-bf0b-7f5000d4ab46">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{interface_test_flg}==null?"":$F{interface_test_flg}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="928d204a-3a6e-4ea9-b7a6-77231cf1c35a">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column13"/>
+						<jr:detailCell style="Table_TD" height="60">
+							<textField>
+								<reportElement x="0" y="0" width="15" height="60" uuid="4478637e-0ef0-4114-8a6d-9099bf96d76f">
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="IPAexゴシック" size="7"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{system_test_flg}==null?"":$F{system_test_flg}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="28">
+			<textField>
+				<reportElement x="505" y="5" width="30" height="10" uuid="f5930ed3-89e4-45da-bddc-caf1d316aeba">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="0"/>
+				<textElement textAlignment="Right">
+					<font fontName="IPAexゴシック" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER} +"/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="535" y="5" width="20" height="10" uuid="28a05a47-563b-4624-b329-4a28b18228a0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="IPAexゴシック" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="113" y="18" width="329" height="10" uuid="46561234-e517-4f4d-920d-34552e590428">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="IPAexゴシック" size="8"/>
+				</textElement>
+				<text><![CDATA[© Copyright 株式会社 リーディング・ウィン All Rights Reseved.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

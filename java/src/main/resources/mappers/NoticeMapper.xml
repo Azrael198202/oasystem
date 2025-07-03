@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.NoticeMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Notice">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="notice_number" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="notice_category" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="notice_publication_start_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="notice_publication_end_date" javaType="java.lang.String" jdbcType="CHAR" />      
+      <arg column="notice_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="notice_new_period" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="notice_attachment1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="notice_attachment2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="notice_attachment3" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.demo.entity.Notice">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="notice_number" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="notice_category" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="notice_publication_start_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="notice_publication_end_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="notice_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="notice_new_period" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="notice_attachment1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="notice_attachment2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="notice_attachment3" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="notice_contents" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, notice_number, notice_category, notice_publication_start_date, notice_publication_end_date, 
+    notice_title, notice_new_period, notice_attachment1, notice_attachment2, notice_attachment3, 
+    registration_user, registration_datetime, update_user, update_datetime
+  </sql>
+  <sql id="Blob_Column_List">
+    notice_contents
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_notice
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and notice_number = #{noticeNumber,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_notice
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and notice_number = #{noticeNumber,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Notice">
+    insert into t_notice (company_code, notice_number, notice_category, 
+      notice_publication_start_date, notice_publication_end_date, 
+      notice_title, notice_new_period, notice_attachment1, 
+      notice_attachment2, notice_attachment3, registration_user, 
+      registration_datetime, update_user, update_datetime, 
+      notice_contents)
+    values (#{companyCode,jdbcType=CHAR}, #{noticeNumber,jdbcType=CHAR}, #{noticeCategory,jdbcType=CHAR}, 
+      #{noticePublicationStartDate,jdbcType=CHAR}, #{noticePublicationEndDate,jdbcType=CHAR}, 
+      #{noticeTitle,jdbcType=VARCHAR}, #{noticeNewPeriod,jdbcType=TINYINT}, #{noticeAttachment1,jdbcType=VARCHAR}, 
+      #{noticeAttachment2,jdbcType=VARCHAR}, #{noticeAttachment3,jdbcType=VARCHAR}, #{registrationUser,jdbcType=VARCHAR}, 
+      #{registrationDatetime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP}, 
+      #{noticeContents,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Notice">
+    insert into t_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="noticeNumber != null">
+        notice_number,
+      </if>
+      <if test="noticeCategory != null">
+        notice_category,
+      </if>
+      <if test="noticePublicationStartDate != null">
+        notice_publication_start_date,
+      </if>
+      <if test="noticePublicationEndDate != null">
+        notice_publication_end_date,
+      </if>
+      <if test="noticeTitle != null">
+        notice_title,
+      </if>
+      <if test="noticeNewPeriod != null">
+        notice_new_period,
+      </if>
+      <if test="noticeAttachment1 != null">
+        notice_attachment1,
+      </if>
+      <if test="noticeAttachment2 != null">
+        notice_attachment2,
+      </if>
+      <if test="noticeAttachment3 != null">
+        notice_attachment3,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+      <if test="noticeContents != null">
+        notice_contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="noticeNumber != null">
+        #{noticeNumber,jdbcType=CHAR},
+      </if>
+      <if test="noticeCategory != null">
+        #{noticeCategory,jdbcType=CHAR},
+      </if>
+      <if test="noticePublicationStartDate != null">
+        #{noticePublicationStartDate,jdbcType=CHAR},
+      </if>
+      <if test="noticePublicationEndDate != null">
+        #{noticePublicationEndDate,jdbcType=CHAR},
+      </if>
+      <if test="noticeTitle != null">
+        #{noticeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeNewPeriod != null">
+        #{noticeNewPeriod,jdbcType=TINYINT},
+      </if>
+      <if test="noticeAttachment1 != null">
+        #{noticeAttachment1,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeAttachment2 != null">
+        #{noticeAttachment2,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeAttachment3 != null">
+        #{noticeAttachment3,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeContents != null">
+        #{noticeContents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Notice">
+    update t_notice
+    <set>
+      <if test="noticeCategory != null">
+        notice_category = #{noticeCategory,jdbcType=CHAR},
+      </if>
+      <if test="noticePublicationStartDate != null">
+        notice_publication_start_date = #{noticePublicationStartDate,jdbcType=CHAR},
+      </if>
+      <if test="noticePublicationEndDate != null">
+        notice_publication_end_date = #{noticePublicationEndDate,jdbcType=CHAR},
+      </if>
+      <if test="noticeTitle != null">
+        notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeNewPeriod != null">
+        notice_new_period = #{noticeNewPeriod,jdbcType=TINYINT},
+      </if>
+      <if test="noticeAttachment1 != null">
+        notice_attachment1 = #{noticeAttachment1,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeAttachment2 != null">
+        notice_attachment2 = #{noticeAttachment2,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeAttachment3 != null">
+        notice_attachment3 = #{noticeAttachment3,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeContents != null">
+        notice_contents = #{noticeContents,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and notice_number = #{noticeNumber,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.demo.entity.Notice">
+    update t_notice
+    set notice_category = #{noticeCategory,jdbcType=CHAR},
+      notice_publication_start_date = #{noticePublicationStartDate,jdbcType=CHAR},
+      notice_publication_end_date = #{noticePublicationEndDate,jdbcType=CHAR},
+      notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      notice_new_period = #{noticeNewPeriod,jdbcType=TINYINT},
+      notice_attachment1 = #{noticeAttachment1,jdbcType=VARCHAR},
+      notice_attachment2 = #{noticeAttachment2,jdbcType=VARCHAR},
+      notice_attachment3 = #{noticeAttachment3,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      notice_contents = #{noticeContents,jdbcType=LONGVARCHAR}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and notice_number = #{noticeNumber,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Notice">
+    update t_notice
+    set notice_category = #{noticeCategory,jdbcType=CHAR},
+      notice_publication_start_date = #{noticePublicationStartDate,jdbcType=CHAR},
+      notice_publication_end_date = #{noticePublicationEndDate,jdbcType=CHAR},
+      notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      notice_new_period = #{noticeNewPeriod,jdbcType=TINYINT},
+      notice_attachment1 = #{noticeAttachment1,jdbcType=VARCHAR},
+      notice_attachment2 = #{noticeAttachment2,jdbcType=VARCHAR},
+      notice_attachment3 = #{noticeAttachment3,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and notice_number = #{noticeNumber,jdbcType=CHAR}
+  </update>
+  <select id="selectAll" parameterType="map" resultType="com.demo.pojo.notice.NoticeRpnDTO">
+    select
+      company_code
+         , notice_number
+         , DATE_FORMAT(notice_publication_start_date,'%Y/%m/%d %T')notice_publication_start_date
+         , DATE_FORMAT(notice_publication_end_date,'%Y/%m/%d %T')notice_publication_end_date
+         , notice_title
+         , notice_contents
+         , notice_new_period
+    from
+      t_notice
+    where
+      company_code = #{ companyCode, jdbcType = CHAR }
+      and notice_publication_start_date &lt;= NOW()
+      and notice_publication_end_date &gt;= NOW()
+    order by notice_publication_start_date desc
+  </select>
+  <select id="selectByNoticeNumber" parameterType="map" resultType="com.demo.pojo.notice.NoticeRpnDTO">
+    select
+      t.company_code
+         , t.notice_number
+         , t.notice_publication_start_date
+         , t.notice_publication_end_date
+         , t.notice_title
+         , t.notice_contents
+         , t.notice_new_period
+         , t.notice_attachment1
+         , t.notice_attachment2
+         , t.notice_attachment3
+         , t.notice_category
+    from
+      t_notice t
+    where
+      company_code = #{ companyCode, jdbcType = CHAR }
+      and notice_number = #{noticeNumber,jdbcType=CHAR}
+  </select>
+  <select id="searchNotice" parameterType="map" resultType="com.demo.pojo.notice.NoticeAllListDTO">
+    select
+      t_notice.notice_status,
+      t_notice.company_code,
+      t_notice.notice_number,
+      t_notice.notice_category,
+      t_notice.notice_publication_start_date,
+      t_notice.notice_publication_end_date,
+      t_notice.notice_title,
+      t_notice.notice_contents,
+      t_notice.notice_new_period,
+      t_notice.notice_attachment1,
+      t_notice.notice_attachment2,
+      t_notice.notice_attachment3,
+      t_notice.update_datetime,
+      t_notice.registration_user_id,
+      m_user.user_name as registration_user_name
+    from (
+           select
+             case
+               when notice_publication_start_date &gt; NOW()
+                 then '01'
+               when (notice_publication_start_date &lt;= NOW() and notice_publication_end_date &gt;= NOW())
+                 then '02'
+               when notice_publication_end_date &lt; NOW()
+                 then '03'
+               else '' end  as notice_status,
+             company_code,
+             notice_number,
+             notice_category,
+             DATE_FORMAT(notice_publication_start_date,'%Y/%m/%d')   as  notice_publication_start_date,
+             DATE_FORMAT(notice_publication_end_date,'%Y/%m/%d')     as  notice_publication_end_date,
+             notice_title,
+             notice_contents,
+             notice_new_period,
+             notice_attachment1,
+             notice_attachment2,
+             notice_attachment3,
+             update_datetime,
+             registration_user as registration_user_id
+
+           from
+             t_notice) as t_notice
+           left join   m_user  as  m_user
+                       on   t_notice.registration_user_id =  m_user.user_id
+    where   t_notice.company_code       =       #{companyCode,jdbcType=CHAR}
+      and     t_notice.notice_status      like    #{noticeStatus,jdbcType=CHAR}
+      and     t_notice.notice_category    like    #{noticeCategory,jdbcType=CHAR}
+      and     (m_user.user_id             like    #{userIdOrName, jdbcType=CHAR}
+      or m_user.user_name               like    #{userIdOrName, jdbcType=CHAR})
+    order by      t_notice.notice_number      DESC
+  </select>
+
+  <delete id="deleteNotice" parameterType="map">
+    delete
+    from  t_notice
+    where t_notice.company_code  = #{companyCode,jdbcType=CHAR}
+      and t_notice.notice_number = #{noticeNumber,jdbcType=VARCHAR}
+  </delete>
+  <!--  インサート文-->
+  <insert id="insertNotice" parameterType="com.demo.entity.Notice">
+    insert into t_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="noticeNumber != null">
+        notice_number,
+      </if>
+      <if test="noticeCategory != null">
+        notice_category,
+      </if>
+      <if test="noticePublicationStartDate != null">
+        notice_publication_start_date,
+      </if>
+      <if test="noticePublicationEndDate != null">
+        notice_publication_end_date,
+      </if>
+      <if test="noticeTitle != null">
+        notice_title,
+      </if>
+      <if test="noticeContents != null">
+        notice_contents,
+      </if>
+      <if test="noticeNewPeriod != null">
+        notice_new_period,
+      </if>
+      <if test="noticeAttachment1 != null">
+        notice_attachment1,
+      </if>
+      <if test="noticeAttachment2 != null">
+        notice_attachment2,
+      </if>
+      <if test="noticeAttachment3 != null">
+        notice_attachment3,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="noticeNumber != null">
+        #{noticeNumber,jdbcType=CHAR},
+      </if>
+      <if test="noticeCategory != null">
+        #{noticeCategory,jdbcType=CHAR},
+      </if>
+      <if test="noticePublicationStartDate != null">
+        #{noticePublicationStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticePublicationEndDate != null">
+        #{noticePublicationEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeTitle != null">
+        #{noticeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeContents != null">
+        #{noticeContents,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="noticeNewPeriod != null">
+        #{noticeNewPeriod,jdbcType=TINYINT},
+      </if>
+      <if test="noticeAttachment1 != null">
+        #{noticeAttachment1,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeAttachment2 != null">
+        #{noticeAttachment2,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeAttachment3 != null">
+        #{noticeAttachment3,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="checkNoticeNumber" parameterType="map" resultType="java.lang.String">
+    select
+      case
+        when max(notice_number) is null
+          then DATE_FORMAT(CURDATE(), '%Y%m%d00')
+        else max(notice_number)
+        end as CNT
+    from
+      t_notice
+    where
+      SUBSTRING(notice_number, 1, 8) = DATE_FORMAT(CURDATE(), '%Y%m%d')
+  </select>
+</mapper>

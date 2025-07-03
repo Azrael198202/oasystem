@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.OverTimeMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.OverTime">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="request_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="request_user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="work_type_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="scheduled_overtime_day" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="start_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="end_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="estimated_work_hours" javaType="java.util.Date" jdbcType="TIME" />
+      <arg column="overtime_reason_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, request_number, request_user_id, work_type_kbn, scheduled_overtime_day, 
+    start_time, end_time, estimated_work_hours, overtime_reason_kbn, remark, registration_user, 
+    registration_datetime, update_user, update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_overtime
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_overtime
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.OverTime">
+    insert into t_overtime (company_code, request_number, request_user_id, 
+      work_type_kbn, scheduled_overtime_day, start_time, 
+      end_time, estimated_work_hours, overtime_reason_kbn, 
+      remark, registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{requestNumber,jdbcType=VARCHAR}, #{requestUserId,jdbcType=VARCHAR}, 
+      #{workTypeKbn,jdbcType=CHAR}, #{scheduledOvertimeDay,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{estimatedWorkHours,jdbcType=TIME}, #{overtimeReasonKbn,jdbcType=CHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+    ON DUPLICATE KEY UPDATE
+      work_type_kbn = VALUES(work_type_kbn),
+      scheduled_overtime_day = VALUES(scheduled_overtime_day),
+      start_time = VALUES(start_time),
+      end_time = VALUES(end_time),
+      estimated_work_hours = VALUES(estimated_work_hours),
+      overtime_reason_kbn = VALUES(overtime_reason_kbn),
+      remark = VALUES(remark),
+      registration_user = VALUES(registration_user),
+      registration_datetime = VALUES(registration_datetime),
+      update_user = VALUES(update_user),
+      update_datetime = VALUES(update_datetime);
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.OverTime">
+    insert into t_overtime
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="requestNumber != null">
+        request_number,
+      </if>
+      <if test="requestUserId != null">
+        request_user_id,
+      </if>
+      <if test="workTypeKbn != null">
+        work_type_kbn,
+      </if>
+      <if test="scheduledOvertimeDay != null">
+        scheduled_overtime_day,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="estimatedWorkHours != null">
+        estimated_work_hours,
+      </if>
+      <if test="overtimeReasonKbn != null">
+        overtime_reason_kbn,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="requestNumber != null">
+        #{requestNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUserId != null">
+        #{requestUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="workTypeKbn != null">
+        #{workTypeKbn,jdbcType=CHAR},
+      </if>
+      <if test="scheduledOvertimeDay != null">
+        #{scheduledOvertimeDay,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedWorkHours != null">
+        #{estimatedWorkHours,jdbcType=TIME},
+      </if>
+      <if test="overtimeReasonKbn != null">
+        #{overtimeReasonKbn,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.OverTime">
+    update t_overtime
+    <set>
+      <if test="workTypeKbn != null">
+        work_type_kbn = #{workTypeKbn,jdbcType=CHAR},
+      </if>
+      <if test="scheduledOvertimeDay != null">
+        scheduled_overtime_day = #{scheduledOvertimeDay,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedWorkHours != null">
+        estimated_work_hours = #{estimatedWorkHours,jdbcType=TIME},
+      </if>
+      <if test="overtimeReasonKbn != null">
+        overtime_reason_kbn = #{overtimeReasonKbn,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.OverTime">
+    update t_overtime
+    set work_type_kbn = #{workTypeKbn,jdbcType=CHAR},
+      scheduled_overtime_day = #{scheduledOvertimeDay,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      estimated_work_hours = #{estimatedWorkHours,jdbcType=TIME},
+      overtime_reason_kbn = #{overtimeReasonKbn,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectOvertime" parameterType="map" resultType="com.demo.pojo.overTime.OverTimeDTO">
+    select * from t_overtime
+    where company_code = #{companyCode,jdbcType=CHAR}
+    and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteOvertime" parameterType="map">
+    delete from t_overtime
+    where company_code = #{companyCode,jdbcType=CHAR}
+    and request_number = #{requestNumber,jdbcType=VARCHAR}
+    and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </delete>
+  <select id="countOvertimeDay" parameterType="map" resultType="int">
+    select count(*)
+    from
+      (
+        select
+          company_code,
+          scheduled_overtime_day as scheduled_day,
+          request_user_id
+        from t_overtime
+      )as duplicateData
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and scheduled_day = #{scheduledOvertimeDay,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </select>
+</mapper>

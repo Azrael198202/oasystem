@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.ResumeMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Resume">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="resume_ver_kbn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="nearest_station" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="graduation_ym" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="degree" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="school_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="major" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="certification1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="certification2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="certification3" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="certification4" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="certification5" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="certification6" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="experience_years" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="responsible" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="lg_jp_business_con" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_jp_daily_con" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_jp_reading" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_jp_listening" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_jp_writting" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_en_business_con" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_en_daily_con" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_en_reading" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_en_listening" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="lg_en_writting" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_os_windows" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_os_unix" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_os_solaris" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_os_hpux" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_os_aix" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_os_linux" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_os_dos" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_os_mac" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_cobol" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_java" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_jsp" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_c" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_vb" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_vc" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_sql" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_net" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_perl" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_pg_xml" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_db_oracle" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_db_hirdb" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_db_sqlserver" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_db_db2" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_db_mysql" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_db_postgresql" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_db_access" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_etc_weblogic" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_etc_j2ee" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_etc_websphere" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_etc_tomcat" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_etc_jp1" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_etc_cosminexus" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="tc_etc_xamarin" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="remarks" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, resume_ver_kbn, nearest_station, graduation_ym, degree, school_name, 
+    major, certification1, certification2, certification3, certification4, certification5, 
+    certification6, experience_years, responsible, lg_jp_business_con, lg_jp_daily_con, 
+    lg_jp_reading, lg_jp_listening, lg_jp_writting, lg_en_business_con, lg_en_daily_con, 
+    lg_en_reading, lg_en_listening, lg_en_writting, tc_os_windows, tc_os_unix, tc_os_solaris, 
+    tc_os_hpux, tc_os_aix, tc_os_linux, tc_os_dos, tc_os_mac, tc_pg_cobol, tc_pg_java, 
+    tc_pg_jsp, tc_pg_c, tc_pg_vb, tc_pg_vc, tc_pg_sql, tc_pg_net, tc_pg_perl, tc_pg_xml, 
+    tc_db_oracle, tc_db_hirdb, tc_db_sqlserver, tc_db_db2, tc_db_mysql, tc_db_postgresql, 
+    tc_db_access, tc_etc_weblogic, tc_etc_j2ee, tc_etc_websphere, tc_etc_tomcat, tc_etc_jp1, 
+    tc_etc_cosminexus, tc_etc_xamarin, remarks, del_flg, reg_account, reg_time, upd_account,
+    upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_resume
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_resume
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Resume">
+    insert into t_resume (company_code, user_id, resume_ver_kbn, 
+      nearest_station, graduation_ym, degree, 
+      school_name, major, certification1, 
+      certification2, certification3, certification4, 
+      certification5, certification6, experience_years, 
+      responsible, lg_jp_business_con, lg_jp_daily_con, 
+      lg_jp_reading, lg_jp_listening, lg_jp_writting, 
+      lg_en_business_con, lg_en_daily_con, lg_en_reading, 
+      lg_en_listening, lg_en_writting, tc_os_windows, 
+      tc_os_unix, tc_os_solaris, tc_os_hpux, 
+      tc_os_aix, tc_os_linux, tc_os_dos, 
+      tc_os_mac, tc_pg_cobol, tc_pg_java, 
+      tc_pg_jsp, tc_pg_c, tc_pg_vb, tc_pg_vc, 
+      tc_pg_sql, tc_pg_net, tc_pg_perl, 
+      tc_pg_xml, tc_db_oracle, tc_db_hirdb, 
+      tc_db_sqlserver, tc_db_db2, tc_db_mysql, 
+      tc_db_postgresql, tc_db_access, tc_etc_weblogic, 
+      tc_etc_j2ee, tc_etc_websphere, tc_etc_tomcat, 
+      tc_etc_jp1, tc_etc_cosminexus, tc_etc_xamarin,
+      remarks, del_flg, reg_account, 
+      reg_time, upd_account, upd_time
+      )
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{resumeVerKbn,jdbcType=VARCHAR},
+      #{nearestStation,jdbcType=VARCHAR}, #{graduationYm,jdbcType=CHAR}, #{degree,jdbcType=VARCHAR}, 
+      #{schoolName,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{certification1,jdbcType=VARCHAR}, 
+      #{certification2,jdbcType=VARCHAR}, #{certification3,jdbcType=VARCHAR}, #{certification4,jdbcType=VARCHAR}, 
+      #{certification5,jdbcType=VARCHAR}, #{certification6,jdbcType=VARCHAR}, #{experienceYears,jdbcType=REAL},
+      #{responsible,jdbcType=VARCHAR}, #{lgJpBusinessCon,jdbcType=CHAR}, #{lgJpDailyCon,jdbcType=CHAR}, 
+      #{lgJpReading,jdbcType=CHAR}, #{lgJpListening,jdbcType=CHAR}, #{lgJpWritting,jdbcType=CHAR}, 
+      #{lgEnBusinessCon,jdbcType=CHAR}, #{lgEnDailyCon,jdbcType=CHAR}, #{lgEnReading,jdbcType=CHAR}, 
+      #{lgEnListening,jdbcType=CHAR}, #{lgEnWritting,jdbcType=CHAR}, #{tcOsWindows,jdbcType=CHAR}, 
+      #{tcOsUnix,jdbcType=CHAR}, #{tcOsSolaris,jdbcType=CHAR}, #{tcOsHpux,jdbcType=CHAR}, 
+      #{tcOsAix,jdbcType=CHAR}, #{tcOsLinux,jdbcType=CHAR}, #{tcOsDos,jdbcType=CHAR}, 
+      #{tcOsMac,jdbcType=CHAR}, #{tcPgCobol,jdbcType=CHAR}, #{tcPgJava,jdbcType=CHAR}, 
+      #{tcPgJsp,jdbcType=CHAR}, #{tcPgC,jdbcType=CHAR}, #{tcPgVb,jdbcType=CHAR}, #{tcPgVc,jdbcType=CHAR}, 
+      #{tcPgSql,jdbcType=CHAR}, #{tcPgNet,jdbcType=CHAR}, #{tcPgPerl,jdbcType=CHAR}, 
+      #{tcPgXml,jdbcType=CHAR}, #{tcDbOracle,jdbcType=CHAR}, #{tcDbHirdb,jdbcType=CHAR}, 
+      #{tcDbSqlserver,jdbcType=CHAR}, #{tcDbDb2,jdbcType=CHAR}, #{tcDbMysql,jdbcType=CHAR}, 
+      #{tcDbPostgresql,jdbcType=CHAR}, #{tcDbAccess,jdbcType=CHAR}, #{tcEtcWeblogic,jdbcType=CHAR}, 
+      #{tcEtcJ2ee,jdbcType=CHAR}, #{tcEtcWebsphere,jdbcType=CHAR}, #{tcEtcTomcat,jdbcType=CHAR}, 
+      #{tcEtcJp1,jdbcType=CHAR}, #{tcEtcCosminexus,jdbcType=CHAR}, #{tcEtcXamarin,jdbcType=CHAR},
+      #{remarks,jdbcType=VARCHAR}, #{delFlg,jdbcType=CHAR}, #{regAccount,jdbcType=VARCHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Resume">
+    insert into t_resume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="resumeVerKbn != null">
+        resume_ver_kbn,
+      </if>
+      <if test="nearestStation != null">
+        nearest_station,
+      </if>
+      <if test="graduationYm != null">
+        graduation_ym,
+      </if>
+      <if test="degree != null">
+        degree,
+      </if>
+      <if test="schoolName != null">
+        school_name,
+      </if>
+      <if test="major != null">
+        major,
+      </if>
+      <if test="certification1 != null">
+        certification1,
+      </if>
+      <if test="certification2 != null">
+        certification2,
+      </if>
+      <if test="certification3 != null">
+        certification3,
+      </if>
+      <if test="certification4 != null">
+        certification4,
+      </if>
+      <if test="certification5 != null">
+        certification5,
+      </if>
+      <if test="certification6 != null">
+        certification6,
+      </if>
+      <if test="experienceYears != null">
+        experience_years,
+      </if>
+      <if test="responsible != null">
+        responsible,
+      </if>
+      <if test="lgJpBusinessCon != null">
+        lg_jp_business_con,
+      </if>
+      <if test="lgJpDailyCon != null">
+        lg_jp_daily_con,
+      </if>
+      <if test="lgJpReading != null">
+        lg_jp_reading,
+      </if>
+      <if test="lgJpListening != null">
+        lg_jp_listening,
+      </if>
+      <if test="lgJpWritting != null">
+        lg_jp_writting,
+      </if>
+      <if test="lgEnBusinessCon != null">
+        lg_en_business_con,
+      </if>
+      <if test="lgEnDailyCon != null">
+        lg_en_daily_con,
+      </if>
+      <if test="lgEnReading != null">
+        lg_en_reading,
+      </if>
+      <if test="lgEnListening != null">
+        lg_en_listening,
+      </if>
+      <if test="lgEnWritting != null">
+        lg_en_writting,
+      </if>
+      <if test="tcOsWindows != null">
+        tc_os_windows,
+      </if>
+      <if test="tcOsUnix != null">
+        tc_os_unix,
+      </if>
+      <if test="tcOsSolaris != null">
+        tc_os_solaris,
+      </if>
+      <if test="tcOsHpux != null">
+        tc_os_hpux,
+      </if>
+      <if test="tcOsAix != null">
+        tc_os_aix,
+      </if>
+      <if test="tcOsLinux != null">
+        tc_os_linux,
+      </if>
+      <if test="tcOsDos != null">
+        tc_os_dos,
+      </if>
+      <if test="tcOsMac != null">
+        tc_os_mac,
+      </if>
+      <if test="tcPgCobol != null">
+        tc_pg_cobol,
+      </if>
+      <if test="tcPgJava != null">
+        tc_pg_java,
+      </if>
+      <if test="tcPgJsp != null">
+        tc_pg_jsp,
+      </if>
+      <if test="tcPgC != null">
+        tc_pg_c,
+      </if>
+      <if test="tcPgVb != null">
+        tc_pg_vb,
+      </if>
+      <if test="tcPgVc != null">
+        tc_pg_vc,
+      </if>
+      <if test="tcPgSql != null">
+        tc_pg_sql,
+      </if>
+      <if test="tcPgNet != null">
+        tc_pg_net,
+      </if>
+      <if test="tcPgPerl != null">
+        tc_pg_perl,
+      </if>
+      <if test="tcPgXml != null">
+        tc_pg_xml,
+      </if>
+      <if test="tcDbOracle != null">
+        tc_db_oracle,
+      </if>
+      <if test="tcDbHirdb != null">
+        tc_db_hirdb,
+      </if>
+      <if test="tcDbSqlserver != null">
+        tc_db_sqlserver,
+      </if>
+      <if test="tcDbDb2 != null">
+        tc_db_db2,
+      </if>
+      <if test="tcDbMysql != null">
+        tc_db_mysql,
+      </if>
+      <if test="tcDbPostgresql != null">
+        tc_db_postgresql,
+      </if>
+      <if test="tcDbAccess != null">
+        tc_db_access,
+      </if>
+      <if test="tcEtcWeblogic != null">
+        tc_etc_weblogic,
+      </if>
+      <if test="tcEtcJ2ee != null">
+        tc_etc_j2ee,
+      </if>
+      <if test="tcEtcWebsphere != null">
+        tc_etc_websphere,
+      </if>
+      <if test="tcEtcTomcat != null">
+        tc_etc_tomcat,
+      </if>
+      <if test="tcEtcJp1 != null">
+        tc_etc_jp1,
+      </if>
+      <if test="tcEtcCosminexus != null">
+        tc_etc_cosminexus,
+      </if>
+      <if test="tcEtcXamarin != null">
+        tc_etc_xamarin,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="delFlg != null">
+        del_flg,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeVerKbn != null">
+        #{resumeVerKbn,jdbcType=VARCHAR},
+      </if>
+      <if test="nearestStation != null">
+        #{nearestStation,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationYm != null">
+        #{graduationYm,jdbcType=CHAR},
+      </if>
+      <if test="degree != null">
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolName != null">
+        #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="certification1 != null">
+        #{certification1,jdbcType=VARCHAR},
+      </if>
+      <if test="certification2 != null">
+        #{certification2,jdbcType=VARCHAR},
+      </if>
+      <if test="certification3 != null">
+        #{certification3,jdbcType=VARCHAR},
+      </if>
+      <if test="certification4 != null">
+        #{certification4,jdbcType=VARCHAR},
+      </if>
+      <if test="certification5 != null">
+        #{certification5,jdbcType=VARCHAR},
+      </if>
+      <if test="certification6 != null">
+        #{certification6,jdbcType=VARCHAR},
+      </if>
+      <if test="experienceYears != null">
+        #{experienceYears,jdbcType=REAL},
+      </if>
+      <if test="responsible != null">
+        #{responsible,jdbcType=VARCHAR},
+      </if>
+      <if test="lgJpBusinessCon != null">
+        #{lgJpBusinessCon,jdbcType=CHAR},
+      </if>
+      <if test="lgJpDailyCon != null">
+        #{lgJpDailyCon,jdbcType=CHAR},
+      </if>
+      <if test="lgJpReading != null">
+        #{lgJpReading,jdbcType=CHAR},
+      </if>
+      <if test="lgJpListening != null">
+        #{lgJpListening,jdbcType=CHAR},
+      </if>
+      <if test="lgJpWritting != null">
+        #{lgJpWritting,jdbcType=CHAR},
+      </if>
+      <if test="lgEnBusinessCon != null">
+        #{lgEnBusinessCon,jdbcType=CHAR},
+      </if>
+      <if test="lgEnDailyCon != null">
+        #{lgEnDailyCon,jdbcType=CHAR},
+      </if>
+      <if test="lgEnReading != null">
+        #{lgEnReading,jdbcType=CHAR},
+      </if>
+      <if test="lgEnListening != null">
+        #{lgEnListening,jdbcType=CHAR},
+      </if>
+      <if test="lgEnWritting != null">
+        #{lgEnWritting,jdbcType=CHAR},
+      </if>
+      <if test="tcOsWindows != null">
+        #{tcOsWindows,jdbcType=CHAR},
+      </if>
+      <if test="tcOsUnix != null">
+        #{tcOsUnix,jdbcType=CHAR},
+      </if>
+      <if test="tcOsSolaris != null">
+        #{tcOsSolaris,jdbcType=CHAR},
+      </if>
+      <if test="tcOsHpux != null">
+        #{tcOsHpux,jdbcType=CHAR},
+      </if>
+      <if test="tcOsAix != null">
+        #{tcOsAix,jdbcType=CHAR},
+      </if>
+      <if test="tcOsLinux != null">
+        #{tcOsLinux,jdbcType=CHAR},
+      </if>
+      <if test="tcOsDos != null">
+        #{tcOsDos,jdbcType=CHAR},
+      </if>
+      <if test="tcOsMac != null">
+        #{tcOsMac,jdbcType=CHAR},
+      </if>
+      <if test="tcPgCobol != null">
+        #{tcPgCobol,jdbcType=CHAR},
+      </if>
+      <if test="tcPgJava != null">
+        #{tcPgJava,jdbcType=CHAR},
+      </if>
+      <if test="tcPgJsp != null">
+        #{tcPgJsp,jdbcType=CHAR},
+      </if>
+      <if test="tcPgC != null">
+        #{tcPgC,jdbcType=CHAR},
+      </if>
+      <if test="tcPgVb != null">
+        #{tcPgVb,jdbcType=CHAR},
+      </if>
+      <if test="tcPgVc != null">
+        #{tcPgVc,jdbcType=CHAR},
+      </if>
+      <if test="tcPgSql != null">
+        #{tcPgSql,jdbcType=CHAR},
+      </if>
+      <if test="tcPgNet != null">
+        #{tcPgNet,jdbcType=CHAR},
+      </if>
+      <if test="tcPgPerl != null">
+        #{tcPgPerl,jdbcType=CHAR},
+      </if>
+      <if test="tcPgXml != null">
+        #{tcPgXml,jdbcType=CHAR},
+      </if>
+      <if test="tcDbOracle != null">
+        #{tcDbOracle,jdbcType=CHAR},
+      </if>
+      <if test="tcDbHirdb != null">
+        #{tcDbHirdb,jdbcType=CHAR},
+      </if>
+      <if test="tcDbSqlserver != null">
+        #{tcDbSqlserver,jdbcType=CHAR},
+      </if>
+      <if test="tcDbDb2 != null">
+        #{tcDbDb2,jdbcType=CHAR},
+      </if>
+      <if test="tcDbMysql != null">
+        #{tcDbMysql,jdbcType=CHAR},
+      </if>
+      <if test="tcDbPostgresql != null">
+        #{tcDbPostgresql,jdbcType=CHAR},
+      </if>
+      <if test="tcDbAccess != null">
+        #{tcDbAccess,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcWeblogic != null">
+        #{tcEtcWeblogic,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcJ2ee != null">
+        #{tcEtcJ2ee,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcWebsphere != null">
+        #{tcEtcWebsphere,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcTomcat != null">
+        #{tcEtcTomcat,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcJp1 != null">
+        #{tcEtcJp1,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcCosminexus != null">
+        #{tcEtcCosminexus,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcXamarin != null">
+        #{tcEtcXamarin,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Resume">
+    update t_resume
+    <set>
+      <if test="nearestStation != null">
+        nearest_station = #{nearestStation,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationYm != null">
+        graduation_ym = #{graduationYm,jdbcType=CHAR},
+      </if>
+      <if test="degree != null">
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolName != null">
+        school_name = #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="certification1 != null">
+        certification1 = #{certification1,jdbcType=VARCHAR},
+      </if>
+      <if test="certification2 != null">
+        certification2 = #{certification2,jdbcType=VARCHAR},
+      </if>
+      <if test="certification3 != null">
+        certification3 = #{certification3,jdbcType=VARCHAR},
+      </if>
+      <if test="certification4 != null">
+        certification4 = #{certification4,jdbcType=VARCHAR},
+      </if>
+      <if test="certification5 != null">
+        certification5 = #{certification5,jdbcType=VARCHAR},
+      </if>
+      <if test="certification6 != null">
+        certification6 = #{certification6,jdbcType=VARCHAR},
+      </if>
+      <if test="experienceYears != null">
+        experience_years = #{experienceYears,jdbcType=REAL},
+      </if>
+      <if test="responsible != null">
+        responsible = #{responsible,jdbcType=VARCHAR},
+      </if>
+      <if test="lgJpBusinessCon != null">
+        lg_jp_business_con = #{lgJpBusinessCon,jdbcType=CHAR},
+      </if>
+      <if test="lgJpDailyCon != null">
+        lg_jp_daily_con = #{lgJpDailyCon,jdbcType=CHAR},
+      </if>
+      <if test="lgJpReading != null">
+        lg_jp_reading = #{lgJpReading,jdbcType=CHAR},
+      </if>
+      <if test="lgJpListening != null">
+        lg_jp_listening = #{lgJpListening,jdbcType=CHAR},
+      </if>
+      <if test="lgJpWritting != null">
+        lg_jp_writting = #{lgJpWritting,jdbcType=CHAR},
+      </if>
+      <if test="lgEnBusinessCon != null">
+        lg_en_business_con = #{lgEnBusinessCon,jdbcType=CHAR},
+      </if>
+      <if test="lgEnDailyCon != null">
+        lg_en_daily_con = #{lgEnDailyCon,jdbcType=CHAR},
+      </if>
+      <if test="lgEnReading != null">
+        lg_en_reading = #{lgEnReading,jdbcType=CHAR},
+      </if>
+      <if test="lgEnListening != null">
+        lg_en_listening = #{lgEnListening,jdbcType=CHAR},
+      </if>
+      <if test="lgEnWritting != null">
+        lg_en_writting = #{lgEnWritting,jdbcType=CHAR},
+      </if>
+      <if test="tcOsWindows != null">
+        tc_os_windows = #{tcOsWindows,jdbcType=CHAR},
+      </if>
+      <if test="tcOsUnix != null">
+        tc_os_unix = #{tcOsUnix,jdbcType=CHAR},
+      </if>
+      <if test="tcOsSolaris != null">
+        tc_os_solaris = #{tcOsSolaris,jdbcType=CHAR},
+      </if>
+      <if test="tcOsHpux != null">
+        tc_os_hpux = #{tcOsHpux,jdbcType=CHAR},
+      </if>
+      <if test="tcOsAix != null">
+        tc_os_aix = #{tcOsAix,jdbcType=CHAR},
+      </if>
+      <if test="tcOsLinux != null">
+        tc_os_linux = #{tcOsLinux,jdbcType=CHAR},
+      </if>
+      <if test="tcOsDos != null">
+        tc_os_dos = #{tcOsDos,jdbcType=CHAR},
+      </if>
+      <if test="tcOsMac != null">
+        tc_os_mac = #{tcOsMac,jdbcType=CHAR},
+      </if>
+      <if test="tcPgCobol != null">
+        tc_pg_cobol = #{tcPgCobol,jdbcType=CHAR},
+      </if>
+      <if test="tcPgJava != null">
+        tc_pg_java = #{tcPgJava,jdbcType=CHAR},
+      </if>
+      <if test="tcPgJsp != null">
+        tc_pg_jsp = #{tcPgJsp,jdbcType=CHAR},
+      </if>
+      <if test="tcPgC != null">
+        tc_pg_c = #{tcPgC,jdbcType=CHAR},
+      </if>
+      <if test="tcPgVb != null">
+        tc_pg_vb = #{tcPgVb,jdbcType=CHAR},
+      </if>
+      <if test="tcPgVc != null">
+        tc_pg_vc = #{tcPgVc,jdbcType=CHAR},
+      </if>
+      <if test="tcPgSql != null">
+        tc_pg_sql = #{tcPgSql,jdbcType=CHAR},
+      </if>
+      <if test="tcPgNet != null">
+        tc_pg_net = #{tcPgNet,jdbcType=CHAR},
+      </if>
+      <if test="tcPgPerl != null">
+        tc_pg_perl = #{tcPgPerl,jdbcType=CHAR},
+      </if>
+      <if test="tcPgXml != null">
+        tc_pg_xml = #{tcPgXml,jdbcType=CHAR},
+      </if>
+      <if test="tcDbOracle != null">
+        tc_db_oracle = #{tcDbOracle,jdbcType=CHAR},
+      </if>
+      <if test="tcDbHirdb != null">
+        tc_db_hirdb = #{tcDbHirdb,jdbcType=CHAR},
+      </if>
+      <if test="tcDbSqlserver != null">
+        tc_db_sqlserver = #{tcDbSqlserver,jdbcType=CHAR},
+      </if>
+      <if test="tcDbDb2 != null">
+        tc_db_db2 = #{tcDbDb2,jdbcType=CHAR},
+      </if>
+      <if test="tcDbMysql != null">
+        tc_db_mysql = #{tcDbMysql,jdbcType=CHAR},
+      </if>
+      <if test="tcDbPostgresql != null">
+        tc_db_postgresql = #{tcDbPostgresql,jdbcType=CHAR},
+      </if>
+      <if test="tcDbAccess != null">
+        tc_db_access = #{tcDbAccess,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcWeblogic != null">
+        tc_etc_weblogic = #{tcEtcWeblogic,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcJ2ee != null">
+        tc_etc_j2ee = #{tcEtcJ2ee,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcWebsphere != null">
+        tc_etc_websphere = #{tcEtcWebsphere,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcTomcat != null">
+        tc_etc_tomcat = #{tcEtcTomcat,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcJp1 != null">
+        tc_etc_jp1 = #{tcEtcJp1,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcCosminexus != null">
+        tc_etc_cosminexus = #{tcEtcCosminexus,jdbcType=CHAR},
+      </if>
+      <if test="tcEtcXamarin != null">
+        tc_etc_xamarin = #{tcEtcXamarin,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        del_flg = #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Resume">
+    update t_resume
+    set nearest_station = #{nearestStation,jdbcType=VARCHAR},
+      graduation_ym = #{graduationYm,jdbcType=CHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      school_name = #{schoolName,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      certification1 = #{certification1,jdbcType=VARCHAR},
+      certification2 = #{certification2,jdbcType=VARCHAR},
+      certification3 = #{certification3,jdbcType=VARCHAR},
+      certification4 = #{certification4,jdbcType=VARCHAR},
+      certification5 = #{certification5,jdbcType=VARCHAR},
+      certification6 = #{certification6,jdbcType=VARCHAR},
+      experience_years = #{experienceYears,jdbcType=REAL},
+      responsible = #{responsible,jdbcType=VARCHAR},
+      lg_jp_business_con = #{lgJpBusinessCon,jdbcType=CHAR},
+      lg_jp_daily_con = #{lgJpDailyCon,jdbcType=CHAR},
+      lg_jp_reading = #{lgJpReading,jdbcType=CHAR},
+      lg_jp_listening = #{lgJpListening,jdbcType=CHAR},
+      lg_jp_writting = #{lgJpWritting,jdbcType=CHAR},
+      lg_en_business_con = #{lgEnBusinessCon,jdbcType=CHAR},
+      lg_en_daily_con = #{lgEnDailyCon,jdbcType=CHAR},
+      lg_en_reading = #{lgEnReading,jdbcType=CHAR},
+      lg_en_listening = #{lgEnListening,jdbcType=CHAR},
+      lg_en_writting = #{lgEnWritting,jdbcType=CHAR},
+      tc_os_windows = #{tcOsWindows,jdbcType=CHAR},
+      tc_os_unix = #{tcOsUnix,jdbcType=CHAR},
+      tc_os_solaris = #{tcOsSolaris,jdbcType=CHAR},
+      tc_os_hpux = #{tcOsHpux,jdbcType=CHAR},
+      tc_os_aix = #{tcOsAix,jdbcType=CHAR},
+      tc_os_linux = #{tcOsLinux,jdbcType=CHAR},
+      tc_os_dos = #{tcOsDos,jdbcType=CHAR},
+      tc_os_mac = #{tcOsMac,jdbcType=CHAR},
+      tc_pg_cobol = #{tcPgCobol,jdbcType=CHAR},
+      tc_pg_java = #{tcPgJava,jdbcType=CHAR},
+      tc_pg_jsp = #{tcPgJsp,jdbcType=CHAR},
+      tc_pg_c = #{tcPgC,jdbcType=CHAR},
+      tc_pg_vb = #{tcPgVb,jdbcType=CHAR},
+      tc_pg_vc = #{tcPgVc,jdbcType=CHAR},
+      tc_pg_sql = #{tcPgSql,jdbcType=CHAR},
+      tc_pg_net = #{tcPgNet,jdbcType=CHAR},
+      tc_pg_perl = #{tcPgPerl,jdbcType=CHAR},
+      tc_pg_xml = #{tcPgXml,jdbcType=CHAR},
+      tc_db_oracle = #{tcDbOracle,jdbcType=CHAR},
+      tc_db_hirdb = #{tcDbHirdb,jdbcType=CHAR},
+      tc_db_sqlserver = #{tcDbSqlserver,jdbcType=CHAR},
+      tc_db_db2 = #{tcDbDb2,jdbcType=CHAR},
+      tc_db_mysql = #{tcDbMysql,jdbcType=CHAR},
+      tc_db_postgresql = #{tcDbPostgresql,jdbcType=CHAR},
+      tc_db_access = #{tcDbAccess,jdbcType=CHAR},
+      tc_etc_weblogic = #{tcEtcWeblogic,jdbcType=CHAR},
+      tc_etc_j2ee = #{tcEtcJ2ee,jdbcType=CHAR},
+      tc_etc_websphere = #{tcEtcWebsphere,jdbcType=CHAR},
+      tc_etc_tomcat = #{tcEtcTomcat,jdbcType=CHAR},
+      tc_etc_jp1 = #{tcEtcJp1,jdbcType=CHAR},
+      tc_etc_cosminexus = #{tcEtcCosminexus,jdbcType=CHAR},
+      tc_etc_xamarin = #{tcEtcXamarin,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+  </update>
+
+  <select id="searchResumeAll" parameterType="map" resultType="com.demo.pojo.resume.SearchResumeDTO">
+    select
+      t.company_code
+         , t.user_id
+         , concat(u.first_name ,' ', u.last_name) as userName
+         , t.resume_ver_kbn
+         , m.category_kbn_name as resume_ver_name
+         , t.remarks
+         , date_format(t.upd_time, '%y/%m/%d %h:%i') as upd_time
+    from
+      t_resume t
+        left join m_user_detail u
+                  on u.company_code = t.company_code
+                    and u.user_id = t.user_id
+        left join m_category m
+                  on m.company_code = t.company_code
+                    and m.category_class_number = '070'
+                    and m.category_kbn = t.resume_ver_kbn
+    where t.company_code = #{companyCode,jdbcType=CHAR}
+    and t.user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="searchUser" parameterType="com.demo.pojo.resume.SearchUserDTO" resultType="com.demo.pojo.resume.GetUserDTO">
+    select
+    u.company_code
+    , u.user_id
+    , m.department_name
+    , concat(u.first_name, ' ', u.last_name) as userName
+    , TIMESTAMPDIFF(YEAR, u.birthday, CURDATE()) as age
+    from
+    m_user_detail u
+    left join t_belong_dept d
+    on u.company_code = d.company_code
+    and u.user_id = d.user_id
+    left join m_department m
+    on m.company_code = d.company_code
+    and m.department_code = d.department_code
+    left join t_resume t
+    on t.company_code = u.company_code
+    and t.user_id = u.user_id
+    left join t_resume_detail re
+    on t.company_code = re.company_code
+    and t.user_id = re.user_id
+    and t.resume_ver_kbn = re.resume_ver_kbn
+    where
+    u.company_code = #{companyCode,jdbcType=CHAR}
+    <if test="os == 'tc_os_windows'">
+      and tc_os_windows &lt;= #{osKbn,jdbcType=CHAR}
+    </if>
+    <if test="os == 'tc_os_unix'">
+      and tc_os_unix &lt;= #{osKbn,jdbcType=CHAR}
+    </if>
+    <if test="os == 'tc_os_solaris'">
+      and tc_os_solaris &lt;= #{osKbn,jdbcType=CHAR}
+    </if>
+    <if test="os == 'tc_os_hpux'">
+      and tc_os_hpux &lt;= #{osKbn,jdbcType=CHAR}
+    </if>
+    <if test="os == 'tc_os_aix'">
+      and tc_os_aix &lt;= #{osKbn,jdbcType=CHAR}
+    </if>
+    <if test="os == 'tc_os_linux'">
+      and tc_os_linux &lt;= #{osKbn,jdbcType=CHAR}
+    </if>
+    <if test="os == 'tc_os_dos'">
+      and  tc_os_dos &lt;= #{osKbn,jdbcType=CHAR}
+    </if>
+    <if test="os == 'tc_os_mac'">
+      and  tc_os_mac &lt;= #{osKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_cobol'">
+      and  tc_pg_cobol &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_java'">
+      and tc_pg_java &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_jsp'">
+      and tc_pg_jsp &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_c'">
+      and tc_pg_c &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_vb'">
+      and tc_pg_vb &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_vc'">
+      and tc_pg_vc &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_sql'">
+      and tc_pg_sql &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_net'">
+      and tc_pg_net &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_perl'">
+      and tc_pg_perl &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="pg == 'tc_pg_xml'">
+      and tc_pg_xml &lt;= #{pgKbn,jdbcType=CHAR}
+    </if>
+    <if test="db == 'tc_db_oracle'">
+      and  tc_db_oracle &lt;= #{dbKbn,jdbcType=CHAR}
+    </if>
+    <if test="db == 'tc_db_hirdb'">
+      and tc_db_hirdb &lt;= #{dbKbn,jdbcType=CHAR}
+    </if>
+    <if test="db == 'tc_db_sqlserver'">
+      and tc_db_sqlserver &lt;= #{dbKbn,jdbcType=CHAR}
+    </if>
+    <if test="db == 'tc_db_db2'">
+      and tc_db_db2 &lt;= #{dbKbn,jdbcType=CHAR}
+    </if>
+    <if test="db == 'tc_db_mysql'">
+      and tc_db_mysql &lt;= #{dbKbn,jdbcType=CHAR}
+    </if>
+    <if test="db == 'tc_db_postgresql'">
+      and  tc_db_postgresql &lt;= #{dbKbn,jdbcType=CHAR}
+    </if>
+    <if test="db == 'tc_db_access'">
+      and tc_db_access &lt;= #{dbKbn,jdbcType=CHAR}
+    </if>
+    <if test="etc == 'tc_etc_weblogic'">
+      and  tc_etc_weblogic &lt;= #{etcKbn,jdbcType=CHAR}
+    </if>
+    <if test="etc == 'tc_etc_j2ee'">
+      and  tc_etc_j2ee &lt;= #{etcKbn,jdbcType=CHAR}
+    </if>
+    <if test="etc == 'tc_etc_websphere'">
+      and tc_etc_websphere &lt;= #{etcKbn,jdbcType=CHAR}
+    </if>
+    <if test="etc == 'tc_etc_tomcat'">
+      and  tc_etc_tomcat &lt;= #{etcKbn,jdbcType=CHAR}
+    </if>
+    <if test="etc == 'tc_etc_jp1'">
+      and  tc_etc_jp1 &lt;= #{etcKbn,jdbcType=CHAR}
+    </if>
+    <if test="etc == 'tc_etc_cosminexus'">
+      and  tc_etc_cosminexus &lt;= #{etcKbn,jdbcType=CHAR}
+    </if>
+    <if test="etc == 'tc_etc_xamarin'">
+      and  tc_etc_xamarin &lt;= #{etcKbn,jdbcType=CHAR}
+    </if>
+    <if test="etc == 'tc_etc_xamarin'">
+      and  tc_etc_xamarin &lt;= #{etcKbn,jdbcType=CHAR}
+    </if>
+    <if test="requirementsFlg != ''">
+      and  requirements_flg = #{requirementsFlg,jdbcType=CHAR}
+    </if>
+    <if test="basicFlg != ''">
+      and  basic_flg = #{basicFlg,jdbcType=CHAR}
+    </if>
+    <if test="specificFlg != ''">
+      and  specific_flg = #{specificFlg,jdbcType=CHAR}
+    </if>
+    <if test="codingFlg != ''">
+      and  coding_flg = #{codingFlg,jdbcType=CHAR}
+    </if>
+    <if test="unitTestFlg != ''">
+      and  unit_test_flg = #{unitTestFlg,jdbcType=CHAR}
+    </if>
+    <if test="interfaceTestFlg != ''">
+      and  interface_test_flg = #{interfaceTestFlg,jdbcType=CHAR}
+    </if>
+    <if test="systemTestFlg != ''">
+      and  system_test_flg = #{systemTestFlg,jdbcType=CHAR}
+    </if>
+    <if test="age != ''">
+      and TIMESTAMPDIFF(YEAR, u.birthday, CURDATE()) &lt;= #{age,jdbcType=VARCHAR}
+    </if>
+    <if test="departmentCode != ''">
+      and  m.department_code = #{departmentCode,jdbcType=CHAR}
+    </if>
+    <if test="experienceYears != ''">
+      and  experience_years >= #{experienceYears,jdbcType=CHAR}
+    </if>
+    <if test="responsible != ''">
+      and  t.responsible = #{responsible,jdbcType=CHAR}
+    </if>
+    <if test="userIdName != ''">
+      and  (u.user_id like CONCAT('%', #{userIdName,jdbcType=CHAR} ,'%')
+      or  u.first_name like CONCAT('%', #{userIdName,jdbcType=VARCHAR} ,'%')
+      or  u.last_name like CONCAT('%', #{userIdName,jdbcType=VARCHAR} ,'%'))
+    </if>
+    group by
+    u.company_code
+    , u.user_id
+    , m.department_name
+    , userName
+    , age
+  </select>
+  <select id="searchResumeVer" parameterType="map" resultType="com.demo.pojo.resume.GetResumeVerDTO">
+    select
+      t.resume_ver_kbn
+    from
+      t_resume t
+    where t.company_code = #{companyCode,jdbcType=CHAR}
+      and t.user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="searchResumeNew" parameterType="map" resultType="com.demo.pojo.resume.SearchResumeDTO">
+    select
+      t.company_code
+         , t.user_id
+         , t.resume_ver_kbn
+    from
+      t_resume t
+    where t.company_code = #{companyCode,jdbcType=CHAR}
+      and t.user_id = #{userId,jdbcType=VARCHAR}
+    order by
+      t.upd_time desc
+      limit 1
+  </select>
+  <select id="searchResumeNull" parameterType="com.demo.pojo.resume.SearchUserDTO" resultType="com.demo.pojo.resume.GetUserDTO">
+    select
+    u.company_code
+    , u.user_id
+    , m.department_name
+    , concat(u.first_name, ' ', u.last_name) as userName
+    , TIMESTAMPDIFF(YEAR, u.birthday, CURDATE()) as age
+    from
+    m_user_detail u
+    left join t_belong_dept d
+    on u.company_code = d.company_code
+    and u.user_id = d.user_id
+    left join m_department m
+    on m.company_code = d.company_code
+    and m.department_code = d.department_code
+    left join t_resume t
+    on t.company_code = u.company_code
+    and t.user_id != u.user_id
+    where
+    u.company_code = #{companyCode,jdbcType=CHAR}
+    <if test="age != ''">
+      and TIMESTAMPDIFF(YEAR, u.birthday, CURDATE()) &lt;= #{age,jdbcType=VARCHAR}
+    </if>
+    <if test="departmentCode != ''">
+      and  m.department_code = #{departmentCode,jdbcType=CHAR}
+    </if>
+    and u.user_id not in (
+    select
+    t.user_id
+    from
+    t_resume t
+    group by
+    t.user_id
+    )
+    group by
+    u.company_code
+    , u.user_id
+    , m.department_name
+    , userName
+    , age
+  </select>
+</mapper>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.WfMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Wf">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="request_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="req_app_order" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="req_app_user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_app_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="wf_status_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="req_app_comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_app_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, request_number, req_app_order, req_app_user_id, req_app_kbn, wf_status_kbn, 
+    req_app_comment, req_app_datetime, registration_user, registration_datetime, update_user, 
+    update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_wf
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and req_app_order = #{reqAppOrder,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_wf
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and req_app_order = #{reqAppOrder,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Wf">
+    insert into t_wf (company_code, request_number, req_app_order, 
+      req_app_user_id, req_app_kbn, wf_status_kbn, 
+      req_app_comment, req_app_datetime, registration_user, 
+      registration_datetime, update_user, update_datetime
+      )
+    values (#{companyCode,jdbcType=CHAR}, #{requestNumber,jdbcType=VARCHAR}, #{reqAppOrder,jdbcType=TINYINT}, 
+      #{reqAppUserId,jdbcType=VARCHAR}, #{reqAppKbn,jdbcType=CHAR}, #{wfStatusKbn,jdbcType=CHAR}, 
+      #{reqAppComment,jdbcType=VARCHAR}, #{reqAppDatetime,jdbcType=TIMESTAMP}, #{registrationUser,jdbcType=VARCHAR}, 
+      #{registrationDatetime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Wf">
+    insert into t_wf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="requestNumber != null">
+        request_number,
+      </if>
+      <if test="reqAppOrder != null">
+        req_app_order,
+      </if>
+      <if test="reqAppUserId != null">
+        req_app_user_id,
+      </if>
+      <if test="reqAppKbn != null">
+        req_app_kbn,
+      </if>
+      <if test="wfStatusKbn != null">
+        wf_status_kbn,
+      </if>
+      <if test="reqAppComment != null">
+        req_app_comment,
+      </if>
+      <if test="reqAppDatetime != null">
+        req_app_datetime,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="requestNumber != null">
+        #{requestNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reqAppOrder != null">
+        #{reqAppOrder,jdbcType=TINYINT},
+      </if>
+      <if test="reqAppUserId != null">
+        #{reqAppUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqAppKbn != null">
+        #{reqAppKbn,jdbcType=CHAR},
+      </if>
+      <if test="wfStatusKbn != null">
+        #{wfStatusKbn,jdbcType=CHAR},
+      </if>
+      <if test="reqAppComment != null">
+        #{reqAppComment,jdbcType=VARCHAR},
+      </if>
+      <if test="reqAppDatetime != null">
+        #{reqAppDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Wf">
+    update t_wf
+    <set>
+      <if test="reqAppUserId != null">
+        req_app_user_id = #{reqAppUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqAppKbn != null">
+        req_app_kbn = #{reqAppKbn,jdbcType=CHAR},
+      </if>
+      <if test="wfStatusKbn != null">
+        wf_status_kbn = #{wfStatusKbn,jdbcType=CHAR},
+      </if>
+      <if test="reqAppComment != null">
+        req_app_comment = #{reqAppComment,jdbcType=VARCHAR},
+      </if>
+      <if test="reqAppDatetime != null">
+        req_app_datetime = #{reqAppDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and req_app_order = #{reqAppOrder,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Wf">
+    update t_wf
+    set req_app_user_id = #{reqAppUserId,jdbcType=VARCHAR},
+      req_app_kbn = #{reqAppKbn,jdbcType=CHAR},
+      wf_status_kbn = #{wfStatusKbn,jdbcType=CHAR},
+      req_app_comment = #{reqAppComment,jdbcType=VARCHAR},
+      req_app_datetime = #{reqAppDatetime,jdbcType=TIMESTAMP},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and req_app_order = #{reqAppOrder,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKeyWf" parameterType="com.demo.entity.Wf">
+    update t_wf
+    set wf_status_kbn = #{wfStatusKbn,jdbcType=CHAR},
+        req_app_comment = #{reqAppComment,jdbcType=VARCHAR},
+        req_app_datetime = #{reqAppDatetime,jdbcType=TIMESTAMP},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and req_app_order = #{reqAppOrder,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKeyadmitWf" parameterType="com.demo.entity.Wf">
+    update t_wf
+    set wf_status_kbn = #{wfStatusKbn,jdbcType=CHAR},
+        req_app_datetime = #{reqAppDatetime,jdbcType=TIMESTAMP},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+        req_app_kbn = #{reqAppKbn,jdbcType=CHAR}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and req_app_order = #{reqAppOrder,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKeylastadmitWf" parameterType="com.demo.entity.Wf">
+    update t_wf
+    set wf_status_kbn = #{wfStatusKbn,jdbcType=CHAR},
+        req_app_datetime = #{reqAppDatetime,jdbcType=TIMESTAMP},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and req_app_order = #{reqAppOrder,jdbcType=TINYINT}
+  </update>
+  <select id="selectAll" parameterType="map" resultType="com.demo.pojo.wf.WfDTO">
+    select
+      *
+    from
+      t_wf
+    where
+      company_code = #{ companyCode, jdbcType = CHAR }
+    order by request_date desc
+  </select>
+  <select id="getCount" parameterType="map" resultType="com.demo.pojo.wf.WfDTO">
+    select
+      w.company_code,
+      w.request_number,
+      w.req_app_order,
+      w.req_app_user_id,
+      w.req_app_kbn,
+      w.wf_status_kbn,
+      w.req_app_comment,
+      w.req_app_datetime,
+      w.registration_user,
+      w.registration_datetime,
+      w.update_user,
+      w.update_datetime,
+      u.user_name as user_name,
+      c.category_kbn_name
+    from
+      t_wf w
+    left join m_user u
+        on w.req_app_user_id = u.user_id
+    left join m_category c
+        on c.category_kbn = w.wf_status_kbn
+        and c.category_class_number = '033'
+    where
+      w.company_code = #{ companyCode, jdbcType = CHAR }
+      and w.request_number = #{ requestNumber, jdbcType = CHAR }
+    order by w.req_app_order desc
+  </select>
+  <select id="selectWf" parameterType="map" resultType="com.demo.pojo.wf.SelectWfDTO">
+    select
+      w.company_code,
+      w.request_number,
+      w.req_app_user_id,
+      MAX(r.request_user_id) as request_user_id,
+      MAX(w.registration_datetime) as registration_datetime,
+      MAX(w.req_app_order) as req_app_order,
+      MAX(w.req_app_user_id) as req_app_user_id,
+      MAX(w.req_app_kbn) as req_app_kbn,
+      MAX(w.wf_status_kbn) as wf_status_kbn,
+      MAX(r.request_type_kbn) as request_type_kbn,
+      MAX(r.request_date) as request_date,
+      MAX(r.request_overview) as request_overview,
+      MAX(c1.category_kbn_name) as request_kbn_name,
+      MAX(c2.category_kbn_name) as recognize_kbn_name,
+      MAX(u.user_name) as user_name,
+      MAX(ra.work_date_ym) as work_date_ym,
+      MAX(h.holiday_type_kbn) as holiday_type_kbn,
+      MAX(h.holiday_days) as holiday_days,
+      MAX(b.department_code) as department_code,
+      MAX(d.department_name) as department_name,
+      MAX(r.request_status_kbn) as request_status_kbn,
+      MAX(c3.category_kbn_name) as status_kbn_name
+    from
+      t_wf w
+        inner join (
+        select
+          company_code,
+          request_number,
+          max(req_app_order) as max_req_app_order,
+          req_app_user_id
+        from
+          t_wf
+        group by
+          company_code,
+          request_number,
+          req_app_user_id
+      ) w2
+                   on w.company_code = w2.company_code
+                     and w.request_number = w2.request_number
+                     and w.req_app_order = w2.max_req_app_order
+        left join
+      t_request r
+      on
+        w.request_number = r.request_number
+        inner join
+      m_category c1
+      on
+            w.wf_status_kbn = c1.category_kbn
+          and
+            c1.category_class_number = '033'
+          and
+            c1.category_kbn != '011'
+          and
+          c1.category_kbn != '012'
+        left join
+          m_category c2
+    on
+      r.request_type_kbn = c2.category_kbn
+      and
+      c2.category_class_number = '031'
+      left join
+      m_category c3
+      on
+      c3.category_kbn = r.request_status_kbn
+      and
+      c3.category_class_number = '030'
+      left join
+      m_user u
+      on
+      r.request_user_id = u.user_id
+      left join
+      t_request_attendance ra
+      on
+      ra.request_number = r.request_number
+      left join
+      t_request_holiday as h
+      on
+      r.request_number = h.request_number
+      and
+      h.request_sub_number = 1
+      left join
+      t_belong_dept as b
+      on
+      r.request_user_id = b.user_id
+      left join
+      m_department as d
+      on
+      d.department_code = b.department_code
+    where
+      w.company_code = #{ companyCode, jdbcType = CHAR }
+      and
+      w.req_app_user_id = #{ reqAppUserId, jdbcType = CHAR }
+      and
+      r.request_type_kbn like #{ requestTypeKbn, jdbcType = CHAR }
+    <choose>
+      <when test="wfStatusKbn == '99'">
+        and
+        w.wf_status_kbn != '900'
+      </when>
+      <otherwise>
+        and
+        w.wf_status_kbn like #{ wfStatusKbn, jdbcType = CHAR }
+      </otherwise>
+    </choose>
+      and
+         (u.user_id like #{userId,jdbcType=CHAR}
+      or  u.user_name like #{userId,jdbcType=CHAR})
+    <if test="startDate != '' and endDate != ''">
+      AND r.request_date between #{ startDate, jdbcType = CHAR } and #{ endDate, jdbcType = CHAR }
+    </if>
+    group by
+      w.company_code,
+      w.request_number,
+      w.req_app_user_id
+    order by MAX(w.wf_status_kbn) asc,MAX(r.request_date) DESC
+  </select>
+  <delete id="deleteAllWf" parameterType="map">
+    delete from t_wf
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteDataWf" parameterType="com.demo.pojo.wf.RemandWfDTO" >
+    delete from t_wf
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and req_app_order = #{reqAppOrder,jdbcType=TINYINT}
+  </delete>
+</mapper>

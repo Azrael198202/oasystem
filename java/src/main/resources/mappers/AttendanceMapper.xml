@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.AttendanceMapper">
+    <resultMap id="BaseResultMap" type="com.demo.entity.Attendance">
+        <constructor>
+            <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR"/>
+            <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <idArg column="work_date" javaType="java.lang.String" jdbcType="CHAR"/>
+            <arg column="work_date_ym" javaType="java.lang.String" jdbcType="CHAR"/>
+            <arg column="work_date_week" javaType="java.lang.String" jdbcType="CHAR"/>
+            <arg column="work_kbn" javaType="java.lang.String" jdbcType="CHAR"/>
+            <arg column="work_start1" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_end1" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_start2" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_end2" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_start3" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_end3" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_break_time1" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_break_time2" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_break_time3" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_over_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_midnight_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_holi_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_midnight_holi_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_sum_holi_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="work_sum_time" javaType="java.util.Date" jdbcType="TIME"/>
+            <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="send_report_flg" javaType="java.lang.String" jdbcType="CHAR"/>
+            <arg column="work_tc_start1" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_tc_end1" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_tc_start2" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_tc_end2" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_tc_start3" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="work_tc_end3" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR"/>
+            <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        company_code
+        , user_id, work_date, work_date_ym, work_date_week, work_kbn, work_start1,
+        work_end1, work_start2, work_end2, work_start3, work_end3, work_time, work_break_time1,
+        work_break_time2, work_break_time3, work_over_time, work_midnight_time, work_holi_time,
+        work_midnight_holi_time, work_sum_holi_time, work_sum_time, remark, send_report_flg,
+        work_tc_start1, work_tc_end1, work_tc_start2, work_tc_end2, work_tc_start3, work_tc_end3,
+        del_flg, reg_account, reg_time, upd_account, upd_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_attendance
+        where company_code = #{companyCode,jdbcType=CHAR}
+        and user_id = #{userId,jdbcType=VARCHAR}
+        and work_date = #{workDate,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete
+        from t_attendance
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and user_id = #{userId,jdbcType=VARCHAR}
+          and work_date = #{workDate,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.demo.entity.Attendance">
+        insert into t_attendance (company_code, user_id, work_date,
+                                  work_date_ym, work_date_week, work_kbn,
+                                  work_start1, work_end1, work_start2,
+                                  work_end2, work_start3, work_end3,
+                                  work_time, work_break_time1, work_break_time2,
+                                  work_break_time3, work_over_time, work_midnight_time,
+                                  work_holi_time, work_midnight_holi_time, work_sum_holi_time,
+                                  work_sum_time, remark, send_report_flg,
+                                  work_tc_start1, work_tc_end1, work_tc_start2,
+                                  work_tc_end2, work_tc_start3, work_tc_end3,
+                                  del_flg, reg_account, reg_time,
+                                  upd_account, upd_time)
+        values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{workDate,jdbcType=CHAR},
+                #{workDateYm,jdbcType=CHAR}, #{workDateWeek,jdbcType=CHAR}, #{workKbn,jdbcType=CHAR},
+                #{workStart1,jdbcType=TIMESTAMP}, #{workEnd1,jdbcType=TIMESTAMP}, #{workStart2,jdbcType=TIMESTAMP},
+                #{workEnd2,jdbcType=TIMESTAMP}, #{workStart3,jdbcType=TIMESTAMP}, #{workEnd3,jdbcType=TIMESTAMP},
+                #{workTime,jdbcType=TIME}, #{workBreakTime1,jdbcType=TIME}, #{workBreakTime2,jdbcType=TIME},
+                #{workBreakTime3,jdbcType=TIME}, #{workOverTime,jdbcType=TIME}, #{workMidnightTime,jdbcType=TIME},
+                #{workHoliTime,jdbcType=TIME}, #{workMidnightHoliTime,jdbcType=TIME}, #{workSumHoliTime,jdbcType=TIME},
+                #{workSumTime,jdbcType=TIME}, #{remark,jdbcType=VARCHAR}, #{sendReportFlg,jdbcType=CHAR},
+                #{workTcStart1,jdbcType=TIMESTAMP}, #{workTcEnd1,jdbcType=TIMESTAMP},
+                #{workTcStart2,jdbcType=TIMESTAMP},
+                #{workTcEnd2,jdbcType=TIMESTAMP}, #{workTcStart3,jdbcType=TIMESTAMP}, #{workTcEnd3,jdbcType=TIMESTAMP},
+                #{delFlg,jdbcType=CHAR}, #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP},
+                #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.demo.entity.Attendance">
+        insert into t_attendance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyCode != null">
+                company_code,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="workDate != null">
+                work_date,
+            </if>
+            <if test="workDateYm != null">
+                work_date_ym,
+            </if>
+            <if test="workDateWeek != null">
+                work_date_week,
+            </if>
+            <if test="workKbn != null">
+                work_kbn,
+            </if>
+            <if test="workStart1 != null">
+                work_start1,
+            </if>
+            <if test="workEnd1 != null">
+                work_end1,
+            </if>
+            <if test="workStart2 != null">
+                work_start2,
+            </if>
+            <if test="workEnd2 != null">
+                work_end2,
+            </if>
+            <if test="workStart3 != null">
+                work_start3,
+            </if>
+            <if test="workEnd3 != null">
+                work_end3,
+            </if>
+            <if test="workTime != null">
+                work_time,
+            </if>
+            <if test="workBreakTime1 != null">
+                work_break_time1,
+            </if>
+            <if test="workBreakTime2 != null">
+                work_break_time2,
+            </if>
+            <if test="workBreakTime3 != null">
+                work_break_time3,
+            </if>
+            <if test="workOverTime != null">
+                work_over_time,
+            </if>
+            <if test="workMidnightTime != null">
+                work_midnight_time,
+            </if>
+            <if test="workHoliTime != null">
+                work_holi_time,
+            </if>
+            <if test="workMidnightHoliTime != null">
+                work_midnight_holi_time,
+            </if>
+            <if test="workSumHoliTime != null">
+                work_sum_holi_time,
+            </if>
+            <if test="workSumTime != null">
+                work_sum_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="sendReportFlg != null">
+                send_report_flg,
+            </if>
+            <if test="workTcStart1 != null">
+                work_tc_start1,
+            </if>
+            <if test="workTcEnd1 != null">
+                work_tc_end1,
+            </if>
+            <if test="workTcStart2 != null">
+                work_tc_start2,
+            </if>
+            <if test="workTcEnd2 != null">
+                work_tc_end2,
+            </if>
+            <if test="workTcStart3 != null">
+                work_tc_start3,
+            </if>
+            <if test="workTcEnd3 != null">
+                work_tc_end3,
+            </if>
+            <if test="delFlg != null">
+                del_flg,
+            </if>
+            <if test="regAccount != null">
+                reg_account,
+            </if>
+            <if test="regTime != null">
+                reg_time,
+            </if>
+            <if test="updAccount != null">
+                upd_account,
+            </if>
+            <if test="updTime != null">
+                upd_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyCode != null">
+                #{companyCode,jdbcType=CHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="workDate != null">
+                #{workDate,jdbcType=CHAR},
+            </if>
+            <if test="workDateYm != null">
+                #{workDateYm,jdbcType=CHAR},
+            </if>
+            <if test="workDateWeek != null">
+                #{workDateWeek,jdbcType=CHAR},
+            </if>
+            <if test="workKbn != null">
+                #{workKbn,jdbcType=CHAR},
+            </if>
+            <if test="workStart1 != null">
+                #{workStart1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workEnd1 != null">
+                #{workEnd1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workStart2 != null">
+                #{workStart2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workEnd2 != null">
+                #{workEnd2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workStart3 != null">
+                #{workStart3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workEnd3 != null">
+                #{workEnd3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTime != null">
+                #{workTime,jdbcType=TIME},
+            </if>
+            <if test="workBreakTime1 != null">
+                #{workBreakTime1,jdbcType=TIME},
+            </if>
+            <if test="workBreakTime2 != null">
+                #{workBreakTime2,jdbcType=TIME},
+            </if>
+            <if test="workBreakTime3 != null">
+                #{workBreakTime3,jdbcType=TIME},
+            </if>
+            <if test="workOverTime != null">
+                #{workOverTime,jdbcType=TIME},
+            </if>
+            <if test="workMidnightTime != null">
+                #{workMidnightTime,jdbcType=TIME},
+            </if>
+            <if test="workHoliTime != null">
+                #{workHoliTime,jdbcType=TIME},
+            </if>
+            <if test="workMidnightHoliTime != null">
+                #{workMidnightHoliTime,jdbcType=TIME},
+            </if>
+            <if test="workSumHoliTime != null">
+                #{workSumHoliTime,jdbcType=TIME},
+            </if>
+            <if test="workSumTime != null">
+                #{workSumTime,jdbcType=TIME},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="sendReportFlg != null">
+                #{sendReportFlg,jdbcType=CHAR},
+            </if>
+            <if test="workTcStart1 != null">
+                #{workTcStart1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcEnd1 != null">
+                #{workTcEnd1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcStart2 != null">
+                #{workTcStart2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcEnd2 != null">
+                #{workTcEnd2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcStart3 != null">
+                #{workTcStart3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcEnd3 != null">
+                #{workTcEnd3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlg != null">
+                #{delFlg,jdbcType=CHAR},
+            </if>
+            <if test="regAccount != null">
+                #{regAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="regTime != null">
+                #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updAccount != null">
+                #{updAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="updTime != null">
+                #{updTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Attendance">
+        update t_attendance
+        <set>
+            <if test="workDateYm != null">
+                work_date_ym = #{workDateYm,jdbcType=CHAR},
+            </if>
+            <if test="workDateWeek != null">
+                work_date_week = #{workDateWeek,jdbcType=CHAR},
+            </if>
+            <if test="workKbn != null">
+                work_kbn = #{workKbn,jdbcType=CHAR},
+            </if>
+            <if test="workStart1 != null">
+                work_start1 = #{workStart1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workEnd1 != null">
+                work_end1 = #{workEnd1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workStart2 != null">
+                work_start2 = #{workStart2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workEnd2 != null">
+                work_end2 = #{workEnd2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workStart3 != null">
+                work_start3 = #{workStart3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workEnd3 != null">
+                work_end3 = #{workEnd3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTime != null">
+                work_time = #{workTime,jdbcType=TIME},
+            </if>
+            <if test="workBreakTime1 != null">
+                work_break_time1 = #{workBreakTime1,jdbcType=TIME},
+            </if>
+            <if test="workBreakTime2 != null">
+                work_break_time2 = #{workBreakTime2,jdbcType=TIME},
+            </if>
+            <if test="workBreakTime3 != null">
+                work_break_time3 = #{workBreakTime3,jdbcType=TIME},
+            </if>
+            <if test="workOverTime != null">
+                work_over_time = #{workOverTime,jdbcType=TIME},
+            </if>
+            <if test="workMidnightTime != null">
+                work_midnight_time = #{workMidnightTime,jdbcType=TIME},
+            </if>
+            <if test="workHoliTime != null">
+                work_holi_time = #{workHoliTime,jdbcType=TIME},
+            </if>
+            <if test="workMidnightHoliTime != null">
+                work_midnight_holi_time = #{workMidnightHoliTime,jdbcType=TIME},
+            </if>
+            <if test="workSumHoliTime != null">
+                work_sum_holi_time = #{workSumHoliTime,jdbcType=TIME},
+            </if>
+            <if test="workSumTime != null">
+                work_sum_time = #{workSumTime,jdbcType=TIME},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="sendReportFlg != null">
+                send_report_flg = #{sendReportFlg,jdbcType=CHAR},
+            </if>
+            <if test="workTcStart1 != null">
+                work_tc_start1 = #{workTcStart1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcEnd1 != null">
+                work_tc_end1 = #{workTcEnd1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcStart2 != null">
+                work_tc_start2 = #{workTcStart2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcEnd2 != null">
+                work_tc_end2 = #{workTcEnd2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcStart3 != null">
+                work_tc_start3 = #{workTcStart3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workTcEnd3 != null">
+                work_tc_end3 = #{workTcEnd3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlg != null">
+                del_flg = #{delFlg,jdbcType=CHAR},
+            </if>
+            <if test="regAccount != null">
+                reg_account = #{regAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="regTime != null">
+                reg_time = #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updAccount != null">
+                upd_account = #{updAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="updTime != null">
+                upd_time = #{updTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where company_code = #{companyCode,jdbcType=CHAR}
+        and user_id = #{userId,jdbcType=VARCHAR}
+        and work_date = #{workDate,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.demo.entity.Attendance">
+        update t_attendance
+        set work_date_ym            = #{workDateYm,jdbcType=CHAR},
+            work_date_week          = #{workDateWeek,jdbcType=CHAR},
+            work_kbn                = #{workKbn,jdbcType=CHAR},
+            work_start1             = #{workStart1,jdbcType=TIMESTAMP},
+            work_end1               = #{workEnd1,jdbcType=TIMESTAMP},
+            work_start2             = #{workStart2,jdbcType=TIMESTAMP},
+            work_end2               = #{workEnd2,jdbcType=TIMESTAMP},
+            work_start3             = #{workStart3,jdbcType=TIMESTAMP},
+            work_end3               = #{workEnd3,jdbcType=TIMESTAMP},
+            work_time               = #{workTime,jdbcType=TIME},
+            work_break_time1        = #{workBreakTime1,jdbcType=TIME},
+            work_break_time2        = #{workBreakTime2,jdbcType=TIME},
+            work_break_time3        = #{workBreakTime3,jdbcType=TIME},
+            work_over_time          = #{workOverTime,jdbcType=TIME},
+            work_midnight_time      = #{workMidnightTime,jdbcType=TIME},
+            work_holi_time          = #{workHoliTime,jdbcType=TIME},
+            work_midnight_holi_time = #{workMidnightHoliTime,jdbcType=TIME},
+            work_sum_holi_time      = #{workSumHoliTime,jdbcType=TIME},
+            work_sum_time           = #{workSumTime,jdbcType=TIME},
+            remark                  = #{remark,jdbcType=VARCHAR},
+            send_report_flg         = #{sendReportFlg,jdbcType=CHAR},
+            work_tc_start1          = #{workTcStart1,jdbcType=TIMESTAMP},
+            work_tc_end1            = #{workTcEnd1,jdbcType=TIMESTAMP},
+            work_tc_start2          = #{workTcStart2,jdbcType=TIMESTAMP},
+            work_tc_end2            = #{workTcEnd2,jdbcType=TIMESTAMP},
+            work_tc_start3          = #{workTcStart3,jdbcType=TIMESTAMP},
+            work_tc_end3            = #{workTcEnd3,jdbcType=TIMESTAMP},
+            del_flg                 = #{delFlg,jdbcType=CHAR},
+            reg_account             = #{regAccount,jdbcType=VARCHAR},
+            reg_time                = #{regTime,jdbcType=TIMESTAMP},
+            upd_account             = #{updAccount,jdbcType=VARCHAR},
+            upd_time                = #{updTime,jdbcType=TIMESTAMP}
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and user_id = #{userId,jdbcType=VARCHAR}
+          and work_date = #{workDate,jdbcType=CHAR}
+    </update>
+    <select id="selectById" parameterType="map" resultType="com.demo.pojo.attendance.AttendanceRPnDTO">
+        select t.company_code
+             , t.user_id
+             , IFNULL(t.work_date, '')          work_date
+             , IFNULL(t.work_date_ym, '')       work_date_ym
+             , IFNULL(t.work_date_week, '')     work_date_week
+             , IFNULL(t.work_kbn, '')           work_kbn
+             , IFNULL(t.remark, '')             remark
+             , IFNULL(t.send_report_flg, '')    send_report_flg
+             , IFNULL(u.user_name, '')          user_name
+             , IFNULL(u.permission_kbn, '')     permission_kbn
+             , IFNULL(u.account_kbn, '')        account_kbn
+             , IFNULL(u.employment_kbn, '')     employment_kbn
+             , IFNULL(DATE_FORMAT(t.work_start1, '%m/%d %H:%i'), '')       work_start1
+             , IFNULL(DATE_FORMAT(t.work_end1, '%m/%d %H:%i'), '')         work_end1
+             , IFNULL(DATE_FORMAT(t.work_start2, '%m/%d %H:%i'), '')       work_start2
+             , IFNULL(DATE_FORMAT(t.work_end2, '%m/%d %H:%i'), '')         work_end2
+             , IFNULL(DATE_FORMAT(t.work_start3, '%m/%d %H:%i') , '')      work_start3
+             , IFNULL(DATE_FORMAT(t.work_end3, '%m/%d %H:%i') , '')        work_end3
+             , IFNULL(DATE_FORMAT(t.work_time, '%H:%i') , '')              work_time
+             , IFNULL(DATE_FORMAT(t.work_break_time1, '%H:%i') , '')       work_break_time1
+             , IFNULL(DATE_FORMAT(t.work_break_time2, '%H:%i'), '')        work_break_time2
+             , IFNULL(DATE_FORMAT(t.work_break_time3, '%H:%i'), '')        work_break_time3
+             , IFNULL(DATE_FORMAT(t.work_over_time, '%H:%i'), '')          work_over_time
+             , IFNULL(DATE_FORMAT(t.work_midnight_time, '%H:%i') , '')     work_midnight_time
+             , IFNULL(DATE_FORMAT(t.work_holi_time, '%H:%i'), '')          work_holi_time
+             , IFNULL(DATE_FORMAT(t.work_midnight_holi_time, '%H:%i'), '') work_midnight_holi_time
+             , IFNULL(DATE_FORMAT(t.work_sum_time, '%H:%i'), '')           work_sum_time
+             , IF(holiday.holiday_date is NULL, '0', '1')      holidayFlg
+        from t_attendance t
+                 left join m_user u
+                           on t.company_code = u.company_code
+                               and t.user_id = u.user_id
+                 left join m_holiday holiday
+                           on t.company_code = holiday.company_code
+                               and t.work_date = holiday.holiday_date
+        where t.company_code = #{companyCode,jdbcType=CHAR}
+          and t.user_id = #{userId,jdbcType=VARCHAR}
+          and t.work_date_ym = #{workDateYm,jdbcType=CHAR}
+        order by t.work_date asc
+    </select>
+    <select id="selectByApply" parameterType="map" resultType="com.demo.pojo.attendance.ApplyAttendanceDTO">
+        select req.company_code,
+               req.request_user_id as user_id,
+               a_data.work_date,
+               left (a_data.work_date, 6) as work_date_ym,
+               a_data.work_kbn,
+            remark
+        from
+            (select
+                company_code,
+                request_user_id,
+                scheduled_work_day as work_date,
+                if('010' = work_time_kbn, '002', '005') as work_kbn,
+                remark,
+                request_number
+            from t_work_dayoff
+            union all
+            select
+                company_code,
+                request_user_id,
+                scheduled_work_day as work_date,
+                if('010' = work_time_kbn, '003', '006') as work_kbn,
+                remark,
+                request_number
+            from t_exchanged_workday
+            union all
+            select
+                company_code,
+                request_user_id,
+                dayoff_exchanged as work_date,
+                if('010' = work_time_kbn, '023', '024') as work_kbn,
+                remark,
+                request_number
+            from t_exchanged_workday
+            union all
+            select
+                company_code,
+                request_user_id,
+                holiday_plan_day as work_date,
+                case holiday_type_kbn
+                    when '010' then '020'
+                    when '011' then '021'
+                    when '030' then '022'
+                    when '020' then '025'
+                    when '021' then '026'
+                    when '040' then '081'
+                end as work_kbn,
+                remark,
+                request_number
+            from t_request_holiday
+            ) as a_data
+        left join t_request as req
+               on a_data.request_number = req.request_number
+        where req.company_code = #{companyCode,jdbcType=CHAR}
+          and req.request_user_id = #{userId,jdbcType=VARCHAR}
+          and left (a_data.work_date, 6) = #{workDateYm,jdbcType=CHAR}
+          and req.request_status_kbn = '999'
+    </select>
+    <select id="selectByApplyActivity" parameterType="map" resultType="com.demo.pojo.attendance.ApplyAttendanceDTO">
+        select
+            req.company_code
+             , req.request_user_id                     as user_id
+             , a_data.work_date
+             , left (a_data.work_date, 6)              as work_date_ym
+             , a_data.work_kbn
+             , remark
+             , req.request_status_kbn
+        from
+            (select
+            company_code
+                , request_user_id
+                , scheduled_work_day                       as work_date
+                , if('010' = work_time_kbn, '002', '005')  as work_kbn
+                , remark
+                , request_number
+            from   t_work_dayoff
+            union all
+            select
+            company_code
+                , request_user_id
+                , scheduled_work_day as work_date
+                , if('010' = work_time_kbn, '003', '006')  as work_kbn
+                , remark
+                , request_number
+            from   t_exchanged_workday
+            union all
+            select
+            company_code
+                , request_user_id
+                , dayoff_exchanged                         as work_date
+                , if('010' = work_time_kbn, '023', '024')  as work_kbn
+                , remark
+                , request_number
+            from   t_exchanged_workday
+            union all
+            select
+            company_code
+                , request_user_id
+                , holiday_plan_day                         as work_date
+                , case holiday_type_kbn
+            when '010' then '020'
+            when '011' then '021'
+            when '030' then '022'
+            when '020' then '025'
+            when '021' then '026'
+            when '040' then '081'
+            end                                            as work_kbn
+                , remark
+                , request_number
+            from   t_request_holiday
+            )  as a_data
+            left
+            join   t_request                               as req
+        on a_data.request_number             = req.request_number
+        where req.company_code                     = #{companyCode,jdbcType=CHAR}
+          and req.request_user_id                  = #{userId,jdbcType=VARCHAR}
+          and left (a_data.work_date, 6)           = #{workDateYm,jdbcType=CHAR}
+    </select>
+    <select id="selectTime" parameterType="map" resultType="com.demo.pojo.attendance.AttendanceTimeDTO">
+        select fnc_timeRound15('1', work_start1) work_start1
+             , fnc_timeRound15('2', work_end1)   work_end1
+             , fnc_timeRound15('1', work_start2) work_start2
+             , fnc_timeRound15('2', work_end2)   work_end2
+             , fnc_timeRound15('1', work_start3) work_start3
+             , fnc_timeRound15('2', work_end3)   work_end3
+        from t_attendance
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and user_id = #{userId,jdbcType=VARCHAR}
+          and work_date = #{workDate,jdbcType=CHAR}
+    </select>
+
+    <!-- 一括出力画面で検索押下時の処理-->
+    <select id="searchBulkExport" parameterType="map" resultType="com.demo.pojo.attendance.BulkExportDTO">
+        select
+            m_user.company_code
+             , t_request.request_number
+             , t_belong_dept.department_code
+             , m_department.department_name
+             , m_user.user_id
+             , m_user.user_name
+             , t_request.request_status_kbn
+             , ifnull(m_category.category_kbn_name, '未申請')    as category_kbn_name
+             , ifnull(t_attendance.work_date_ym,'')             as work_date_ym
+             , ifnull(t_attendance.upd_time, '')                as upd_time
+             , ifnull(t.request_number,'')                      as trans_request_number
+             , t.transportationCode
+             , ifnull(t.transportationName, '未申請')            as transportationName
+             , ifnull(t.applyYm,'')                             as apply_ym
+             , ifnull(t.updateDatetime, '')                     as update_datetime
+
+
+        from       m_user
+
+                       left
+                           join       ( select user_id
+                                             , max(department_code) as department_code
+                                        from   t_belong_dept
+                                        group
+                                            by user_id
+        ) as      t_belong_dept
+
+                                      on   t_belong_dept.user_id  = m_user.user_id
+
+                       left
+                           join       m_department
+                                      on            m_department.department_code = t_belong_dept.department_code
+
+                       left
+                           join       ( select company_code
+                                             , user_id
+                                             , max(upd_time) as upd_time
+                                             , work_date_ym
+                                        from   t_attendance
+                                        where  work_date_ym like #{workDateYm,jdbcType=CHAR}
+                                        group
+                                            by company_code
+                                             , user_id
+                                             , work_date_ym
+
+        )  as     t_attendance
+
+                                      on            t_attendance.company_code                 = m_user.company_code
+                                          and       t_attendance.user_id                      = m_user.user_id
+                                          and       t_attendance.work_date_ym                 like    #{workDateYm,jdbcType=CHAR}
+
+                       left
+                           join       t_request_attendance
+                                      on            t_request_attendance.company_code         = m_user.company_code
+                                          and       t_request_attendance.user_id              = m_user.user_id
+                                          and       t_request_attendance.work_date_ym         like    #{workDateYm,jdbcType=CHAR}
+
+                       left
+                           join       ( select company_code
+                                             , request_number
+                                             , request_user_id
+                                             , request_status_kbn
+                                        from t_request
+                                        group
+                                            by company_code
+                                             , request_number
+        ) as      t_request
+
+                                      on            t_request.company_code                    = t_request_attendance.company_code
+                                          and       t_request.request_number                  = t_request_attendance.request_number
+
+                       left
+                           join       ( select   DISTINCT t_transportation_expenses.company_code
+                                                        , t_transportation_expenses.request_number
+                                                        , t_transportation_expenses.request_user_id
+                                                        , t_request.request_status_kbn                        as transportationCode
+                                                        , m_category.category_kbn_name                        as transportationName
+                                                        , t_transportation_expenses.apply_ym                  as applyYm
+                                                        ,t_transportation_expenses.update_datetime            as updateDatetime
+                                        from        t_transportation_expenses
+
+                                                        left
+                                                            join       t_request
+                                                                       on            t_request.request_number                  = t_transportation_expenses.request_number
+
+                                                        left
+                                                            join       m_category
+                                                                       on            t_request.request_status_kbn              = m_category.category_kbn
+                                                                           and       m_category.category_class_number          = '030'
+                                        where        t_transportation_expenses.apply_ym                                        like    #{workDateYm,jdbcType=CHAR}
+
+        ) as      t
+                                      on            t.request_user_id                                  = m_user.user_id
+
+
+                       left
+                           join           m_category
+                                          on            t_request.request_status_kbn                   = m_category.category_kbn
+                                              and            m_category.category_class_number          = '030'
+
+        where                    m_user.company_code                           =       #{companyCode,jdbcType=CHAR}
+          and                    t_belong_dept.department_code                 like    #{departmentCode,jdbcType=CHAR}
+--                           nullも表示
+          and                   (IFNULL(t_attendance.work_date_ym,'')          like    #{workDateYm,jdbcType=CHAR}
+            or     t_attendance.work_date_ym IS NULL)
+--                           nullも表示（nullを001に設定）
+          and                   IFNULL(t_request.request_status_kbn,'001')     like    #{requestStatusKbn,jdbcType=CHAR}
+          and                   IFNULL(transportationCode,'001')                  like    #{transportationCode,jdbcType=CHAR}
+          and                    (m_user.user_id                               like    #{userId,jdbcType=CHAR}
+            or      m_user.user_name                              like    #{userId,jdbcType=CHAR})
+
+        order
+            by                   t_attendance.upd_time                         DESC
+             ,update_datetime                              DESC
+    </select>
+    <select id="selectSubHoliday" parameterType="map" resultType="java.lang.String">
+        select
+            sub.scheduled_work_day
+        from
+            t_request_holiday h
+                inner join t_wf wf
+                          on h.request_number = wf.request_number
+                               and h.company_code = wf.company_code
+                               and wf.wf_status_kbn = '900'
+                left join t_work_dayoff sub
+                          on h.work_dayoff_request_number = sub.request_number
+                              and h.company_code = sub.company_code
+                              and h.request_user_id = sub.request_user_id
+        where
+              h.company_code = #{companyCode,jdbcType=CHAR}
+          and h.request_user_id =  #{userId,jdbcType=CHAR}
+          and h.holiday_plan_day = #{workDate,jdbcType=CHAR}
+    </select>
+</mapper>

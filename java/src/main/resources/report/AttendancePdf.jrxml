@@ -1,0 +1,1566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AttendancePdf" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="20" uuid="a937519e-3f95-4c2b-8fce-398f671e9146">
+    <property name="com.jaspersoft.studio.unit." value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+    <style name="styleOfWeekDate">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$F{workDateWeek}.equals("土")]]></conditionExpression>
+            <style mode="Opaque" forecolor="#0000FF" markup="styled">
+                <pen lineColor="#000000"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#000000"/>
+                </box>
+            </style>
+        </conditionalStyle>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$F{workDateWeek}.equals("日") || $F{holidayFlg}.equals("1")]]></conditionExpression>
+            <style forecolor="#FF0000">
+                <pen lineColor="#000000"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#000000"/>
+                </box>
+            </style>
+        </conditionalStyle>
+    </style>
+    <style name="ApplyStatusColor">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$P{strApplyStatus}.equals("未申請")]]></conditionExpression>
+            <style forecolor="#00CC00"/>
+        </conditionalStyle>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$P{strApplyStatus}.equals("回覧中")]]></conditionExpression>
+            <style forecolor="#0099FF"/>
+        </conditionalStyle>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$P{strApplyStatus}.equals("差戻")]]></conditionExpression>
+            <style forecolor="#CC3300"/>
+        </conditionalStyle>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$P{strApplyStatus}.equals("完了")]]></conditionExpression>
+            <style forecolor="#575757"/>
+        </conditionalStyle>
+    </style>
+    <subDataset name="DatasetAttendancePdf" uuid="4bebb995-51f9-4243-8902-5782c7909c58">
+        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="workDate" class="java.lang.String"/>
+        <field name="workDateWeek" class="java.lang.String"/>
+        <field name="workKbn" class="java.lang.String"/>
+        <field name="workStart1" class="java.lang.String"/>
+        <field name="workEnd1" class="java.lang.String"/>
+        <field name="workBreakTime1" class="java.lang.String"/>
+        <field name="workBreakTime2" class="java.lang.String"/>
+        <field name="workBreakTime3" class="java.lang.String"/>
+        <field name="workTime" class="java.lang.String"/>
+        <field name="workSumTime" class="java.lang.String"/>
+        <field name="workOverTime" class="java.lang.String"/>
+        <field name="workMidnightTime" class="java.lang.String"/>
+        <field name="workHoliTime" class="java.lang.String"/>
+        <field name="workMidnightHoliTime" class="java.lang.String"/>
+        <field name="remark" class="java.lang.String"/>
+        <field name="holidayFlg" class="java.lang.String"/>
+    </subDataset>
+    <parameter name="year" class="java.lang.String">
+        <parameterDescription><![CDATA[対象勤務表年]]></parameterDescription>
+    </parameter>
+    <parameter name="month" class="java.lang.String">
+        <parameterDescription><![CDATA[対象勤務表月分]]></parameterDescription>
+    </parameter>
+    <parameter name="joinDate" class="java.lang.String">
+        <parameterDescription><![CDATA[入社日]]></parameterDescription>
+    </parameter>
+    <parameter name="countYear" class="java.lang.String">
+        <parameterDescription><![CDATA[勤続年数]]></parameterDescription>
+    </parameter>
+    <parameter name="employeeNo" class="java.lang.String">
+        <parameterDescription><![CDATA[社員番号]]></parameterDescription>
+    </parameter>
+    <parameter name="employeeName" class="java.lang.String">
+        <parameterDescription><![CDATA[氏名]]></parameterDescription>
+    </parameter>
+    <parameter name="workDate" class="java.lang.String">
+        <parameterDescription><![CDATA[所定日数]]></parameterDescription>
+    </parameter>
+    <parameter name="workTimeScheduled" class="java.lang.String">
+        <parameterDescription><![CDATA[所定労働時間]]></parameterDescription>
+    </parameter>
+    <parameter name="workBreakTime1" class="java.lang.String">
+        <parameterDescription><![CDATA[休憩１計]]></parameterDescription>
+    </parameter>
+    <parameter name="workBreakTime2" class="java.lang.String">
+        <parameterDescription><![CDATA[休憩２計]]></parameterDescription>
+    </parameter>
+    <parameter name="workBreakTime3" class="java.lang.String">
+        <parameterDescription><![CDATA[休憩３計]]></parameterDescription>
+    </parameter>
+    <parameter name="workSumTime" class="java.lang.String">
+        <parameterDescription><![CDATA[実勤務時間]]></parameterDescription>
+    </parameter>
+    <parameter name="workOverTime" class="java.lang.String">
+        <parameterDescription><![CDATA[普通残業]]></parameterDescription>
+    </parameter>
+    <parameter name="workMidnightTime" class="java.lang.String">
+        <parameterDescription><![CDATA[深夜残業]]></parameterDescription>
+    </parameter>
+    <parameter name="workHoliTime" class="java.lang.String">
+        <parameterDescription><![CDATA[休日出勤]]></parameterDescription>
+    </parameter>
+    <parameter name="workMidnightHoliTime" class="java.lang.String">
+        <parameterDescription><![CDATA[休日深夜出勤]]></parameterDescription>
+    </parameter>
+    <parameter name="workDays" class="java.lang.String">
+        <parameterDescription><![CDATA[出勤日数]]></parameterDescription>
+    </parameter>
+    <parameter name="workDaysTime" class="java.lang.String">
+        <parameterDescription><![CDATA[出勤時間]]></parameterDescription>
+    </parameter>
+    <parameter name="sunWorkDays" class="java.lang.String">
+        <parameterDescription><![CDATA[日・祝出勤日数]]></parameterDescription>
+    </parameter>
+    <parameter name="sunFWorkDays" class="java.lang.String">
+        <parameterDescription><![CDATA[休日出勤（振）日数]]></parameterDescription>
+    </parameter>
+    <parameter name="lateWorkDays" class="java.lang.String">
+        <parameterDescription><![CDATA[遅刻日数]]></parameterDescription>
+    </parameter>
+    <parameter name="lateWorkDaysTime" class="java.lang.String">
+        <parameterDescription><![CDATA[遅刻時間]]></parameterDescription>
+    </parameter>
+    <parameter name="lWorkDays" class="java.lang.String">
+        <parameterDescription><![CDATA[欠勤日数]]></parameterDescription>
+    </parameter>
+    <parameter name="breakFDays" class="java.lang.String">
+        <parameterDescription><![CDATA[振替休日消化日数]]></parameterDescription>
+    </parameter>
+    <parameter name="retireDays" class="java.lang.String">
+        <parameterDescription><![CDATA[休職日数]]></parameterDescription>
+    </parameter>
+    <parameter name="condolenceDays" class="java.lang.String">
+        <parameterDescription><![CDATA[慶弔休暇日数]]></parameterDescription>
+    </parameter>
+    <parameter name="elseWorkDays" class="java.lang.String">
+        <parameterDescription><![CDATA[その他日数]]></parameterDescription>
+    </parameter>
+    <parameter name="elseWorkDaysTime" class="java.lang.String">
+        <parameterDescription><![CDATA[その他時間]]></parameterDescription>
+    </parameter>
+    <parameter name="datasourceAttendanceList" class="java.util.List"/>
+    <parameter name="newYearHolidayDays" class="java.lang.String"/>
+    <parameter name="paidHolidayDays" class="java.lang.String"/>
+    <parameter name="insteadBreakDays" class="java.lang.String"/>
+    <parameter name="summerHolidayDays" class="java.lang.String"/>
+    <parameter name="workSumDate" class="java.lang.String"/>
+    <parameter name="strApplyStatus" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="25" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="25" uuid="8c3a9a71-9a79-4793-8ca2-9e13c774d501">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <pen lineWidth="1.0" lineStyle="Solid"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="16"/>
+                    <paragraph lineSpacing="Single"/>
+                </textElement>
+                <text><![CDATA[勤　務　表]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="60" splitType="Stretch">
+            <staticText>
+                <reportElement x="450" y="0" width="105" height="10" uuid="fa227848-4292-464c-b0e9-0c342a08edf1"/>
+                <box rightPadding="5"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[株式会社リーディング・ウィン]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="485" y="10" width="25" height="10" uuid="6504cd8d-175e-4d4d-82ca-a56eda3dfe4b">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.0" lineStyle="Solid"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                    <paragraph leftIndent="1"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{year}==null?"":$P{year}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="510" y="10" width="15" height="10" uuid="1ec49fda-e552-4343-a4d8-0ba5ceda7b63">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box rightPadding="5"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[年]]></text>
+            </staticText>
+            <textField>
+                <reportElement mode="Opaque" x="525" y="10" width="10" height="10" backcolor="#7166F2" uuid="f5925780-d43a-40a9-ac89-1032a87e817a">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                    <paragraph leftIndent="1"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{month} == null ? "" : $P{month}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="535" y="10" width="20" height="10" uuid="30e0c5b3-5d50-423d-b3c9-f0b815167cef">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box rightPadding="5"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[月分]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="355" y="20" width="50" height="10" backcolor="#F0F8FF" uuid="c8e81471-058f-43dd-a94a-a4c6ef920bf5">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[入社日]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="355" y="30" width="50" height="10" backcolor="#F0F8FF" uuid="2149e419-6f8e-4cc5-8b1e-a06f15d910be">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[勤続年数]]></text>
+            </staticText>
+            <textField pattern="yyyy/MM/dd">
+                <reportElement x="405" y="20" width="50" height="10" uuid="4e492c74-a803-4e83-b413-9cbddba9f6d0"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{joinDate}== null ?"":$P{joinDate}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="455" y="20" width="50" height="10" backcolor="#F0F8FF" uuid="21454c2e-3c94-42af-a18b-b95dfb340a7f">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[社員番号]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="455" y="30" width="50" height="10" backcolor="#F0F8FF" uuid="8feedd25-a3f1-4573-b7af-ec01d4ede832">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[氏　　名]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="405" y="30" width="50" height="10" uuid="0607ec3c-8d83-4c6e-89a1-d8713b41ba35"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{countYear} == null ? "" : $P{countYear}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="505" y="20" width="50" height="10" uuid="2682e2fc-5612-4e07-a25b-6b5d8d63edbf"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{employeeNo} == null?"":$P{employeeNo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="505" y="30" width="50" height="10" uuid="44454ae6-98eb-4f91-84b9-ec3c08ea627a"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{employeeName}==""?null:$P{employeeName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="ApplyStatusColor" x="3" y="10" width="100" height="30" uuid="46dc6a2c-d394-4900-94f1-11366939c984"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                    <font fontName="IPAexゴシック" size="20"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{strApplyStatus}==null?"":$P{strApplyStatus}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="0" width="30" height="30" backcolor="#F0F8FF" uuid="ee019bbb-648d-497f-a6e5-20892b7345ff">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[日]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="30" y="0" width="30" height="30" backcolor="#F0F8FF" uuid="ce7ef550-80f1-4aeb-bacd-e7060aaa4646">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[曜　日]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="60" y="15" width="43" height="15" backcolor="#F0F8FF" uuid="e0f5fa61-0749-4d16-81e1-e4d1c78c08fe">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[出勤区分]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="60" y="0" width="113" height="15" backcolor="#F0F8FF" uuid="cb589b8f-6889-4b80-8090-ad1f86426a34">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[入　力]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="173" y="0" width="175" height="15" backcolor="#F0F8FF" uuid="d7b5125c-cef8-452b-906b-38d56fd2ede5">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[労　働　時　間]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="173" y="15" width="35" height="15" backcolor="#F0F8FF" uuid="71b1f909-c836-4b73-9f4f-7eb3d2e11c3a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休憩１]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="208" y="15" width="35" height="15" backcolor="#F0F8FF" uuid="ddffef5b-5108-4a6a-a674-37511c93e342"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休憩２]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="243" y="15" width="35" height="15" backcolor="#F0F8FF" uuid="93dab7a9-c17d-4dec-bda7-e80b85e25f5d"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休憩３]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="278" y="15" width="35" height="15" backcolor="#F0F8FF" uuid="ab953ef6-542a-4815-87fb-77a68b26b9d6"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[所定時間]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="313" y="15" width="35" height="15" backcolor="#F0F8FF" uuid="a81bb5ac-d87f-4f6d-ad8b-0014568065ee"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[合　計]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="348" y="0" width="132" height="15" backcolor="#F0F8FF" uuid="7bdb09fe-a009-4294-99fe-f90a41c3ea28">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[基　準　時　間　外]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="103" y="15" width="35" height="15" backcolor="#F0F8FF" uuid="c4f6f57c-1d97-4e7b-b848-a5f2a02fb4fe"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[出　勤]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="138" y="15" width="35" height="15" backcolor="#F0F8FF" uuid="cf230e05-c642-4f37-8c64-c1d94be226c8"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[退　勤]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="348" y="15" width="33" height="15" backcolor="#F0F8FF" uuid="2dc360ce-0138-4de6-bcb0-43a9612372fe"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[普　残]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="381" y="15" width="33" height="15" backcolor="#F0F8FF" uuid="b64eb595-1fb5-4e4b-8817-6e352ff3a8bd"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[深　夜]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="414" y="15" width="33" height="15" backcolor="#F0F8FF" uuid="b23c1b21-d8c3-452f-b468-cf8a0734cf70"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休　出]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="447" y="15" width="33" height="15" backcolor="#F0F8FF" uuid="dbd8cf27-7afc-4bcd-b590-316cb275d129">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休　深]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="480" y="0" width="75" height="30" backcolor="#F0F8FF" uuid="ede29605-d43d-4bdd-b0ab-02c9246680b4">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[備　　考]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <componentElement>
+                <reportElement x="0" y="0" width="555" height="18" uuid="4a27ba67-9b7a-41b5-9fef-bf878e2f6fc2">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+                    <datasetRun subDataset="DatasetAttendancePdf" uuid="85772eb9-6952-4068-b4c8-7625f1522d2c">
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{datasourceAttendanceList})]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="18" width="555">
+                        <textField>
+                            <reportElement style="styleOfWeekDate" x="0" y="0" width="30" height="18" uuid="791c1b44-651b-4f8a-9fe6-3d3dfff9d756">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workDate}==null?"":$F{workDate}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement style="styleOfWeekDate" x="30" y="0" width="30" height="18" uuid="833341fe-94a3-4fcc-b374-450408e543f8">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workDateWeek}==null ? "":$F{workDateWeek}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="60" y="0" width="43" height="18" uuid="3ff4da33-36dd-4081-9ae0-7243b6769f8f">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workKbn}==null ? "" :$F{workKbn}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="103" y="0" width="35" height="18" uuid="9c76d815-2837-4fa4-9cf7-492b090022e9"/>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workStart1}==null ? "" :$F{workStart1}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="138" y="0" width="35" height="18" uuid="6734e170-fe92-4f86-9f44-2f80e9c8c538">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workEnd1}==null ? "" :$F{workEnd1}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="173" y="0" width="35" height="18" uuid="af76dcbb-0a02-46e9-9e18-354de16acb8d"/>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workBreakTime1}==null ? "" :$F{workBreakTime1}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="208" y="0" width="35" height="18" uuid="1fc1b3c6-4bdf-4547-895e-e8e6d298c4e5"/>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workBreakTime2}==null ? "" :$F{workBreakTime2}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="243" y="0" width="35" height="18" uuid="b8a9c52a-621b-46d4-a2e3-40b0e2598442"/>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workBreakTime3}==null ? "" :$F{workBreakTime3}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="278" y="0" width="35" height="18" uuid="392ff4bb-dbff-49d8-b46f-38a563f500eb"/>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workTime}==null ? "" :$F{workTime}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="313" y="0" width="35" height="18" uuid="bb74eaaf-2a74-447b-b40d-95f682c98d97"/>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workSumTime}==null ? "" :$F{workSumTime}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="348" y="0" width="33" height="18" uuid="c8fd9951-e744-4fdc-bd6e-e196495f151c">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workOverTime}==null ? "" :$F{workOverTime}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="381" y="0" width="33" height="18" uuid="c91e140a-0cf2-4d97-a1dc-f5289075de1b">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workMidnightTime}==null ? "" :$F{workMidnightTime}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="414" y="0" width="33" height="18" uuid="18d09d84-7554-4d10-9194-29cfa3347317">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workHoliTime}==null ? "" :$F{workHoliTime}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="447" y="0" width="33" height="18" uuid="af822389-cb4b-485f-9f06-ddb1e343280a">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Center" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{workMidnightHoliTime}==null ? "" :$F{workMidnightHoliTime}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="480" y="0" width="75" height="18" uuid="0dd6d3dc-5299-4929-ac60-c5e8f6df86c1">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="0.5"/>
+                            </box>
+                            <textElement textAlignment="Left" verticalAlignment="Middle">
+                                <font fontName="IPAexゴシック" size="6"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{remark}==null ? "" :$F{remark}]]></textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="85" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="0" width="60" height="10" backcolor="#F0F8FF" uuid="fa5512a3-fa79-4b4a-9ddd-11b8dc4ca34a"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[所定労働時間]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="10" width="20" height="10" uuid="2a21d199-0cb0-414b-80cf-77c0e3ea4b8d"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Dotted"/>
+                    <topPen lineWidth="1.0" lineStyle="Solid"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workDate}==null?"":$P{workDate}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="10" width="40" height="10" uuid="4c8cbf6f-3cb5-4f50-9240-a6c62fded602"/>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <pen lineWidth="0.5" lineStyle="Dotted"/>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workTimeScheduled}==null?"":$P{workTimeScheduled}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="173" y="0" width="35" height="10" backcolor="#F0F8FF" uuid="1c673f5d-f7d3-4002-8d58-fc623243680f">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                    <paragraph spacingBefore="0"/>
+                </textElement>
+                <text><![CDATA[休憩１計]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="208" y="0" width="35" height="10" backcolor="#F0F8FF" uuid="daca5b77-f6db-403e-86c8-b30d8f381b4e">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休憩２計]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="243" y="0" width="35" height="10" backcolor="#F0F8FF" uuid="668949cb-0cf3-48d9-a591-ceeef725e448"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休憩３計]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="173" y="10" width="35" height="10" uuid="553c9099-987b-4ba2-bd9b-00ac199a760c"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workBreakTime1}==null?"":$P{workBreakTime1}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="208" y="10" width="35" height="10" uuid="72f609a2-d001-4e40-a18e-f17da54c0d3e"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <bottomPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workBreakTime2}==null?"":$P{workBreakTime2}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="243" y="10" width="35" height="10" uuid="6947e078-74ee-433e-8bf8-3464374f6e07"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workBreakTime3}==null?"":$P{workBreakTime3}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="60" y="0" width="60" height="10" backcolor="#F0F8FF" uuid="2081d3bc-d9ff-4397-b0ba-0c7ccc94830f">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                    <paragraph spacingBefore="0"/>
+                </textElement>
+                <text><![CDATA[実働勤務時間]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="348" y="0" width="33" height="10" backcolor="#F0F8FF" uuid="328374fe-84b4-4cb0-9cba-bd5dea71cb1a">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[普通残業]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="381" y="0" width="33" height="10" backcolor="#F0F8FF" uuid="e8998e7c-c5a9-4349-bef0-284c3a696739">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[深夜残業]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="414" y="0" width="33" height="10" backcolor="#F0F8FF" uuid="2b2b03cd-2a77-46fa-a3ad-c5fd0f99797b">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休日出勤]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="447" y="0" width="33" height="10" backcolor="#F0F8FF" uuid="dba03533-78f9-4d5a-bc8c-63b137fc86ff">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休日深夜]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="80" y="10" width="40" height="10" uuid="2b7d5e97-3f83-4878-a1b3-7e649da7b5bc"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="0.5" lineStyle="Dotted"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workSumTime}==null?"":$P{workSumTime}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="348" y="10" width="33" height="10" uuid="1520ebf7-8089-4cec-8e72-b3170947042a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workOverTime}==null?"":$P{workOverTime}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="381" y="10" width="33" height="10" uuid="57f55733-5a73-49d3-b2db-1a813a7a62ef">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workMidnightTime}==null?"":$P{workMidnightTime}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="414" y="10" width="33" height="10" uuid="4d9608d2-a319-4cf7-ba92-1c84826646f2">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workHoliTime}==null?"":$P{workHoliTime}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="447" y="10" width="33" height="10" uuid="40845d5b-3a9c-4f21-a234-7efe2df8e302">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workMidnightHoliTime}==null?"":$P{workMidnightHoliTime}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="28" width="60" height="10" backcolor="#F0F8FF" uuid="112a0734-d892-491c-9e0c-7b53339b3278">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[出　勤]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="38" width="20" height="10" uuid="7601307f-3051-4b66-bd71-b632ae22b437"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <rightPen lineWidth="0.5" lineStyle="Dotted"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workDays}==null?"":$P{workDays}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="38" width="40" height="10" uuid="aeff4a27-1f68-468d-97de-2b8be6ef4beb"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workDaysTime}==null?"":$P{workDaysTime}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="60" y="28" width="60" height="10" backcolor="#F0F8FF" uuid="8050e629-b706-4d08-bd39-35fbeb19c093">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[遅　刻]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="120" y="28" width="60" height="10" backcolor="#F0F8FF" uuid="da2ccb9f-5602-46f4-abdc-730812757896">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[欠　勤　]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="80" y="38" width="40" height="10" uuid="b9295f05-6d57-4d47-9dad-592e6c2a012d"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5" lineStyle="Dotted"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{lateWorkDaysTime}==null?"":$P{lateWorkDaysTime}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="60" y="38" width="20" height="10" uuid="2b671f38-466e-4189-9560-2c7f9b5d9bbb"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <rightPen lineWidth="0.5" lineStyle="Dotted"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{lateWorkDays}==null?"":$P{lateWorkDays}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="120" y="38" width="60" height="10" uuid="54593571-f518-422b-bfa3-fe977a437fd8"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{lWorkDays}==null?"":$P{lWorkDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="485" y="56" width="60" height="10" backcolor="#F0F8FF" uuid="c138add3-7d2d-45fb-a8c1-9b791b8adb52">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[その他]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="504" y="66" width="41" height="10" uuid="5718b047-f588-4735-bd84-0af6227c19b5"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5" lineStyle="Dotted"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{elseWorkDaysTime}==null?"":$P{elseWorkDaysTime}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="485" y="66" width="19" height="10" uuid="39c49883-be55-4a13-914c-76eddc0d31db"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Dotted"/>
+                    <topPen lineStyle="Solid"/>
+                    <leftPen lineStyle="Solid"/>
+                    <bottomPen lineStyle="Solid"/>
+                    <rightPen lineWidth="0.5" lineStyle="Dotted"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{elseWorkDays}==null?"":$P{elseWorkDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="180" y="28" width="60" height="10" backcolor="#F0F8FF" uuid="2bf2691e-6df8-4078-a8e2-c308791a2259">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休　職]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="180" y="38" width="60" height="10" uuid="bcdf1678-42e8-4258-a9ba-a9aebf05ae15"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{retireDays}==null?"":$P{retireDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="240" y="28" width="60" height="10" backcolor="#F0F8FF" uuid="0580909e-242a-422c-b0f0-8f3e84e3f0e1">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[年末年始]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="240" y="38" width="60" height="10" uuid="c3fc26d6-2bac-4161-b154-df7a43574537"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{newYearHolidayDays}==null?"":$P{newYearHolidayDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="56" width="60" height="10" backcolor="#F0F8FF" uuid="d652f511-e3a3-458e-9e8d-02c72bd4117c">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[有　給]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="66" width="60" height="10" uuid="08ad76af-e307-4f97-800f-cd615e065add"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{paidHolidayDays}==null?"":$P{paidHolidayDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="60" y="56" width="60" height="10" backcolor="#F0F8FF" uuid="dad7a7d9-77fa-471c-b7bc-647510a84ec7">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[代　休]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="60" y="66" width="60" height="10" uuid="3b8b5310-1251-4afc-87ec-97e09e5555cf"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{insteadBreakDays}==null?"":$P{insteadBreakDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="120" y="56" width="60" height="10" backcolor="#F0F8FF" uuid="2d28e99b-9ad2-4821-9162-b34897e556ae">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[休日出勤]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="66" width="60" height="10" uuid="88a0c70b-6c57-479b-8335-759c6e139b79"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{sunWorkDays}==null?"":$P{sunWorkDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="180" y="56" width="60" height="10" backcolor="#F0F8FF" uuid="839c92d2-6113-430e-a20e-6cb8060390a4">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[振替出勤]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="180" y="66" width="60" height="10" uuid="ab42cdc3-664c-4be3-9ba4-aa535724447d"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{sunFWorkDays}==null?"":$P{sunFWorkDays}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="60" y="10" width="20" height="10" uuid="0d046605-f38f-487c-b715-f8d3fce1c856"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.5" lineStyle="Dotted"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{workSumDate}==null?"":$P{workSumDate}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="240" y="56" width="60" height="10" backcolor="#F0F8FF" uuid="782aaed5-6857-4571-ad3a-1f9dc183d154">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[振替休日]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="240" y="66" width="60" height="10" uuid="c55b5a7e-e8d1-4781-8c98-9835077bee1c"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{breakFDays}==null?"":$P{breakFDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="300" y="56" width="60" height="10" backcolor="#F0F8FF" uuid="920b7e66-2f6b-4515-881f-0db9268fa456">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[夏季休暇]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="300" y="66" width="60" height="10" uuid="b9180537-5db0-4758-84e6-2d91998d9ac3"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{summerHolidayDays}==null?"":$P{summerHolidayDays}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="360" y="56" width="60" height="10" backcolor="#F0F8FF" uuid="6d33c55f-09b6-47f5-9099-f460a2e43c0c">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[特別休暇]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="360" y="66" width="60" height="10" uuid="665da9a3-4432-4d8d-9d75-5958f6c0e015"/>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{condolenceDays}==null?"":$P{condolenceDays}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnFooter>
+    <pageFooter>
+        <band height="50" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="0" width="480" height="20" backcolor="#F0F8FF" uuid="ee205a50-a3f4-4dd0-92a4-07ab6ce2b3c3">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[社　労　士　宛　使　用　欄]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="485" y="0" width="35" height="10" uuid="c3abc07f-8d5a-45fc-a79c-263760068f95">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="1.0" lineStyle="Solid"/>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[総務部]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="485" y="10" width="35" height="10" uuid="934eab24-43f6-44c6-88b5-28c4e7c2d9d1">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.25" lineStyle="Dotted"/>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="485" y="20" width="35" height="30" uuid="3db94444-8fd7-447d-975c-88592042de56">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="520" y="0" width="35" height="10" uuid="6ba94707-83cb-4270-a832-b9c1ce427df5">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="1.0" lineStyle="Solid"/>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[所属長]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="520" y="10" width="35" height="10" uuid="d13ddc41-9cb2-4c40-bca2-f4e2a102b0cc">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.25" lineStyle="Dotted"/>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="520" y="20" width="35" height="30" uuid="e44a42f3-ae12-4a6e-bf13-0ee970d805c9">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.0" lineStyle="Solid"/>
+                    <topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="20" width="480" height="30" uuid="0ed4b49e-733a-4391-a59a-ae85832ca73b"/>
+                <box>
+                    <pen lineWidth="1.0" lineStyle="Solid"/>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+</jasperReport>

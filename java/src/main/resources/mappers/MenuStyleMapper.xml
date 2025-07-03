@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.MenuStyleMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.MenuStyle">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="menu_number" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="menu_button_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="button_color" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="font_color" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="font_size" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="menu_disp_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="menu_icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, menu_number, menu_button_name, button_color, font_color, font_size, 
+    menu_disp_url, menu_icon, registration_user, registration_datetime, update_user, 
+    update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_menu_style
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and menu_number = #{menuNumber,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from m_menu_style
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and menu_number = #{menuNumber,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.MenuStyle">
+    insert into m_menu_style (company_code, menu_number, menu_button_name, 
+      button_color, font_color, font_size, 
+      menu_disp_url, menu_icon, registration_user, 
+      registration_datetime, update_user, update_datetime
+      )
+    values (#{companyCode,jdbcType=CHAR}, #{menuNumber,jdbcType=CHAR}, #{menuButtonName,jdbcType=VARCHAR}, 
+      #{buttonColor,jdbcType=VARCHAR}, #{fontColor,jdbcType=VARCHAR}, #{fontSize,jdbcType=TINYINT}, 
+      #{menuDispUrl,jdbcType=VARCHAR}, #{menuIcon,jdbcType=VARCHAR}, #{registrationUser,jdbcType=VARCHAR}, 
+      #{registrationDatetime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.MenuStyle">
+    insert into m_menu_style
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="menuNumber != null">
+        menu_number,
+      </if>
+      <if test="menuButtonName != null">
+        menu_button_name,
+      </if>
+      <if test="buttonColor != null">
+        button_color,
+      </if>
+      <if test="fontColor != null">
+        font_color,
+      </if>
+      <if test="fontSize != null">
+        font_size,
+      </if>
+      <if test="menuDispUrl != null">
+        menu_disp_url,
+      </if>
+      <if test="menuIcon != null">
+        menu_icon,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="menuNumber != null">
+        #{menuNumber,jdbcType=CHAR},
+      </if>
+      <if test="menuButtonName != null">
+        #{menuButtonName,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonColor != null">
+        #{buttonColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fontColor != null">
+        #{fontColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fontSize != null">
+        #{fontSize,jdbcType=TINYINT},
+      </if>
+      <if test="menuDispUrl != null">
+        #{menuDispUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIcon != null">
+        #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.MenuStyle">
+    update m_menu_style
+    <set>
+      <if test="menuButtonName != null">
+        menu_button_name = #{menuButtonName,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonColor != null">
+        button_color = #{buttonColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fontColor != null">
+        font_color = #{fontColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fontSize != null">
+        font_size = #{fontSize,jdbcType=TINYINT},
+      </if>
+      <if test="menuDispUrl != null">
+        menu_disp_url = #{menuDispUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIcon != null">
+        menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and menu_number = #{menuNumber,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.MenuStyle">
+    update m_menu_style
+    set menu_button_name = #{menuButtonName,jdbcType=VARCHAR},
+      button_color = #{buttonColor,jdbcType=VARCHAR},
+      font_color = #{fontColor,jdbcType=VARCHAR},
+      font_size = #{fontSize,jdbcType=TINYINT},
+      menu_disp_url = #{menuDispUrl,jdbcType=VARCHAR},
+      menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and menu_number = #{menuNumber,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TransportationExpensesDetailPdf" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1f84a12-bad2-4ced-bca9-f2151df85d56">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table_CH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table 1_TH" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="ApplyStatusColor">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$P{strApplyStatus}.equals("未申請")]]></conditionExpression>
+            <style forecolor="#00CC00" markup="styled"/>
+        </conditionalStyle>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$P{strApplyStatus}.equals("回覧中")]]></conditionExpression>
+            <style forecolor="#0099FF"/>
+        </conditionalStyle>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$P{strApplyStatus}.equals("差戻")]]></conditionExpression>
+            <style forecolor="#CC3300"/>
+        </conditionalStyle>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$P{strApplyStatus}.equals("完了")]]></conditionExpression>
+            <style forecolor="#575757"/>
+        </conditionalStyle>
+    </style>
+    <subDataset name="DatasetTransport" uuid="dca29041-fe06-4c56-8972-2469793960a1">
+        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="compass_transport" class="java.lang.String"/>
+        <field name="compass_period" class="java.lang.String"/>
+        <field name="compass_section" class="java.lang.String"/>
+        <field name="compass_amount" class="java.lang.String"/>
+        <field name="compass_invoice_category" class="java.lang.String"/>
+        <field name="amount" class="java.math.BigDecimal"/>
+        <variable name="total" class="java.math.BigDecimal" calculation="Sum">
+            <variableExpression><![CDATA[$F{amount}]]></variableExpression>
+        </variable>
+    </subDataset>
+    <subDataset name="DatasetOther" uuid="f14befd6-6261-4c4c-b8dc-dc98c4be86b9">
+        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="other_transport" class="java.lang.String"/>
+        <field name="other_period" class="java.lang.String"/>
+        <field name="other_section" class="java.lang.String"/>
+        <field name="other_amount" class="java.lang.String"/>
+        <field name="other_recipient_kbn" class="java.lang.String"/>
+        <field name="amount" class="java.math.BigDecimal"/>
+        <variable name="total" class="java.math.BigDecimal" calculation="Sum">
+            <variableExpression><![CDATA[$F{amount}]]></variableExpression>
+        </variable>
+    </subDataset>
+    <subDataset name="DatasetExpense" uuid="f14befd6-6261-4c4c-b8dc-dc98c4be86b9">
+        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="expense" class="java.lang.String"/>
+        <field name="expense_period" class="java.lang.String"/>
+        <field name="expense_section" class="java.lang.String"/>
+        <field name="expense_amount" class="java.lang.String"/>
+        <field name="expense_recipient_kbn" class="java.lang.String"/>
+        <field name="amount" class="java.math.BigDecimal"/>
+        <variable name="total" class="java.math.BigDecimal" calculation="Sum">
+            <variableExpression><![CDATA[$F{amount}]]></variableExpression>
+        </variable>
+    </subDataset>
+    <parameter name="datasourceTransport" class="java.util.List"/>
+    <parameter name="datasourceOther" class="java.util.List"/>
+    <parameter name="datasourceExpense" class="java.util.List"/>
+    <parameter name="strApplyStatus" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="apply_date" class="java.lang.String"/>
+    <field name="department_name" class="java.lang.String"/>
+    <field name="employee_no" class="java.lang.String"/>
+    <field name="name" class="java.lang.String"/>
+    <field name="address" class="java.lang.String"/>
+    <field name="total_amount" class="java.math.BigDecimal"/>
+    <field name="apply_month" class="java.lang.String"/>
+    <group name="GroupTeiki">
+        <groupFooter>
+            <band height="85">
+                <staticText>
+                    <reportElement mode="Opaque" x="380" y="0" width="60" height="40" backcolor="#F0F8FF" uuid="cdf52ab7-64c8-4b8b-ac3b-4928716a235c">
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                        <pen lineWidth="0.5"/>
+                    </box>
+                    <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                        <font fontName="IPAexゴシック" size="10" isBold="true"/>
+                        <paragraph lineSpacingSize="7.0"/>
+                    </textElement>
+                    <text><![CDATA[総　計]]></text>
+                </staticText>
+                <textField pattern="#,##0">
+                    <reportElement x="440" y="0" width="115" height="40" backcolor="#E6E4E1" uuid="7637b9a2-1938-4b0d-a5d2-ecaf38f5c0bc">
+                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                        <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                        <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+                    </reportElement>
+                    <box rightPadding="3">
+                        <pen lineWidth="0.5"/>
+                    </box>
+                    <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
+                        <font fontName="IPAexゴシック" size="10" isBold="true"/>
+                        <paragraph leftIndent="1"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{total_amount}]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement x="0" y="60" width="555" height="20" uuid="f1f94142-cf80-473d-b18e-c92e73829eb4"/>
+                    <textElement textAlignment="Left" verticalAlignment="Top">
+                        <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                        <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                    </textElement>
+                    <text><![CDATA[※通勤の経路・利用交通機関は、時間・距離等の事情を勘案し、最も経済的かつ合理的と認められるものを記入すること。]]></text>
+                </staticText>
+            </band>
+        </groupFooter>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="181" splitType="Stretch">
+            <staticText>
+                <reportElement x="230" y="-6" width="150" height="30" uuid="976aa5a5-174c-4fe8-bd0e-bb7bde613542"/>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <pen lineWidth="1.0" lineStyle="Solid"/>
+                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="20"/>
+                    <paragraph lineSpacing="Single"/>
+                </textElement>
+                <text><![CDATA[月末精算申請書]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="370" y="110" width="89" height="25" uuid="12cf0fdb-d911-4062-879c-cca4c11568db"/>
+                <box rightPadding="5"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[申請日]]></text>
+            </staticText>
+            <textField pattern="yyyy年MM月dd日#">
+                <reportElement x="464" y="110" width="91" height="25" uuid="084d1601-a96a-424a-acb5-b1b2deef63bd"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{apply_date}== null ?new java.util.Date():$F{apply_date}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="135" width="84" height="18" backcolor="#F0F8FF" uuid="0c643fb8-4b0f-415c-987d-35c179f3e46f">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[所　属]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="84" y="135" width="100" height="18" uuid="58d15da8-d90d-4d36-9b14-10abb4538134">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                    <paragraph leftIndent="1"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{department_name}==null?"":$F{department_name}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="184" y="135" width="100" height="18" backcolor="#F0F8FF" uuid="d035149b-a521-4566-bb48-fde9bd17034f">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[社員番号]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="284" y="135" width="90" height="18" uuid="6527719a-3e32-49ca-bfec-7e14c90d0e7b">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                    <paragraph leftIndent="1"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{employee_no}==null?"":$F{employee_no}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="374" y="135" width="90" height="18" backcolor="#F0F8FF" uuid="b4173bb8-5f36-48f0-92b9-f1a59700ee11">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[氏　名]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="464" y="135" width="91" height="18" uuid="f988f9e5-c878-4b92-a7a8-3a64d0e7070f">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                    <paragraph leftIndent="1"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{name}==null?"":$F{name}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="153" width="84" height="18" backcolor="#F0F8FF" uuid="c788b6fe-197d-4248-853c-2d7907ac8d18">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[住　所]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="84" y="153" width="471" height="18" uuid="7692df6b-b9a0-404a-88e5-340dc3f4da4d">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+                </reportElement>
+                <box leftPadding="10">
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="7"/>
+                    <paragraph leftIndent="1"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{address}==null?"":$F{address}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="455" y="20" width="50" height="15" uuid="8d1a49b1-e30f-46aa-84d8-4319adeb9425">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.25" lineStyle="Solid"/>
+                    <topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[総務承認]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="505" y="20" width="50" height="15" uuid="0a9cb6c6-bc21-467d-8978-faca29a350b8">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.25" lineStyle="Solid"/>
+                    <topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[上長承認]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="455" y="35" width="50" height="15" uuid="d5cb5399-b2a5-4b0b-b754-72905558db53">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.25" lineStyle="Dotted"/>
+                    <topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#000000"/>
+                    <rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="505" y="35" width="50" height="15" uuid="e857922d-4560-484c-90cf-47c0aa6d7c72">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.25" lineStyle="Dotted"/>
+                    <topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#000000"/>
+                    <rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="455" y="50" width="50" height="50" uuid="21fef5fd-2eb2-490c-9497-f1652981f093">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.25" lineStyle="Dotted"/>
+                    <topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="505" y="50" width="50" height="50" uuid="0ef00b3f-3fd9-41e8-9e23-045ec3b8d966">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.25" lineStyle="Dotted"/>
+                    <topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="8" isBold="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="0.0"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="ApplyStatusColor" x="0" y="30" width="100" height="30" uuid="d0041354-3634-4c60-a949-b575b29e91c5"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                    <font fontName="IPAexゴシック" size="20"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{strApplyStatus}==null?"":$P{strApplyStatus}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="140" y="-6" width="91" height="30" uuid="b15bd0d5-1fa3-4202-a997-f4fe9aa6636a">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="20"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{apply_month}== null ?"":$F{apply_month}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <detail>
+        <band height="120" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <printWhenExpression><![CDATA[$P{datasourceTransport}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+            <staticText>
+                <reportElement x="0" y="0" width="88" height="20" uuid="fee581e4-257b-4d50-a43a-c4578e431274">
+                    <printWhenExpression><![CDATA[$P{datasourceTransport}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[定期券]]></text>
+            </staticText>
+            <componentElement>
+                <reportElement x="0" y="20" width="555" height="90" uuid="0bd0a738-949d-45c8-b55c-b25f92c614ee">
+                    <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+                    <property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+                    <property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+                    <property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+                    <printWhenExpression><![CDATA[$P{datasourceTransport}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+                </reportElement>
+                <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+                    <datasetRun subDataset="DatasetTransport" uuid="70337240-c1cb-46bf-9cb5-a7bbf8b1fc39">
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{datasourceTransport})]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:column width="71" uuid="bb50ed24-66df-4b3b-b208-9584624067b5">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                        </jr:tableFooter>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="2">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="71" height="40" uuid="04b45905-239e-4c29-8517-fe1da96ce7ec"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[経費区分]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                            <textField>
+                                <reportElement x="0" y="0" width="71" height="25" uuid="0ff13fa2-4af8-42ba-a4fe-47b0ffa6db66"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{compass_transport}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="180" uuid="76aec0b2-cafa-44ec-b04f-c73392da5687">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1"/>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="2">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="180" height="40" uuid="b856ae2e-d9a6-4917-973e-0f1a71785626"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[適用期間]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField>
+                                <reportElement x="0" y="0" width="180" height="25" uuid="419ebd74-8422-41be-af08-753396ce67e1"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{compass_period}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:columnGroup width="190" uuid="209c038f-aeae-4ea1-8531-e8814eee58a2">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Columns [0]"/>
+                        <jr:columnHeader style="Table 1_CH" height="20" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+                            <staticText>
+                                <reportElement mode="Transparent" x="0" y="0" width="190" height="20" uuid="2fd3d23c-78d8-4d41-bc14-e52e6a54cbaa">
+                                    <property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+                                </reportElement>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[乗車区間]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:column width="190" uuid="d4574ba4-e83b-43c1-b423-3662673f4327">
+                            <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+                            <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                                <staticText>
+                                    <reportElement x="0" y="0" width="190" height="25" uuid="fbb1a9c1-c657-4b90-a091-134a79decf0a"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font fontName="IPAexゴシック" size="8"/>
+                                    </textElement>
+                                    <text><![CDATA[小　計]]></text>
+                                </staticText>
+                            </jr:tableFooter>
+                            <jr:columnHeader style="Table 1_CH" height="20" rowSpan="1">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <staticText>
+                                    <reportElement x="0" y="0" width="190" height="20" uuid="527250af-0740-4915-acee-73174e03e947"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                        <font fontName="IPAexゴシック" size="8"/>
+                                    </textElement>
+                                    <text><![CDATA[出発駅　～　到着駅]]></text>
+                                </staticText>
+                            </jr:columnHeader>
+                            <jr:detailCell style="Table 1_TD" height="25">
+                                <textField>
+                                    <reportElement x="0" y="0" width="190" height="25" uuid="313233e8-e3fe-42b6-baa3-5d4a3142d03a"/>
+                                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font fontName="IPAexゴシック" size="8"/>
+                                    </textElement>
+                                    <textFieldExpression><![CDATA[$F{compass_section}]]></textFieldExpression>
+                                </textField>
+                            </jr:detailCell>
+                        </jr:column>
+                    </jr:columnGroup>
+                    <jr:column width="69" uuid="d6ef5049-d215-45ce-b14e-3e48b2391de9">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                            <textField pattern="#,##0">
+                                <reportElement x="0" y="0" width="69" height="25" uuid="32b18964-a502-411f-b855-851627305524"/>
+                                <box rightPadding="3"/>
+                                <textElement textAlignment="Right" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+                            </textField>
+                        </jr:tableFooter>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="2">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="69" height="40" uuid="fc0deb28-3b6f-481a-8f4a-a0be07e08549"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[金額]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField pattern="#,##0">
+                                <reportElement x="0" y="0" width="69" height="25" uuid="e0ebe9db-d2fd-4157-a9a4-9d2600c1bd4f"/>
+                                <box rightPadding="3"/>
+                                <textElement textAlignment="Right" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="45" uuid="4b8e7425-f32e-45ef-b125-94a215c9ce99">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1"/>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="2">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="45" height="40" uuid="131b8749-f5d1-417e-823b-207148342431"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[精算区分]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField>
+                                <reportElement x="0" y="0" width="45" height="25" uuid="79bb597d-20a2-4040-965b-247b306d6388"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{compass_invoice_category}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                </jr:table>
+            </componentElement>
+        </band>
+        <band height="120">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <printWhenExpression><![CDATA[$P{datasourceOther}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+            <staticText>
+                <reportElement x="0" y="0" width="88" height="20" uuid="802c6220-b792-4875-90b1-a02bab7ee7c4">
+                    <printWhenExpression><![CDATA[$P{datasourceOther}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[旅費]]></text>
+            </staticText>
+            <componentElement>
+                <reportElement x="0" y="20" width="555" height="90" uuid="84f39193-8fc9-4ea4-bda9-7dcb77cc399c">
+                    <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+                    <property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+                    <property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+                    <property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+                    <printWhenExpression><![CDATA[$P{datasourceOther}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+                </reportElement>
+                <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+                    <datasetRun subDataset="DatasetOther" uuid="5b59511c-45a1-4e51-b390-b2a5dc087c69">
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{datasourceOther})]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:column width="71" uuid="e19d5a2e-a777-4ea5-a46f-a503e4fe42aa">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                        </jr:tableFooter>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="71" height="40" uuid="9d8d9cf7-9746-4c82-b916-8599b088cf42"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[経費区分]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                            <textField>
+                                <reportElement x="0" y="0" width="71" height="25" uuid="15bfd4c0-36f7-40f6-987e-f4f6d8794e2e"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{other_transport}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="180" uuid="b1177a1d-7a26-4b88-a6f2-bd53be062269">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1"/>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="180" height="40" uuid="1b860701-1de6-41eb-997f-22edb7e21568"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[日付]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField>
+                                <reportElement x="0" y="0" width="180" height="25" uuid="68c05d5e-e58d-4657-800d-a528f1080c73"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{other_period}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="190" uuid="69afbc5c-e6f2-484d-94f5-fd975fee2882">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="190" height="25" uuid="e8c42cf1-be29-47a3-960a-d08ad0768273"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[小　計]]></text>
+                            </staticText>
+                        </jr:tableFooter>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="190" height="40" uuid="05205f8b-5ca3-47e8-8183-ac9b29106eb7"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[始点～終点（往復／片道）]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField>
+                                <reportElement x="0" y="0" width="190" height="25" uuid="894585ee-61ca-4ad2-8e5d-fbbb39631fcc"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{other_section}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="69" uuid="a46054c5-b2cd-4b74-a489-ad61f1b138d6">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                            <textField pattern="#,##0">
+                                <reportElement x="0" y="0" width="69" height="25" uuid="e81919c1-fa68-4c5b-ac45-9b38275b8e9d"/>
+                                <box rightPadding="3"/>
+                                <textElement textAlignment="Right" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+                            </textField>
+                        </jr:tableFooter>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="69" height="40" uuid="52456f2b-b1d8-4097-965d-0363304e7a7d"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[金額]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField pattern="#,##0">
+                                <reportElement x="0" y="0" width="69" height="25" uuid="3ebfd138-fdd2-440c-8521-f30c6041f9d2"/>
+                                <box rightPadding="3"/>
+                                <textElement textAlignment="Right" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="45" uuid="17456823-61af-47e0-aafd-c5d01a17194a">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1"/>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="45" height="40" uuid="ee804941-1de0-4ee6-ad5c-9b9b2ee2277d"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[請求区分]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField>
+                                <reportElement x="0" y="0" width="45" height="25" uuid="538a6028-48e1-4375-928a-f4b0e10dcfa1"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{other_recipient_kbn}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                </jr:table>
+            </componentElement>
+        </band>
+        <band height="120">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <printWhenExpression><![CDATA[$P{datasourceExpense}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+            <staticText>
+                <reportElement x="0" y="0" width="88" height="20" uuid="802c6220-b792-4875-90b1-a02bab7ee7c4">
+                    <printWhenExpression><![CDATA[$P{datasourceExpense}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="IPAexゴシック" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[その他経費]]></text>
+            </staticText>
+            <componentElement>
+                <reportElement x="0" y="20" width="555" height="90" uuid="84f39193-8fc9-4ea4-bda9-7dcb77cc399c">
+                    <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+                    <property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+                    <property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+                    <property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+                    <printWhenExpression><![CDATA[$P{datasourceExpense}.size() > 0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+                </reportElement>
+                <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+                    <datasetRun subDataset="DatasetExpense" uuid="5b59511c-45a1-4e51-b390-b2a5dc087c69">
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{datasourceExpense})]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:column width="71" uuid="e19d5a2e-a777-4ea5-a46f-a503e4fe42aa">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                        </jr:tableFooter>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="71" height="40" uuid="9d8d9cf7-9746-4c82-b916-8599b088cf42"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[経費区分]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                            <textField>
+                                <reportElement x="0" y="0" width="71" height="25" uuid="15bfd4c0-36f7-40f6-987e-f4f6d8794e2e"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{expense}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="180" uuid="b1177a1d-7a26-4b88-a6f2-bd53be062269">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1"/>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="180" height="40" uuid="1b860701-1de6-41eb-997f-22edb7e21568"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[日付]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField>
+                                <reportElement x="0" y="0" width="180" height="25" uuid="68c05d5e-e58d-4657-800d-a528f1080c73"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{expense_period}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="190" uuid="69afbc5c-e6f2-484d-94f5-fd975fee2882">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="190" height="25" uuid="e8c42cf1-be29-47a3-960a-d08ad0768273"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[小　計]]></text>
+                            </staticText>
+                        </jr:tableFooter>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="190" height="40" uuid="05205f8b-5ca3-47e8-8183-ac9b29106eb7"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[内容]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField>
+                                <reportElement x="0" y="0" width="190" height="25" uuid="894585ee-61ca-4ad2-8e5d-fbbb39631fcc"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{expense_section}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="69" uuid="a46054c5-b2cd-4b74-a489-ad61f1b138d6">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1">
+                            <textField pattern="#,##0">
+                                <reportElement x="0" y="0" width="69" height="25" uuid="e81919c1-fa68-4c5b-ac45-9b38275b8e9d"/>
+                                <box rightPadding="3"/>
+                                <textElement textAlignment="Right" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+                            </textField>
+                        </jr:tableFooter>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="69" height="40" uuid="52456f2b-b1d8-4097-965d-0363304e7a7d"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[金額]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField pattern="#,##0">
+                                <reportElement x="0" y="0" width="69" height="25" uuid="3ebfd138-fdd2-440c-8521-f30c6041f9d2"/>
+                                <box rightPadding="3"/>
+                                <textElement textAlignment="Right" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="45" uuid="17456823-61af-47e0-aafd-c5d01a17194a">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+                        <jr:tableFooter style="Table 1_TH" height="25" rowSpan="1"/>
+                        <jr:columnHeader style="Table 1_CH" height="40" rowSpan="1">
+                            <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                            <staticText>
+                                <reportElement x="0" y="0" width="45" height="40" uuid="ee804941-1de0-4ee6-ad5c-9b9b2ee2277d"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <text><![CDATA[請求区分]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="Table 1_TD" height="25">
+                            <textField>
+                                <reportElement x="0" y="0" width="45" height="25" uuid="538a6028-48e1-4375-928a-f4b0e10dcfa1"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font fontName="IPAexゴシック" size="8"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{expense_recipient_kbn}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                </jr:table>
+            </componentElement>
+        </band>
+    </detail>
+</jasperReport>

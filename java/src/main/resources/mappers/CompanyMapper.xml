@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Company">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="company_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="company_name_sh" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="company_tel" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="company_zip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address_prefecture" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address_municipality" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address_town" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address_detail" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="company_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="company_logo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="company_image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, company_name, company_name_sh, company_tel, company_zip, address_prefecture, 
+    address_municipality, address_town, address_detail, company_url, company_logo, company_image, 
+    del_flg, reg_account, reg_time, upd_account, upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_company
+    where company_code = #{companyCode,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from m_company
+    where company_code = #{companyCode,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Company">
+    insert into m_company (company_code, company_name, company_name_sh, 
+      company_tel, company_zip, address_prefecture, 
+      address_municipality, address_town, address_detail, 
+      company_url, company_logo, company_image, 
+      del_flg, reg_account, reg_time, 
+      upd_account, upd_time)
+    values (#{companyCode,jdbcType=CHAR}, #{companyName,jdbcType=VARCHAR}, #{companyNameSh,jdbcType=VARCHAR}, 
+      #{companyTel,jdbcType=VARCHAR}, #{companyZip,jdbcType=VARCHAR}, #{addressPrefecture,jdbcType=VARCHAR}, 
+      #{addressMunicipality,jdbcType=VARCHAR}, #{addressTown,jdbcType=VARCHAR}, #{addressDetail,jdbcType=VARCHAR}, 
+      #{companyUrl,jdbcType=VARCHAR}, #{companyLogo,jdbcType=VARCHAR}, #{companyImage,jdbcType=VARCHAR}, 
+      #{delFlg,jdbcType=CHAR}, #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Company">
+    insert into m_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="companyNameSh != null">
+        company_name_sh,
+      </if>
+      <if test="companyTel != null">
+        company_tel,
+      </if>
+      <if test="companyZip != null">
+        company_zip,
+      </if>
+      <if test="addressPrefecture != null">
+        address_prefecture,
+      </if>
+      <if test="addressMunicipality != null">
+        address_municipality,
+      </if>
+      <if test="addressTown != null">
+        address_town,
+      </if>
+      <if test="addressDetail != null">
+        address_detail,
+      </if>
+      <if test="companyUrl != null">
+        company_url,
+      </if>
+      <if test="companyLogo != null">
+        company_logo,
+      </if>
+      <if test="companyImage != null">
+        company_image,
+      </if>
+      <if test="delFlg != null">
+        del_flg,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameSh != null">
+        #{companyNameSh,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null">
+        #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyZip != null">
+        #{companyZip,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPrefecture != null">
+        #{addressPrefecture,jdbcType=VARCHAR},
+      </if>
+      <if test="addressMunicipality != null">
+        #{addressMunicipality,jdbcType=VARCHAR},
+      </if>
+      <if test="addressTown != null">
+        #{addressTown,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyUrl != null">
+        #{companyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLogo != null">
+        #{companyLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImage != null">
+        #{companyImage,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Company">
+    update m_company
+    <set>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameSh != null">
+        company_name_sh = #{companyNameSh,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null">
+        company_tel = #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyZip != null">
+        company_zip = #{companyZip,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPrefecture != null">
+        address_prefecture = #{addressPrefecture,jdbcType=VARCHAR},
+      </if>
+      <if test="addressMunicipality != null">
+        address_municipality = #{addressMunicipality,jdbcType=VARCHAR},
+      </if>
+      <if test="addressTown != null">
+        address_town = #{addressTown,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyUrl != null">
+        company_url = #{companyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLogo != null">
+        company_logo = #{companyLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImage != null">
+        company_image = #{companyImage,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        del_flg = #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Company">
+    update m_company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      company_name_sh = #{companyNameSh,jdbcType=VARCHAR},
+      company_tel = #{companyTel,jdbcType=VARCHAR},
+      company_zip = #{companyZip,jdbcType=VARCHAR},
+      address_prefecture = #{addressPrefecture,jdbcType=VARCHAR},
+      address_municipality = #{addressMunicipality,jdbcType=VARCHAR},
+      address_town = #{addressTown,jdbcType=VARCHAR},
+      address_detail = #{addressDetail,jdbcType=VARCHAR},
+      company_url = #{companyUrl,jdbcType=VARCHAR},
+      company_logo = #{companyLogo,jdbcType=VARCHAR},
+      company_image = #{companyImage,jdbcType=VARCHAR},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+  </update>
+</mapper>

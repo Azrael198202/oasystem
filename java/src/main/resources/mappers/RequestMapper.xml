@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.RequestMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Request">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="request_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="request_user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="request_status_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="request_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="request_type_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="request_overview" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, request_number, request_user_id, request_status_kbn, request_date, 
+    request_type_kbn, request_overview, registration_user, registration_datetime, update_user, 
+    update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_request
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_request
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Request">
+    insert into t_request (company_code, request_number, request_user_id, 
+      request_status_kbn, request_date, request_type_kbn, 
+      request_overview, registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{requestNumber,jdbcType=VARCHAR}, #{requestUserId,jdbcType=VARCHAR}, 
+      #{requestStatusKbn,jdbcType=CHAR}, #{requestDate,jdbcType=CHAR}, #{requestTypeKbn,jdbcType=CHAR}, 
+      #{requestOverview,jdbcType=VARCHAR}, #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Request">
+    insert into t_request
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="requestNumber != null">
+        request_number,
+      </if>
+      <if test="requestUserId != null">
+        request_user_id,
+      </if>
+      <if test="requestStatusKbn != null">
+        request_status_kbn,
+      </if>
+      <if test="requestDate != null">
+        request_date,
+      </if>
+      <if test="requestTypeKbn != null">
+        request_type_kbn,
+      </if>
+      <if test="requestOverview != null">
+        request_overview,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="requestNumber != null">
+        #{requestNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUserId != null">
+        #{requestUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestStatusKbn != null">
+        #{requestStatusKbn,jdbcType=CHAR},
+      </if>
+      <if test="requestDate != null">
+        #{requestDate,jdbcType=CHAR},
+      </if>
+      <if test="requestTypeKbn != null">
+        #{requestTypeKbn,jdbcType=CHAR},
+      </if>
+      <if test="requestOverview != null">
+        #{requestOverview,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Request">
+    update t_request
+    <set>
+      <if test="requestUserId != null">
+        request_user_id = #{requestUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestStatusKbn != null">
+        request_status_kbn = #{requestStatusKbn,jdbcType=CHAR},
+      </if>
+      <if test="requestDate != null">
+        request_date = #{requestDate,jdbcType=CHAR},
+      </if>
+      <if test="requestTypeKbn != null">
+        request_type_kbn = #{requestTypeKbn,jdbcType=CHAR},
+      </if>
+      <if test="requestOverview != null">
+        request_overview = #{requestOverview,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Request">
+    update t_request
+    set request_user_id = #{requestUserId,jdbcType=VARCHAR},
+      request_status_kbn = #{requestStatusKbn,jdbcType=CHAR},
+      request_date = #{requestDate,jdbcType=CHAR},
+      request_type_kbn = #{requestTypeKbn,jdbcType=CHAR},
+      request_overview = #{requestOverview,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeySk" parameterType="com.demo.entity.Request">
+    update t_request
+    set request_status_kbn = #{requestStatusKbn,jdbcType=CHAR},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyRt" parameterType="com.demo.entity.Request">
+    update t_request
+    set request_status_kbn = #{requestStatusKbn,jdbcType=CHAR},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyLa" parameterType="com.demo.entity.Request">
+    update t_request
+    set request_status_kbn = #{requestStatusKbn,jdbcType=CHAR},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="map" resultType="com.demo.pojo.request.RequestDTO">
+    select
+      M1.request_number,
+      M1.request_user_id,
+      M1.request_date,
+      M1.request_overview,
+      M1.request_type_kbn,
+      K1.category_kbn_name as request_kbn_name,
+      M1.request_status_kbn,
+      K2.category_kbn_name as status_kbn_name
+    from
+      t_request as M1
+        left join
+      m_category as K1
+      on
+            K1.category_kbn = M1.request_type_kbn
+          and
+            K1.category_class_number=031
+        left join
+      m_category as K2
+      on
+            K2.category_kbn = M1.request_status_kbn
+          and
+            K2.category_class_number=030
+    where
+--         ログインした社員番号が入るようにする
+      M1.request_user_id = #{ requestUserId, jdbcType = CHAR }
+          and
+      M1.company_code = #{ companyCode, jdbcType = CHAR }
+    order by request_number desc
+  </select>
+  <select id="search" parameterType="map" resultType="com.demo.pojo.request.RequestDTO">
+    select
+      M1.company_code,
+      M1.request_user_id,
+      M1.request_number,
+      MAX(M1.request_date) as request_date,
+      MAX(M1.request_overview) as request_overview,
+      MAX(M1.request_type_kbn) as request_type_kbn,
+      MAX(K1.category_kbn_name) as request_type_name,
+      MAX(M1.request_status_kbn) as request_status_kbn,
+      MAX(K2.category_kbn_name) as status_kbn_name,
+      MAX(T1.work_date_ym) as work_date_ym,
+      MAX(H1.holiday_type_kbn) as holiday_type_kbn,
+      MAX(u.user_name) as user_name,
+      MAX(b.department_code) as department_code,
+      MAX(d.department_name) as department_name
+    from
+      t_request as M1
+        left join
+      m_category as K1
+      on
+            K1.category_kbn = M1.request_type_kbn
+          and
+            K1.category_class_number=031
+        left join
+      m_category as K2
+      on
+            K2.category_kbn = M1.request_status_kbn
+          and
+            K2.category_class_number=030
+        left join
+      t_request_attendance as T1
+      on
+        T1.request_number = M1.request_number
+        left join
+      t_request_holiday as H1
+      on
+            M1.request_number = H1.request_number
+          and
+            H1.request_sub_number = 1
+        left join
+      m_user as u
+      on
+        M1.request_user_id = u.user_id
+        left join
+      t_belong_dept as b
+      on
+        M1.request_user_id = b.user_id
+        left join
+      m_department as d
+      on
+        d.department_code = b.department_code
+    where
+      M1.company_code = #{ companyCode, jdbcType = CHAR } and
+      M1.request_user_id = #{ requestUserId, jdbcType = CHAR } and
+      M1.request_status_kbn like #{ requestStatusKbn, jdbcType = CHAR } and
+      M1.request_type_kbn like #{ requestTypeKbn, jdbcType = CHAR }
+    group by
+      M1.company_code
+     ,M1.request_user_id
+     ,M1.request_number
+    order by M1.request_number desc
+  </select>
+  <select id="selectByResNum" parameterType="map" resultType="com.demo.pojo.request.InsertByRequestDTO">
+    select
+      r.company_code,
+      r.request_number,
+      r.request_overview,
+      u.user_name,
+      u.user_id
+    from
+      t_request as r
+        left join
+      m_user as u
+      on
+      r.request_user_id = u.user_id
+    where
+      r.company_code = #{ companyCode, jdbcType = CHAR }
+      and
+      r.request_number = #{ requestNumber, jdbcType = CHAR }
+  </select>
+</mapper>

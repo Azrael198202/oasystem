@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.SubHolidayMapper">
+    <resultMap id="BaseResultMap" type="com.demo.entity.SubHoliday">
+        <constructor>
+            <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR"/>
+            <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <idArg column="holiday_work_day" javaType="java.lang.String" jdbcType="CHAR"/>
+            <arg column="sub_holiday_days" javaType="java.lang.Float" jdbcType="REAL"/>
+            <arg column="request_number" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        company_code
+        , user_id, holiday_work_day, sub_holiday_days, request_number, registration_user,
+    registration_datetime, update_user, update_datetime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sub_holiday
+        where company_code = #{companyCode,jdbcType=CHAR}
+        and user_id = #{userId,jdbcType=VARCHAR}
+        and holiday_work_day = #{holidayWorkDay,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete
+        from t_sub_holiday
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and user_id = #{userId,jdbcType=VARCHAR}
+          and holiday_work_day = #{holidayWorkDay,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.demo.entity.SubHoliday">
+        insert into t_sub_holiday (company_code, user_id, holiday_work_day,
+                                   sub_holiday_days, request_number, registration_user,
+                                   registration_datetime, update_user, update_datetime)
+        values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{holidayWorkDay,jdbcType=CHAR},
+                #{subHolidayDays,jdbcType=REAL}, #{requestNumber,jdbcType=VARCHAR},
+                #{registrationUser,jdbcType=VARCHAR},
+                #{registrationDatetime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR},
+                #{updateDatetime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.demo.entity.SubHoliday">
+        insert into t_sub_holiday
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyCode != null">
+                company_code,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="holidayWorkDay != null">
+                holiday_work_day,
+            </if>
+            <if test="subHolidayDays != null">
+                sub_holiday_days,
+            </if>
+            <if test="requestNumber != null">
+                request_number,
+            </if>
+            <if test="registrationUser != null">
+                registration_user,
+            </if>
+            <if test="registrationDatetime != null">
+                registration_datetime,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="updateDatetime != null">
+                update_datetime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyCode != null">
+                #{companyCode,jdbcType=CHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="holidayWorkDay != null">
+                #{holidayWorkDay,jdbcType=CHAR},
+            </if>
+            <if test="subHolidayDays != null">
+                #{subHolidayDays,jdbcType=REAL},
+            </if>
+            <if test="requestNumber != null">
+                #{requestNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="registrationUser != null">
+                #{registrationUser,jdbcType=VARCHAR},
+            </if>
+            <if test="registrationDatetime != null">
+                #{registrationDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDatetime != null">
+                #{updateDatetime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.SubHoliday">
+        update t_sub_holiday
+        <set>
+            <if test="subHolidayDays != null">
+                sub_holiday_days = #{subHolidayDays,jdbcType=REAL},
+            </if>
+            <if test="requestNumber != null">
+                request_number = #{requestNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="registrationUser != null">
+                registration_user = #{registrationUser,jdbcType=VARCHAR},
+            </if>
+            <if test="registrationDatetime != null">
+                registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDatetime != null">
+                update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where company_code = #{companyCode,jdbcType=CHAR}
+        and user_id = #{userId,jdbcType=VARCHAR}
+        and holiday_work_day = #{holidayWorkDay,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.demo.entity.SubHoliday">
+        update t_sub_holiday
+        set sub_holiday_days      = #{subHolidayDays,jdbcType=REAL},
+            request_number        = #{requestNumber,jdbcType=VARCHAR},
+            registration_user     = #{registrationUser,jdbcType=VARCHAR},
+            registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+            update_user           = #{updateUser,jdbcType=VARCHAR},
+            update_datetime       = #{updateDatetime,jdbcType=TIMESTAMP}
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and user_id = #{userId,jdbcType=VARCHAR}
+          and holiday_work_day = #{holidayWorkDay,jdbcType=CHAR}
+    </update>
+    <select id="getRequestSubHoliday" parameterType="map" resultType="float">
+        <!--前月末残取得-->
+        select ifnull(sum(t_sub_holiday.sub_holiday_days),0)
+        from t_sub_holiday
+        where t_sub_holiday.company_code = #{companyCode,jdbcType=CHAR}
+        and t_sub_holiday.user_id = #{userId,jdbcType=VARCHAR}
+        and t_sub_holiday.request_number not in (select
+                                                    t_sub_holiday.request_number
+                                                    from
+                                                    t_sub_holiday
+                                                    where
+                                                        exists
+                                                        (select
+                                                        t_sub_holiday.request_number
+                                                        from
+                                                        t_sub_holiday_history
+                                                        where t_sub_holiday.request_number = t_sub_holiday_history.work_day_request_number
+                                                        and
+                                                        -- 先月末までに代休を使用（代休履歴に先月末までの履歴がある）場合はカウントに含まない
+                                                        DATE_FORMAT(DATE_SUB(CONCAT(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') , INTERVAL 1 DAY), '%Y%m%d') >= t_sub_holiday_history.target_date
+                                                        and
+                                                        t_sub_holiday_history.company_code = #{companyCode,jdbcType=CHAR}
+                                                        and
+                                                        t_sub_holiday_history.user_id = #{userId,jdbcType=VARCHAR}
+                                                        )
+                                                )
+        and
+        concat(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') > t_sub_holiday.holiday_work_day
+    </select>
+    <select id="endOfThisMonthSubHoliday" parameterType="map" resultType="float">
+        <!--当月末残取得-->
+        select
+        <!--前月までの代休残テーブル取得-->
+        (
+        select ifnull(sum(t_sub_holiday.sub_holiday_days),0)
+        from t_sub_holiday
+        where t_sub_holiday.company_code = #{companyCode,jdbcType=CHAR}
+        and t_sub_holiday.user_id = #{userId,jdbcType=VARCHAR}
+        and t_sub_holiday.request_number not in (select
+                                                    t_sub_holiday.request_number
+                                                    from
+                                                    t_sub_holiday
+                                                        where
+                                                        exists
+                                                        (select
+                                                        t_sub_holiday.request_number
+                                                        from
+                                                        t_sub_holiday_history
+                                                        where t_sub_holiday.request_number = t_sub_holiday_history.work_day_request_number
+                                                        and
+                                                        -- 先月末までに代休を使用（代休履歴に先月末までの履歴がある）場合はカウントに含まない
+                                                        DATE_FORMAT(DATE_SUB(CONCAT(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') , INTERVAL 1 DAY), '%Y%m%d') >= t_sub_holiday_history.target_date
+                                                        and
+                                                        t_sub_holiday_history.company_code = #{companyCode,jdbcType=CHAR}
+                                                        and
+                                                        t_sub_holiday_history.user_id = #{userId,jdbcType=VARCHAR}
+                                                        )
+                                                )
+        and
+        concat(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') > t_sub_holiday.holiday_work_day
+        )
+        +
+        <!--休暇申請テーブルから代休申請(予定減算）を取得-->
+        (select -ifnull(sum(holiday_days),0)
+        from t_request_holiday
+        left
+        join t_request
+        on t_request_holiday.request_number = t_request.request_number
+        where t_request.company_code = #{companyCode,jdbcType=CHAR}
+        and t_request.request_user_id = #{userId,jdbcType=VARCHAR}
+        and t_request.request_status_kbn = '999'
+        and (t_request_holiday.holiday_type_kbn = '020' or t_request_holiday.holiday_type_kbn = '021')
+        and
+        -- ログイン日以降からその月の月末まで
+        t_request_holiday.holiday_plan_day BETWEEN DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m%d') AND replace(LAST_DAY(#{setDate,jdbcType=CHAR}),'-', '')
+        )
+        +
+        <!--休日出勤申請内容テーブルから予定加算を取得-->
+        (select ifnull(sum(case
+        when t_work_dayoff.work_time_kbn = '010' then '1'
+        when t_work_dayoff.work_time_kbn = '020' or '021' then '0.5'
+        else '0'
+        end),0) as holiday_days
+        from t_work_dayoff
+        left
+        join t_request
+        on t_work_dayoff.request_number = t_request.request_number
+        where t_request.company_code = #{companyCode,jdbcType=CHAR}
+        and t_request.request_user_id = #{userId,jdbcType=VARCHAR}
+        and t_request.request_status_kbn = '999'
+        -- ログイン日以降からその月の月末まで
+        and t_work_dayoff.scheduled_work_day BETWEEN DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m%d') AND replace(LAST_DAY(#{setDate,jdbcType=CHAR}),'-', '')
+        )
+        +
+        -- 代休残テーブルから過去分加算を取得 --
+        (
+        select ifnull(sum(sub_holiday_days), 0)
+        from
+        t_sub_holiday
+        where
+        company_code = #{companyCode,jdbcType=CHAR}
+        and
+        user_id = #{userId,jdbcType=VARCHAR}
+        and
+        -- ログイン日月の1日からログイン日まで
+        holiday_work_day BETWEEN concat(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') AND DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m%d')
+        )
+        +
+        -- 代休履歴テーブルから使用済み代休（減算）を取得 --
+        (select -ifnull(sum(sub_holiday_days),0) as holiday_days
+        from t_sub_holiday_history
+        left
+        join t_work_dayoff
+        on t_work_dayoff.request_number = t_sub_holiday_history.work_day_request_number
+        where t_sub_holiday_history.company_code = #{companyCode,jdbcType=CHAR}
+        and t_sub_holiday_history.user_id = #{userId,jdbcType=VARCHAR}
+        and t_sub_holiday_history.sub_holiday_ope_kbn = '020'
+        and
+        -- ログイン日月の1日からログイン日まで
+        t_sub_holiday_history.target_date BETWEEN concat(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') AND DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m%d')
+        )
+        as end_of_this_month_sub_holiday
+    </select>
+    <select id="theEndOfTheFollowingMonthSubHoliday" parameterType="map" resultType="float">
+        <!--翌々月末残取得-->
+        select
+        <!--前月までの代休残テーブル取得-->
+        (
+        select ifnull(sum(t_sub_holiday.sub_holiday_days),0)
+        from t_sub_holiday
+        where t_sub_holiday.company_code = #{companyCode,jdbcType=CHAR}
+        and t_sub_holiday.user_id = #{userId,jdbcType=VARCHAR}
+        and t_sub_holiday.request_number not in (select
+                                                    t_sub_holiday.request_number
+                                                    from
+                                                    t_sub_holiday
+                                                    where
+                                                        exists
+                                                        (select
+                                                        t_sub_holiday.request_number
+                                                        from
+                                                        t_sub_holiday_history
+                                                        where t_sub_holiday.request_number = t_sub_holiday_history.work_day_request_number
+                                                        and
+                                                        -- 先月末までに代休を使用（代休履歴に先月末までの履歴がある）場合はカウントに含まない
+                                                        DATE_FORMAT(DATE_SUB(CONCAT(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') , INTERVAL 1 DAY), '%Y%m%d') >= t_sub_holiday_history.target_date
+                                                        and
+                                                        t_sub_holiday_history.company_code = #{companyCode,jdbcType=CHAR}
+                                                        and
+                                                        t_sub_holiday_history.user_id = #{userId,jdbcType=VARCHAR}
+                                                        )
+                                                )
+        and
+        concat(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') > t_sub_holiday.holiday_work_day
+        )
+        +
+        -- 休暇申請テーブルから代休申請(予定減算）を取得 --
+        (select -ifnull(sum(holiday_days),0)
+        from t_request_holiday
+        left join t_request
+        on t_request_holiday.request_number = t_request.request_number
+        where t_request.company_code = #{companyCode,jdbcType=CHAR}
+        and t_request.request_user_id = #{userId,jdbcType=VARCHAR}
+        and t_request.request_status_kbn = '999'
+        and (t_request_holiday.holiday_type_kbn = '020' or t_request_holiday.holiday_type_kbn = '021')
+        and
+        -- ログイン日以降からその月の翌々月末まで
+        t_request_holiday.holiday_plan_day BETWEEN DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m%d') AND replace(LAST_DAY(ADDDATE(#{setDate,jdbcType=CHAR}, INTERVAL 2 MONTH)), '-', '')
+        )
+        +
+        -- 休日出勤申請内容テーブルから予定加算を取得 --
+        (select ifnull(sum(case
+        when t_work_dayoff.work_time_kbn = '010' then '1'
+        when t_work_dayoff.work_time_kbn = '020' or '021' then '0.5'
+        else '0'
+        end),0) as holiday_days
+        from t_work_dayoff
+        left
+        join t_request
+        on t_work_dayoff.request_number = t_request.request_number
+        where t_request.company_code = #{companyCode,jdbcType=CHAR}
+        and t_request.request_user_id = #{userId,jdbcType=VARCHAR}
+        and t_request.request_status_kbn = '999'
+        -- ログイン日以降からその月の翌々月末まで
+        and t_work_dayoff.scheduled_work_day BETWEEN DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m%d') AND replace(LAST_DAY(ADDDATE(#{setDate,jdbcType=CHAR}, INTERVAL 2 MONTH)), '-', '')
+        )
+
+        +
+
+        -- 代休残テーブルから過去分加算を取得 --
+        (
+        select ifnull(sum(sub_holiday_days), 0)
+        from
+        t_sub_holiday
+        where
+        company_code = #{companyCode,jdbcType=CHAR}
+        and
+        user_id = #{userId,jdbcType=VARCHAR}
+        and
+        -- ログイン日月の1日からログイン日まで
+        holiday_work_day BETWEEN concat(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') AND DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m%d')
+        )
+
+        +
+
+        -- 代休履歴テーブルから使用済み代休（減算）を取得 --
+        (select -ifnull(sum(sub_holiday_days),0) as holiday_days
+        from t_sub_holiday_history
+        left
+        join t_work_dayoff
+        on t_work_dayoff.request_number = t_sub_holiday_history.work_day_request_number
+        where t_sub_holiday_history.company_code = #{companyCode,jdbcType=CHAR}
+        and t_sub_holiday_history.user_id = #{userId,jdbcType=VARCHAR}
+        and t_sub_holiday_history.sub_holiday_ope_kbn = '020'
+        and
+        -- ログイン日月の1日からログイン日まで
+        t_sub_holiday_history.target_date BETWEEN concat(DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m'), '01') AND DATE_FORMAT(#{setDate,jdbcType=CHAR}, '%Y%m%d')
+        )
+        as the_end_of_the_following_month_sub_holiday
+    </select>
+    <select id="checkNum" parameterType="map" resultType="float">
+        <!--代休残数-->
+        select
+        (select ifnull(SUM(sub_holiday_days),0) as remainingDayOff
+        from
+        t_sub_holiday
+        where
+        company_code = #{companyCode,jdbcType=CHAR}
+        and
+        user_id = #{userId,jdbcType=VARCHAR})
+
+        -
+
+        (select ifnull(SUM(holiday_days),0) as UsedDayOff
+        from t_request_holiday as h
+
+        left join
+        t_request as r
+        on r.request_number = h.request_number
+
+        left outer join t_sub_holiday_history as s
+        on s.request_number = h.request_number
+
+        where
+        h.company_code = #{companyCode,jdbcType=CHAR}
+        and
+        h.request_user_id = #{userId,jdbcType=VARCHAR}
+        and
+        h.holiday_type_kbn in ('020','021')
+        and
+        r.request_status_kbn != '001'
+        and
+        s.request_number is null)as total
+    </select>
+    <select id="getScheduledWorkDays" parameterType="map" resultType="com.demo.pojo.subHoliday.SubHolidayDTO">
+        select
+            t_sub_holiday.company_code,
+            t_sub_holiday.user_id,
+            t_sub_holiday.holiday_work_day,
+            t_sub_holiday.sub_holiday_days,
+            t_sub_holiday.request_number,
+            t_work_dayoff.work_time_kbn
+        from t_sub_holiday
+                 left join
+             t_work_dayoff
+             on
+                 t_work_dayoff.request_number = t_sub_holiday.request_number
+        where t_sub_holiday.request_number not in (select   work_dayoff_request_number
+                                                   from   t_request_holiday
+                                                   where   t_request_holiday.company_code = #{companyCode,jdbcType=CHAR}
+                                                     and   t_request_holiday.request_user_id = #{userId,jdbcType=VARCHAR}
+                                                     and   work_dayoff_request_number is not null)
+          and t_sub_holiday.company_code = #{companyCode,jdbcType=CHAR}
+          and t_sub_holiday.user_id = #{userId,jdbcType=VARCHAR}
+        order by holiday_work_day asc
+    </select>
+    <!--    代休残入力画面：検索押下時の処理-->
+    <select id="usersearch" parameterType="map" resultType="com.demo.pojo.subHoliday.SubHolidayInputDTO">
+        select      m_user.company_code
+                   ,m_user.user_id
+                   ,m_user.user_name
+        from        m_user
+        where       m_user.company_code    =        #{companyCode,jdbcType=CHAR}
+          and       (m_user.user_id        like     #{userId,jdbcType=CHAR}
+           or       m_user.user_name       like     #{userId,jdbcType=CHAR})
+    </select>
+    <!--    代休残入力画面：重複データの確認-->
+    <select id="checkSubHoliday" parameterType="map" resultType="com.demo.pojo.subHoliday.GetSubHolidayCntDTO">
+        select count(*) as CNT
+        from   t_sub_holiday
+        where  company_code     =    #{companyCode,jdbcType=CHAR}
+          and  user_id          =    #{userId,jdbcType=CHAR}
+          and  holiday_work_day =    #{holidayWorkDay,jdbcType=CHAR}
+    </select>
+</mapper>

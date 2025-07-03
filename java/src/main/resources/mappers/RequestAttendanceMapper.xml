@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.RequestAttendanceMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.RequestAttendance">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="work_date_ym" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="request_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, work_date_ym, request_number, reg_account, reg_time, upd_account, 
+    upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_request_attendance
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and work_date_ym = #{workDateYm,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_request_attendance
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and work_date_ym = #{workDateYm,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.RequestAttendance">
+    insert into t_request_attendance (company_code, user_id, work_date_ym, 
+      request_number, reg_account, reg_time, 
+      upd_account, upd_time)
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{workDateYm,jdbcType=CHAR}, 
+      #{requestNumber,jdbcType=VARCHAR}, #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.RequestAttendance">
+    insert into t_request_attendance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="workDateYm != null">
+        work_date_ym,
+      </if>
+      <if test="requestNumber != null">
+        request_number,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="workDateYm != null">
+        #{workDateYm,jdbcType=CHAR},
+      </if>
+      <if test="requestNumber != null">
+        #{requestNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.RequestAttendance">
+    update t_request_attendance
+    <set>
+      <if test="requestNumber != null">
+        request_number = #{requestNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and work_date_ym = #{workDateYm,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.RequestAttendance">
+    update t_request_attendance
+    set request_number = #{requestNumber,jdbcType=VARCHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and work_date_ym = #{workDateYm,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyReq" parameterType="com.demo.entity.RequestAttendance">
+    update t_request_attendance
+    set request_number = #{requestNumber,jdbcType=VARCHAR}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and work_date_ym = #{workDateYm,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyReqNum" parameterType="com.demo.entity.RequestAttendance">
+    update t_request_attendance
+    set request_number = #{requestNumber,jdbcType=VARCHAR}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and work_date_ym = #{workDateYm,jdbcType=CHAR}
+  </update>
+  <select id="selectAll" parameterType="map" resultType="com.demo.pojo.requestAttendance.RequestAttendanceDTO">
+    select
+      *
+    from
+      t_request
+    where
+      company_code = #{ companyCode, jdbcType = CHAR }
+    order by request_date desc
+  </select>
+  <select id="selectreq" parameterType="map" resultType="com.demo.pojo.requestAttendance.RequestAttendanceReqDTO">
+    select
+      ra.user_id,
+      ra.work_date_ym,
+      ra.request_number,
+      r.request_status_kbn
+    from
+      t_request_attendance ra
+        left join
+      t_request r
+      on
+        ra.request_number = r.request_number
+    where
+      ra.company_code = #{ companyCode, jdbcType = CHAR }
+      and
+      ra.user_id = #{ userId, jdbcType = CHAR }
+      and
+      ra.work_date_ym = #{ workDateYm, jdbcType = CHAR }
+  </select>
+  <select id="getStatus" parameterType="map" resultType="com.demo.pojo.requestAttendance.GetStatusAttendanceDTO">
+    select
+          t_request.company_code
+         ,t_request.request_number
+         ,t_request_attendance.user_id
+         ,t_request.request_status_kbn
+         ,t_request.request_type_kbn
+         ,t_request.request_overview
+         ,t_request_attendance.work_date_ym
+    from
+      t_request
+        left join
+      t_request_attendance
+      on
+      t_request.request_number = t_request_attendance.request_number
+    where
+      t_request_attendance.company_code = #{ companyCode, jdbcType = CHAR }
+      and
+      t_request_attendance.user_id = #{ userId, jdbcType = CHAR }
+      and
+      t_request_attendance.work_date_ym = #{ workDateYm, jdbcType = CHAR }
+  </select>
+</mapper>

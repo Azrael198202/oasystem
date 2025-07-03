@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.RequestAllowanceMapper">
+    <resultMap id="BaseResultMap" type="com.demo.entity.RequestAllowance">
+        <constructor>
+            <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+            <idArg column="apply_ym" javaType="java.lang.String" jdbcType="CHAR" />
+            <idArg column="request_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="request_type_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+            <arg column="request_user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="allowance" javaType="java.lang.Integer" jdbcType="INTEGER" />
+            <arg column="quantity" javaType="java.lang.Integer" jdbcType="INTEGER" />
+            <arg column="total" javaType="java.lang.Integer" jdbcType="INTEGER" />
+            <arg column="project_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="project_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="qualification_id" javaType="java.lang.String" jdbcType="CHAR" />
+            <arg column="qualification_exam_date" javaType="java.lang.String" jdbcType="CHAR" />
+            <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="remark_1" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="remark_2" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="remark_3" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="remark_4" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="remark_5" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+            <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        company_code, apply_ym, request_number, request_type_kbn, request_user_id, allowance,
+    quantity, total, project_id, project_name, qualification_id, qualification_exam_date, image, remark_1, remark_2,
+    remark_3, remark_4, remark_5, reg_account, reg_time, upd_account, upd_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_request_allowance
+        where company_code = #{companyCode,jdbcType=CHAR}
+        and apply_ym = #{applyYm,jdbcType=CHAR}
+        and request_number = #{requestNumber,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete from t_request_allowance
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and request_number = #{requestNumber,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.demo.entity.RequestAllowance">
+        insert into t_request_allowance (company_code, apply_ym, request_number, request_type_kbn, request_user_id, allowance,
+                                         quantity, total, project_id, project_name, qualification_id, qualification_exam_date,
+                                         image, remark_1, remark_2,remark_3, remark_4, remark_5, reg_account, reg_time,
+                                         upd_account, upd_time)
+        values (#{companyCode,jdbcType=CHAR}, #{applyYm,jdbcType=CHAR}, #{requestNumber,jdbcType=VARCHAR},
+                #{requestTypeKbn,jdbcType=CHAR}, #{requestUserId,jdbcType=VARCHAR}, #{allowance,jdbcType=INTEGER},
+                #{quantity,jdbcType=INTEGER}, #{total,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR},
+                #{projectName,jdbcType=VARCHAR}, #{qualificationId,jdbcType=CHAR}, #{qualificationExamDate,jdbcType=CHAR},
+                #{image,jdbcType=CHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR},
+                #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR},
+                #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP},
+                #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP})
+            ON DUPLICATE KEY UPDATE
+                request_type_kbn = VALUES(request_type_kbn),
+                request_user_id = VALUES(request_user_id),
+                allowance = VALUES(allowance),
+                quantity = VALUES(quantity),
+                total = VALUES(total),
+                project_id = VALUES(project_id),
+                project_name = VALUES(project_name),
+                qualification_id = VALUES(qualification_id),
+                qualification_exam_date = VALUES(qualification_exam_date),
+                image = VALUES(image),
+                remark_1 = VALUES(remark_1),
+                remark_2 = VALUES(remark_2),
+                remark_3 = VALUES(remark_3),
+                remark_4 = VALUES(remark_4),
+                remark_5 = VALUES(remark_5),
+                upd_account = VALUES(upd_account),
+                upd_time = VALUES(upd_time);
+    </insert>
+    <insert id="insertSelective" parameterType="com.demo.entity.RequestAllowance">
+        insert into t_request_allowance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyCode != null">
+                company_code,
+            </if>
+            <if test="applyYm != null">
+                apply_ym,
+            </if>
+            <if test="requestNumber != null">
+                request_number,
+            </if>
+            <if test="requestTypeKbn != null">
+                request_type_kbn,
+            </if>
+            <if test="requestUserId != null">
+                request_user_id,
+            </if>
+            <if test="allowance != null">
+                allowance,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="total != null">
+                total,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="projectName != null">
+                project_name,
+            </if>
+            <if test="qualificationId != null">
+                qualification_id,
+            </if>
+            <if test="qualificationExamDate != null">
+                qualification_exam_date,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="remark1 != null">
+                remark_1,
+            </if>
+            <if test="remark2 != null">
+                remark_2,
+            </if>
+            <if test="remark3 != null">
+                remark_3,
+            </if>
+            <if test="remark4 != null">
+                remark_4,
+            </if>
+            <if test="remark5 != null">
+                remark_5,
+            </if>
+            <if test="regAccount != null">
+                reg_account,
+            </if>
+            <if test="regTime != null">
+                reg_time,
+            </if>
+            <if test="updAccount != null">
+                upd_account,
+            </if>
+            <if test="updTime != null">
+                upd_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyCode != null">
+                #{companyCode,jdbcType=CHAR},
+            </if>
+            <if test="applyYm != null">
+                #{applyYm,jdbcType=CHAR},
+            </if>
+            <if test="requestNumber != null">
+                #{requestNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="requestTypeKbn != null">
+                #{requestTypeKbn,jdbcType=CHAR},
+            </if>
+            <if test="requestUserId != null">
+                #{requestUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="allowance != null">
+                #{allowance,jdbcType=INTEGER},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="total != null">
+                #{total,jdbcType=INTEGER},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=VARCHAR},
+            </if>
+            <if test="projectName != null">
+                #{projectName,jdbcType=VARCHAR},
+            </if>
+            <if test="qualificationId != null">
+                #{qualificationId,jdbcType=CHAR},
+            </if>
+            <if test="qualificationExamDate != null">
+                #{qualificationExamDate,jdbcType=CHAR},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="remark1 != null">
+                #{remark1,jdbcType=VARCHAR},
+            </if>
+            <if test="remark2 != null">
+                #{remark2,jdbcType=VARCHAR},
+            </if>
+            <if test="remark3 != null">
+                #{remark3,jdbcType=VARCHAR},
+            </if>
+            <if test="remark4 != null">
+                #{remark4,jdbcType=VARCHAR},
+            </if>
+            <if test="remark5 != null">
+                #{remark5,jdbcType=VARCHAR},
+            </if>
+            <if test="regAccount != null">
+                #{regAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="regTime != null">
+                #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updAccount != null">
+                #{updAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="updTime != null">
+                #{updTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.RequestAllowance">
+        update t_request_allowance
+        <set>
+            <if test="requestTypeKbn != null">
+                request_type_kbn = #{requestTypeKbn,jdbcType=VARCHAR},
+            </if>
+            <if test="requestUserId != null">
+                request_user_id = #{requestUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="allowance != null">
+                allowance = #{allowance,jdbcType=INTEGER},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="total != null">
+                total = #{total,jdbcType=INTEGER},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=VARCHAR},
+            </if>
+            <if test="projectName != null">
+                project_name = #{projectName,jdbcType=VARCHAR},
+            </if>
+            <if test="qualificationId != null">
+                qualification_id = #{qualificationId,jdbcType=CHAR},
+            </if>
+            <if test="qualificationExamDate != null">
+                qualification_exam_date = #{qualificationExamDate,jdbcType=CHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="remark1 != null">
+                remark_1 = #{remark1,jdbcType=VARCHAR},
+            </if>
+            <if test="remark2 != null">
+                remark_2 = #{remark2,jdbcType=VARCHAR},
+            </if>
+            <if test="remark3 != null">
+                remark_3 = #{remark3,jdbcType=VARCHAR},
+            </if>
+            <if test="remark4 != null">
+                remark_4 = #{remark4,jdbcType=VARCHAR},
+            </if>
+            <if test="remark5 != null">
+                remark_5 = #{remark5,jdbcType=VARCHAR},
+            </if>
+            <if test="regAccount != null">
+                reg_account = #{regAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="regTime != null">
+                reg_time = #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updAccount != null">
+                upd_account = #{updAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="updTime != null">
+                upd_time = #{updTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where company_code = #{companyCode,jdbcType=CHAR}
+        and apply_ym = #{applyYm,jdbcType=CHAR}
+        and request_number = #{requestNumber,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.demo.entity.RequestAllowance">
+        update t_request_allowance
+        set request_type_kbn = #{requestTypeKbn,jdbcType=VARCHAR},
+            request_user_id = #{requestUserId,jdbcType=VARCHAR},
+            allowance = #{allowance,jdbcType=INTEGER},
+            quantity = #{quantity,jdbcType=INTEGER},
+            total = #{total,jdbcType=INTEGER},
+            project_id = #{projectId,jdbcType=VARCHAR},
+            project_name = #{projectName,jdbcType=VARCHAR},
+            qualification_id = #{qualificationId,jdbcType=CHAR},
+            qualification_exam_date = #{qualificationExamDate,jdbcType=CHAR},
+            image = #{image,jdbcType=VARCHAR},
+            remark_1 = #{remark1,jdbcType=VARCHAR},
+            remark_2 = #{remark2,jdbcType=VARCHAR},
+            remark_3 = #{remark3,jdbcType=VARCHAR},
+            remark_4 = #{remark4,jdbcType=VARCHAR},
+            remark_5 = #{remark5,jdbcType=VARCHAR},
+            reg_account = #{regAccount,jdbcType=VARCHAR},
+            reg_time = #{regTime,jdbcType=TIMESTAMP},
+            upd_account = #{updAccount,jdbcType=VARCHAR},
+            upd_time = #{updTime,jdbcType=TIMESTAMP}
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and apply_ym = #{applyYm,jdbcType=CHAR}
+          and request_number = #{requestNumber,jdbcType=VARCHAR}
+    </update>
+    <select id="selectRequestAllowance" parameterType="map" resultType="com.demo.pojo.requestAllowance.RequestAllowanceDTO">
+        select * from t_request_allowance
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and request_number = #{requestNumber,jdbcType=VARCHAR}
+    </select>
+<!--    手当申請：参照処理-->
+    <select id="searchReAllowanceMonthData" parameterType="map" resultType="com.demo.pojo.requestAllowance.RequestAllowanceDTO">
+        select  t_request_allowance.* from t_request_allowance
+     left join  t_request
+            on  t_request.request_number = t_request_allowance.request_number
+        where t_request_allowance.company_code      = #{companyCode,jdbcType=CHAR}
+          and t_request_allowance.apply_ym          = #{applyYm,jdbcType=CHAR}
+          and t_request_allowance.request_user_id  = #{requestUserId,jdbcType=CHAR}
+          and t_request_allowance.request_type_kbn  = #{requestTypeKbn,jdbcType=VARCHAR}
+          and t_request.request_status_kbn          = '999'
+        ORDER BY t_request_allowance.upd_time DESC
+        LIMIT 1
+    </select>
+<!--    手当申請：年月取得-->
+    <select id="searchMonth" parameterType="map" resultType="com.demo.pojo.requestAllowance.GetApplyYmDTO">
+        select      DATE_FORMAT(DATE_ADD(CONCAT (t_request_allowance.apply_ym,'01'),INTERVAL 1 MONTH),'%Y%m') AS  apply_ym
+        from        t_request_allowance
+        left join   t_request
+           on       t_request.request_number = t_request_allowance.request_number
+        where    t_request_allowance.company_code = #{companyCode,jdbcType=CHAR}
+          and    t_request_allowance.request_user_id  = #{requestUserId,jdbcType=VARCHAR}
+          and    t_request_allowance.request_type_kbn  = #{requestTypeKbn,jdbcType=VARCHAR}
+          and    t_request.request_status_kbn     = '999'
+        ORDER BY t_request_allowance.apply_ym     DESC
+        LIMIT 1
+    </select>
+<!--   手当申請：資格手当申請のチェック処理-->
+  <select id="QualificationCheck" parameterType="map" resultType="java.lang.Integer">
+    select count(*)
+    from t_request_allowance t
+    where t.company_code = #{companyCode,jdbcType=CHAR}
+      and t.request_user_id = #{requestUserId,jdbcType=VARCHAR}
+      and t.qualification_id = #{qualificationId,jdbcType=CHAR}
+      and t.request_number &lt;&gt; #{requestNumber,jdbcType=VARCHAR}
+  </select>
+</mapper>

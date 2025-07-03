@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Category">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="category_class_number" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="category_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="category_kbn_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="category_kbn_abbreviation" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="category_kbn_option1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="category_kbn_option2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, category_class_number, category_kbn, category_kbn_name, category_kbn_abbreviation, 
+    category_kbn_option1, category_kbn_option2, del_flg, reg_account, reg_time, upd_account, 
+    upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_category
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+      and category_kbn = #{categoryKbn,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from m_category
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+      and category_kbn = #{categoryKbn,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Category">
+    insert into m_category (company_code, category_class_number, category_kbn, 
+      category_kbn_name, category_kbn_abbreviation, 
+      category_kbn_option1, category_kbn_option2, 
+      del_flg, reg_account, reg_time, 
+      upd_account, upd_time)
+    values (#{companyCode,jdbcType=CHAR}, #{categoryClassNumber,jdbcType=CHAR}, #{categoryKbn,jdbcType=CHAR}, 
+      #{categoryKbnName,jdbcType=VARCHAR}, #{categoryKbnAbbreviation,jdbcType=VARCHAR}, 
+      #{categoryKbnOption1,jdbcType=VARCHAR}, #{categoryKbnOption2,jdbcType=VARCHAR}, 
+      #{delFlg,jdbcType=CHAR}, #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Category">
+    insert into m_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="categoryClassNumber != null">
+        category_class_number,
+      </if>
+      <if test="categoryKbn != null">
+        category_kbn,
+      </if>
+      <if test="categoryKbnName != null">
+        category_kbn_name,
+      </if>
+      <if test="categoryKbnAbbreviation != null">
+        category_kbn_abbreviation,
+      </if>
+      <if test="categoryKbnOption1 != null">
+        category_kbn_option1,
+      </if>
+      <if test="categoryKbnOption2 != null">
+        category_kbn_option2,
+      </if>
+      <if test="delFlg != null">
+        del_flg,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="categoryClassNumber != null">
+        #{categoryClassNumber,jdbcType=CHAR},
+      </if>
+      <if test="categoryKbn != null">
+        #{categoryKbn,jdbcType=CHAR},
+      </if>
+      <if test="categoryKbnName != null">
+        #{categoryKbnName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryKbnAbbreviation != null">
+        #{categoryKbnAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryKbnOption1 != null">
+        #{categoryKbnOption1,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryKbnOption2 != null">
+        #{categoryKbnOption2,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Category">
+    update m_category
+    <set>
+      <if test="categoryKbnName != null">
+        category_kbn_name = #{categoryKbnName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryKbnAbbreviation != null">
+        category_kbn_abbreviation = #{categoryKbnAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryKbnOption1 != null">
+        category_kbn_option1 = #{categoryKbnOption1,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryKbnOption2 != null">
+        category_kbn_option2 = #{categoryKbnOption2,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        del_flg = #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+      and category_kbn = #{categoryKbn,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Category">
+    update m_category
+    set category_kbn_name = #{categoryKbnName,jdbcType=VARCHAR},
+      category_kbn_abbreviation = #{categoryKbnAbbreviation,jdbcType=VARCHAR},
+      category_kbn_option1 = #{categoryKbnOption1,jdbcType=VARCHAR},
+      category_kbn_option2 = #{categoryKbnOption2,jdbcType=VARCHAR},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+      and category_kbn = #{categoryKbn,jdbcType=CHAR}
+  </update>
+  <select id="selectKbn" parameterType="map" resultType="com.demo.pojo.category.CategoryRpnDTO">
+    select
+          company_code
+         ,category_class_number
+         ,category_kbn
+         ,category_kbn_name
+         ,category_kbn_abbreviation
+         ,category_kbn_option1
+         ,category_kbn_option2
+
+    from     m_category
+
+    where        company_code            = #{companyCode,jdbcType=CHAR}
+      and        category_class_number   = #{categoryClassNumber,jdbcType=CHAR}
+
+    order
+      by          category_kbn_option3   ASC
+  </select>
+</mapper>

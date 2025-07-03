@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.CategoryDetailMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.CategoryDetail">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="category_class_number" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="category_class_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="category_system_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.demo.entity.CategoryDetail">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="category_class_number" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="category_class_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="category_system_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="category_description" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, category_class_number, category_class_name, category_system_flg, del_flg, 
+    reg_account, reg_time, upd_account, upd_time
+  </sql>
+  <sql id="Blob_Column_List">
+    category_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from m_category_class
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from m_category_class
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.CategoryDetail">
+    insert into m_category_class (company_code, category_class_number, category_class_name, 
+      category_system_flg, del_flg, reg_account, 
+      reg_time, upd_account, upd_time, 
+      category_description)
+    values (#{companyCode,jdbcType=CHAR}, #{categoryClassNumber,jdbcType=CHAR}, #{categoryClassName,jdbcType=VARCHAR}, 
+      #{categorySystemFlg,jdbcType=CHAR}, #{delFlg,jdbcType=CHAR}, #{regAccount,jdbcType=VARCHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP}, 
+      #{categoryDescription,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.CategoryDetail">
+    insert into m_category_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="categoryClassNumber != null">
+        category_class_number,
+      </if>
+      <if test="categoryClassName != null">
+        category_class_name,
+      </if>
+      <if test="categorySystemFlg != null">
+        category_system_flg,
+      </if>
+      <if test="delFlg != null">
+        del_flg,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+      <if test="categoryDescription != null">
+        category_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="categoryClassNumber != null">
+        #{categoryClassNumber,jdbcType=CHAR},
+      </if>
+      <if test="categoryClassName != null">
+        #{categoryClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="categorySystemFlg != null">
+        #{categorySystemFlg,jdbcType=CHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="categoryDescription != null">
+        #{categoryDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.CategoryDetail">
+    update m_category_class
+    <set>
+      <if test="categoryClassName != null">
+        category_class_name = #{categoryClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="categorySystemFlg != null">
+        category_system_flg = #{categorySystemFlg,jdbcType=CHAR},
+      </if>
+      <if test="delFlg != null">
+        del_flg = #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="categoryDescription != null">
+        category_description = #{categoryDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.demo.entity.CategoryDetail">
+    update m_category_class
+    set category_class_name = #{categoryClassName,jdbcType=VARCHAR},
+      category_system_flg = #{categorySystemFlg,jdbcType=CHAR},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      category_description = #{categoryDescription,jdbcType=LONGVARCHAR}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.CategoryDetail">
+    update m_category_class
+    set category_class_name = #{categoryClassName,jdbcType=VARCHAR},
+      category_system_flg = #{categorySystemFlg,jdbcType=CHAR},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and category_class_number = #{categoryClassNumber,jdbcType=CHAR}
+  </update>
+</mapper>

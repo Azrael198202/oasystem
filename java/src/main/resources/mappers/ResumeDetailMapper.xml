@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.ResumeDetailMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.ResumeDetail">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="resume_ver_kbn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="resume_seq_no" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="develop_period_from" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="develop_period_to" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="develop_summary_sys" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_summary_sry" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_summary_cts" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_summary_mbs" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_language_1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_language_2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_language_3" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_db_1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_db_2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_db_3" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_os_1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_os_2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="develop_os_3" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="responsible" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="requirements_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="basic_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="specific_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="coding_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="unit_test_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="interface_test_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="system_test_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, resume_ver_kbn, resume_seq_no, develop_period_from, develop_period_to, 
+    develop_summary_sys, develop_summary_sry, develop_summary_cts, develop_summary_mbs, 
+    develop_language_1, develop_language_2, develop_language_3, develop_db_1, develop_db_2, 
+    develop_db_3, develop_os_1, develop_os_2, develop_os_3, responsible, requirements_flg, 
+    basic_flg, specific_flg, coding_flg, unit_test_flg, interface_test_flg, system_test_flg, 
+    del_flg, reg_account, reg_time, upd_account, upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_resume_detail
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+      and resume_seq_no = #{resumeSeqNo,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_resume_detail
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+      and resume_seq_no = #{resumeSeqNo,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.ResumeDetail">
+    insert into t_resume_detail (company_code, user_id, resume_ver_kbn, 
+      resume_seq_no, develop_period_from, develop_period_to, 
+      develop_summary_sys, develop_summary_sry, develop_summary_cts, 
+      develop_summary_mbs, develop_language_1, develop_language_2, 
+      develop_language_3, develop_db_1, develop_db_2, 
+      develop_db_3, develop_os_1, develop_os_2, 
+      develop_os_3, responsible, requirements_flg, 
+      basic_flg, specific_flg, coding_flg, 
+      unit_test_flg, interface_test_flg, system_test_flg, 
+      del_flg, reg_account, reg_time, 
+      upd_account, upd_time)
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{resumeVerKbn,jdbcType=VARCHAR},
+      #{resumeSeqNo,jdbcType=CHAR}, #{developPeriodFrom,jdbcType=CHAR}, #{developPeriodTo,jdbcType=CHAR}, 
+      #{developSummarySys,jdbcType=VARCHAR}, #{developSummarySry,jdbcType=VARCHAR}, #{developSummaryCts,jdbcType=VARCHAR}, 
+      #{developSummaryMbs,jdbcType=VARCHAR}, #{developLanguage1,jdbcType=VARCHAR}, #{developLanguage2,jdbcType=VARCHAR}, 
+      #{developLanguage3,jdbcType=VARCHAR}, #{developDb1,jdbcType=VARCHAR}, #{developDb2,jdbcType=VARCHAR}, 
+      #{developDb3,jdbcType=VARCHAR}, #{developOs1,jdbcType=VARCHAR}, #{developOs2,jdbcType=VARCHAR}, 
+      #{developOs3,jdbcType=VARCHAR}, #{responsible,jdbcType=VARCHAR}, #{requirementsFlg,jdbcType=CHAR}, 
+      #{basicFlg,jdbcType=CHAR}, #{specificFlg,jdbcType=CHAR}, #{codingFlg,jdbcType=CHAR}, 
+      #{unitTestFlg,jdbcType=CHAR}, #{interfaceTestFlg,jdbcType=CHAR}, #{systemTestFlg,jdbcType=CHAR}, 
+      #{delFlg,jdbcType=CHAR}, #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.ResumeDetail">
+    insert into t_resume_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="resumeVerKbn != null">
+        resume_ver_kbn,
+      </if>
+      <if test="resumeSeqNo != null">
+        resume_seq_no,
+      </if>
+      <if test="developPeriodFrom != null">
+        develop_period_from,
+      </if>
+      <if test="developPeriodTo != null">
+        develop_period_to,
+      </if>
+      <if test="developSummarySys != null">
+        develop_summary_sys,
+      </if>
+      <if test="developSummarySry != null">
+        develop_summary_sry,
+      </if>
+      <if test="developSummaryCts != null">
+        develop_summary_cts,
+      </if>
+      <if test="developSummaryMbs != null">
+        develop_summary_mbs,
+      </if>
+      <if test="developLanguage1 != null">
+        develop_language_1,
+      </if>
+      <if test="developLanguage2 != null">
+        develop_language_2,
+      </if>
+      <if test="developLanguage3 != null">
+        develop_language_3,
+      </if>
+      <if test="developDb1 != null">
+        develop_db_1,
+      </if>
+      <if test="developDb2 != null">
+        develop_db_2,
+      </if>
+      <if test="developDb3 != null">
+        develop_db_3,
+      </if>
+      <if test="developOs1 != null">
+        develop_os_1,
+      </if>
+      <if test="developOs2 != null">
+        develop_os_2,
+      </if>
+      <if test="developOs3 != null">
+        develop_os_3,
+      </if>
+      <if test="responsible != null">
+        responsible,
+      </if>
+      <if test="requirementsFlg != null">
+        requirements_flg,
+      </if>
+      <if test="basicFlg != null">
+        basic_flg,
+      </if>
+      <if test="specificFlg != null">
+        specific_flg,
+      </if>
+      <if test="codingFlg != null">
+        coding_flg,
+      </if>
+      <if test="unitTestFlg != null">
+        unit_test_flg,
+      </if>
+      <if test="interfaceTestFlg != null">
+        interface_test_flg,
+      </if>
+      <if test="systemTestFlg != null">
+        system_test_flg,
+      </if>
+      <if test="delFlg != null">
+        del_flg,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeVerKbn != null">
+        #{resumeVerKbn,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeSeqNo != null">
+        #{resumeSeqNo,jdbcType=CHAR},
+      </if>
+      <if test="developPeriodFrom != null">
+        #{developPeriodFrom,jdbcType=CHAR},
+      </if>
+      <if test="developPeriodTo != null">
+        #{developPeriodTo,jdbcType=CHAR},
+      </if>
+      <if test="developSummarySys != null">
+        #{developSummarySys,jdbcType=VARCHAR},
+      </if>
+      <if test="developSummarySry != null">
+        #{developSummarySry,jdbcType=VARCHAR},
+      </if>
+      <if test="developSummaryCts != null">
+        #{developSummaryCts,jdbcType=VARCHAR},
+      </if>
+      <if test="developSummaryMbs != null">
+        #{developSummaryMbs,jdbcType=VARCHAR},
+      </if>
+      <if test="developLanguage1 != null">
+        #{developLanguage1,jdbcType=VARCHAR},
+      </if>
+      <if test="developLanguage2 != null">
+        #{developLanguage2,jdbcType=VARCHAR},
+      </if>
+      <if test="developLanguage3 != null">
+        #{developLanguage3,jdbcType=VARCHAR},
+      </if>
+      <if test="developDb1 != null">
+        #{developDb1,jdbcType=VARCHAR},
+      </if>
+      <if test="developDb2 != null">
+        #{developDb2,jdbcType=VARCHAR},
+      </if>
+      <if test="developDb3 != null">
+        #{developDb3,jdbcType=VARCHAR},
+      </if>
+      <if test="developOs1 != null">
+        #{developOs1,jdbcType=VARCHAR},
+      </if>
+      <if test="developOs2 != null">
+        #{developOs2,jdbcType=VARCHAR},
+      </if>
+      <if test="developOs3 != null">
+        #{developOs3,jdbcType=VARCHAR},
+      </if>
+      <if test="responsible != null">
+        #{responsible,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementsFlg != null">
+        #{requirementsFlg,jdbcType=CHAR},
+      </if>
+      <if test="basicFlg != null">
+        #{basicFlg,jdbcType=CHAR},
+      </if>
+      <if test="specificFlg != null">
+        #{specificFlg,jdbcType=CHAR},
+      </if>
+      <if test="codingFlg != null">
+        #{codingFlg,jdbcType=CHAR},
+      </if>
+      <if test="unitTestFlg != null">
+        #{unitTestFlg,jdbcType=CHAR},
+      </if>
+      <if test="interfaceTestFlg != null">
+        #{interfaceTestFlg,jdbcType=CHAR},
+      </if>
+      <if test="systemTestFlg != null">
+        #{systemTestFlg,jdbcType=CHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.ResumeDetail">
+    update t_resume_detail
+    <set>
+      <if test="developPeriodFrom != null">
+        develop_period_from = #{developPeriodFrom,jdbcType=CHAR},
+      </if>
+      <if test="developPeriodTo != null">
+        develop_period_to = #{developPeriodTo,jdbcType=CHAR},
+      </if>
+      <if test="developSummarySys != null">
+        develop_summary_sys = #{developSummarySys,jdbcType=VARCHAR},
+      </if>
+      <if test="developSummarySry != null">
+        develop_summary_sry = #{developSummarySry,jdbcType=VARCHAR},
+      </if>
+      <if test="developSummaryCts != null">
+        develop_summary_cts = #{developSummaryCts,jdbcType=VARCHAR},
+      </if>
+      <if test="developSummaryMbs != null">
+        develop_summary_mbs = #{developSummaryMbs,jdbcType=VARCHAR},
+      </if>
+      <if test="developLanguage1 != null">
+        develop_language_1 = #{developLanguage1,jdbcType=VARCHAR},
+      </if>
+      <if test="developLanguage2 != null">
+        develop_language_2 = #{developLanguage2,jdbcType=VARCHAR},
+      </if>
+      <if test="developLanguage3 != null">
+        develop_language_3 = #{developLanguage3,jdbcType=VARCHAR},
+      </if>
+      <if test="developDb1 != null">
+        develop_db_1 = #{developDb1,jdbcType=VARCHAR},
+      </if>
+      <if test="developDb2 != null">
+        develop_db_2 = #{developDb2,jdbcType=VARCHAR},
+      </if>
+      <if test="developDb3 != null">
+        develop_db_3 = #{developDb3,jdbcType=VARCHAR},
+      </if>
+      <if test="developOs1 != null">
+        develop_os_1 = #{developOs1,jdbcType=VARCHAR},
+      </if>
+      <if test="developOs2 != null">
+        develop_os_2 = #{developOs2,jdbcType=VARCHAR},
+      </if>
+      <if test="developOs3 != null">
+        develop_os_3 = #{developOs3,jdbcType=VARCHAR},
+      </if>
+      <if test="responsible != null">
+        responsible = #{responsible,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementsFlg != null">
+        requirements_flg = #{requirementsFlg,jdbcType=CHAR},
+      </if>
+      <if test="basicFlg != null">
+        basic_flg = #{basicFlg,jdbcType=CHAR},
+      </if>
+      <if test="specificFlg != null">
+        specific_flg = #{specificFlg,jdbcType=CHAR},
+      </if>
+      <if test="codingFlg != null">
+        coding_flg = #{codingFlg,jdbcType=CHAR},
+      </if>
+      <if test="unitTestFlg != null">
+        unit_test_flg = #{unitTestFlg,jdbcType=CHAR},
+      </if>
+      <if test="interfaceTestFlg != null">
+        interface_test_flg = #{interfaceTestFlg,jdbcType=CHAR},
+      </if>
+      <if test="systemTestFlg != null">
+        system_test_flg = #{systemTestFlg,jdbcType=CHAR},
+      </if>
+      <if test="delFlg != null">
+        del_flg = #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+      and resume_seq_no = #{resumeSeqNo,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.ResumeDetail">
+    update t_resume_detail
+    set develop_period_from = #{developPeriodFrom,jdbcType=CHAR},
+      develop_period_to = #{developPeriodTo,jdbcType=CHAR},
+      develop_summary_sys = #{developSummarySys,jdbcType=VARCHAR},
+      develop_summary_sry = #{developSummarySry,jdbcType=VARCHAR},
+      develop_summary_cts = #{developSummaryCts,jdbcType=VARCHAR},
+      develop_summary_mbs = #{developSummaryMbs,jdbcType=VARCHAR},
+      develop_language_1 = #{developLanguage1,jdbcType=VARCHAR},
+      develop_language_2 = #{developLanguage2,jdbcType=VARCHAR},
+      develop_language_3 = #{developLanguage3,jdbcType=VARCHAR},
+      develop_db_1 = #{developDb1,jdbcType=VARCHAR},
+      develop_db_2 = #{developDb2,jdbcType=VARCHAR},
+      develop_db_3 = #{developDb3,jdbcType=VARCHAR},
+      develop_os_1 = #{developOs1,jdbcType=VARCHAR},
+      develop_os_2 = #{developOs2,jdbcType=VARCHAR},
+      develop_os_3 = #{developOs3,jdbcType=VARCHAR},
+      responsible = #{responsible,jdbcType=VARCHAR},
+      requirements_flg = #{requirementsFlg,jdbcType=CHAR},
+      basic_flg = #{basicFlg,jdbcType=CHAR},
+      specific_flg = #{specificFlg,jdbcType=CHAR},
+      coding_flg = #{codingFlg,jdbcType=CHAR},
+      unit_test_flg = #{unitTestFlg,jdbcType=CHAR},
+      interface_test_flg = #{interfaceTestFlg,jdbcType=CHAR},
+      system_test_flg = #{systemTestFlg,jdbcType=CHAR},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+      and resume_seq_no = #{resumeSeqNo,jdbcType=CHAR}
+  </update>
+
+  <select id="selectResumeDetailList" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_resume_detail
+    where company_code = #{companyCode,jdbcType=CHAR}
+    and user_id = #{userId,jdbcType=VARCHAR}
+    and resume_ver_kbn = #{resumeVerKbn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteAll" parameterType="map">
+    delete from t_resume_detail
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and resume_ver_kbn = #{resumeVerKbn,jdbcType=CHAR}
+  </delete>
+</mapper>

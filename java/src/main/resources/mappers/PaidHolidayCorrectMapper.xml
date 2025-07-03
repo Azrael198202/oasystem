@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.PaidHolidayCorrectMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.PaidHolidayCorrect">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="change_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="sub_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="correct_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="correct_kbn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="correct_days" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="correct_reason" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="correct_remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, change_date, sub_number, correct_date, correct_kbn, correct_days, 
+    correct_reason, correct_remark, registration_user, registration_datetime, update_user, 
+    update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_paid_holiday_correct
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and change_date = #{changeDate,jdbcType=CHAR}
+      and sub_number = #{subNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_paid_holiday_correct
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and change_date = #{changeDate,jdbcType=CHAR}
+      and sub_number = #{subNumber,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.PaidHolidayCorrect">
+    insert into t_paid_holiday_correct (company_code, user_id, change_date, 
+      sub_number, correct_date, correct_kbn, 
+      correct_days, correct_reason, correct_remark, 
+      registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{changeDate,jdbcType=CHAR}, 
+      #{subNumber,jdbcType=VARCHAR}, #{correctDate,jdbcType=CHAR}, #{correctKbn,jdbcType=VARCHAR}, 
+      #{correctDays,jdbcType=REAL}, #{correctReason,jdbcType=VARCHAR}, #{correctRemark,jdbcType=VARCHAR}, 
+      #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.PaidHolidayCorrect">
+    insert into t_paid_holiday_correct
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="changeDate != null">
+        change_date,
+      </if>
+      <if test="subNumber != null">
+        sub_number,
+      </if>
+      <if test="correctDate != null">
+        correct_date,
+      </if>
+      <if test="correctKbn != null">
+        correct_kbn,
+      </if>
+      <if test="correctDays != null">
+        correct_days,
+      </if>
+      <if test="correctReason != null">
+        correct_reason,
+      </if>
+      <if test="correctRemark != null">
+        correct_remark,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null">
+        #{changeDate,jdbcType=CHAR},
+      </if>
+      <if test="subNumber != null">
+        #{subNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="correctDate != null">
+        #{correctDate,jdbcType=CHAR},
+      </if>
+      <if test="correctKbn != null">
+        #{correctKbn,jdbcType=VARCHAR},
+      </if>
+      <if test="correctDays != null">
+        #{correctDays,jdbcType=REAL},
+      </if>
+      <if test="correctReason != null">
+        #{correctReason,jdbcType=VARCHAR},
+      </if>
+      <if test="correctRemark != null">
+        #{correctRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.PaidHolidayCorrect">
+    update t_paid_holiday_correct
+    <set>
+      <if test="correctDate != null">
+        correct_date = #{correctDate,jdbcType=CHAR},
+      </if>
+      <if test="correctKbn != null">
+        correct_kbn = #{correctKbn,jdbcType=VARCHAR},
+      </if>
+      <if test="correctDays != null">
+        correct_days = #{correctDays,jdbcType=REAL},
+      </if>
+      <if test="correctReason != null">
+        correct_reason = #{correctReason,jdbcType=VARCHAR},
+      </if>
+      <if test="correctRemark != null">
+        correct_remark = #{correctRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and change_date = #{changeDate,jdbcType=CHAR}
+      and sub_number = #{subNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.PaidHolidayCorrect">
+    update t_paid_holiday_correct
+    set correct_date = #{correctDate,jdbcType=CHAR},
+      correct_kbn = #{correctKbn,jdbcType=VARCHAR},
+      correct_days = #{correctDays,jdbcType=REAL},
+      correct_reason = #{correctReason,jdbcType=VARCHAR},
+      correct_remark = #{correctRemark,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and change_date = #{changeDate,jdbcType=CHAR}
+      and sub_number = #{subNumber,jdbcType=VARCHAR}
+  </update>
+  <select id="getPaidHolidayCorrect" parameterType="map" resultType="com.demo.entity.PaidHolidayCorrect">
+    select *
+    from t_paid_holiday_correct
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and change_date = #{changeDate,jdbcType=CHAR}
+  </select>
+  <select id="getSelectPaidHolidayCorrect" parameterType="map" resultType="com.demo.pojo.paidHolidayCorrect.DefaultPaidHolidayCorrectDTO">
+  select
+  *
+  from t_paid_holiday_correct
+  where company_code=#{companyCode,jdbcType=CHAR}
+  and user_id= #{userId,jdbcType=VARCHAR}
+  and left(correct_date,6)=#{dateYm,jdbcType=CHAR}
+  </select>
+  <select id="getSubNumberPaidHolidayCorrect" parameterType="map" resultType="com.demo.pojo.paidHolidayCorrect.DefaultPaidHolidayCorrectDTO">
+    select
+      *
+    from t_paid_holiday_correct
+    where company_code=#{companyCode,jdbcType=CHAR}
+      and user_id= #{userId,jdbcType=VARCHAR}
+      and change_date = #{changeDate,jdbcType=CHAR}
+      and sub_number = #{subNumber,jdbcType=VARCHAR}
+  </select>
+</mapper>

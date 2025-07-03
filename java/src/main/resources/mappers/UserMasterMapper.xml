@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.UserMasterMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.UserMaster">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="start_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="pass_word" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="account_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="permission_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="employment_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, user_name, start_date, pass_word, email, account_kbn, permission_kbn, 
+    employment_kbn, del_flg, reg_account, reg_time, upd_account, upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_user
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from m_user
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.UserMaster">
+    insert into m_user (company_code, user_id, user_name, 
+      start_date, pass_word, email, 
+      account_kbn, permission_kbn, employment_kbn, 
+      del_flg, reg_account, reg_time, 
+      upd_account, upd_time)
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=CHAR}, #{passWord,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{accountKbn,jdbcType=CHAR}, #{permissionKbn,jdbcType=CHAR}, #{employmentKbn,jdbcType=CHAR}, 
+      #{delFlg,jdbcType=CHAR}, #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.UserMaster">
+    insert into m_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="passWord != null">
+        pass_word,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="accountKbn != null">
+        account_kbn,
+      </if>
+      <if test="permissionKbn != null">
+        permission_kbn,
+      </if>
+      <if test="employmentKbn != null">
+        employment_kbn,
+      </if>
+      <if test="delFlg != null">
+        del_flg,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=CHAR},
+      </if>
+      <if test="passWord != null">
+        #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountKbn != null">
+        #{accountKbn,jdbcType=CHAR},
+      </if>
+      <if test="permissionKbn != null">
+        #{permissionKbn,jdbcType=CHAR},
+      </if>
+      <if test="employmentKbn != null">
+        #{employmentKbn,jdbcType=CHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.UserMaster">
+    update m_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=CHAR},
+      </if>
+      <if test="passWord != null">
+        pass_word = #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountKbn != null">
+        account_kbn = #{accountKbn,jdbcType=CHAR},
+      </if>
+      <if test="permissionKbn != null">
+        permission_kbn = #{permissionKbn,jdbcType=CHAR},
+      </if>
+      <if test="employmentKbn != null">
+        employment_kbn = #{employmentKbn,jdbcType=CHAR},
+      </if>
+      <if test="delFlg != null">
+        del_flg = #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateImageByPrimaryKey" parameterType="com.demo.entity.Avatar">
+    update m_user
+    set image_url = #{imageUrl,jdbcType=VARCHAR}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.UserMaster">
+    update m_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=CHAR},
+      pass_word = #{passWord,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      account_kbn = #{accountKbn,jdbcType=CHAR},
+      permission_kbn = #{permissionKbn,jdbcType=CHAR},
+      employment_kbn = #{employmentKbn,jdbcType=CHAR},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 通过主键获取用户 -->
+  <select id="selectByKey" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_user
+    where company_code = #{companyCode,jdbcType=CHAR}
+    and user_id = #{userId,jdbcType=VARCHAR}
+    and del_flg != '1'
+  </select>
+
+  <!-- 通过主键获取用户 -->
+  <select id="selectByMail" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_user
+    where email = #{email,jdbcType=VARCHAR}
+    and del_flg != '1'
+      limit 1
+  </select>
+
+  <!-- 获取简单的用户信息 -->
+  <select id="getUserInfo" parameterType="java.lang.String" resultType="com.demo.pojo.common.LoginUserInfo">
+    select
+      user_id
+     ,company_code
+     ,user_name
+     ,account_kbn
+     ,permission_kbn
+     ,image_url
+    from m_user
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and del_flg != '1'
+  </select>
+
+  <!-- 获取详细的用户信息 -->
+  <select id="getUserDetailInfo" parameterType="map" resultType="com.demo.pojo.user.UserDetailInfo">
+    select  muser.company_code
+           ,muser.user_id
+           ,muser.user_name
+           ,muser.start_date
+           ,muser.email
+           ,muser.account_kbn
+           ,muser.permission_kbn
+           ,muser.employment_kbn
+           ,userdetail.first_name
+           ,userdetail.last_name
+           ,userdetail.first_name_kana
+           ,userdetail.last_name_kana
+           ,userdetail.birthday
+           ,userdetail.sex
+           ,userdetail.tel
+           ,userdetail.zip
+           ,userdetail.address_prefecture
+           ,userdetail.address_municipality
+           ,userdetail.address_town
+           ,userdetail.address_detail
+           ,userdetail.join_date
+           ,userdetail.leave_date
+           ,company.company_name
+           ,company.company_name_sh
+           ,dept.department_name
+           ,dept.department_name_sh
+           ,belong.department_code
+           ,belong.position_code
+    from m_user muser
+           left join m_user_detail userdetail
+                     on muser.company_code = userdetail.company_code
+                     and muser.user_id = userdetail.user_id
+           left join m_company company
+                     on muser.company_code = company.company_code
+           left join t_belong_dept belong
+                     on muser.company_code = belong.company_code
+                     and muser.user_id = belong.user_id
+                     and belong.priority_level = '1'
+           left join m_department dept
+                     on belong.company_code = dept.company_code
+                     and belong.department_code = dept.department_code
+    where muser.company_code = #{companyCode,jdbcType=CHAR}
+        and muser.user_id = #{userId,jdbcType=VARCHAR}
+        and muser.del_flg != '1'
+  </select>
+  <select id="getUserDetail" parameterType="map" resultType="com.demo.pojo.user.UserDetailInfo">
+    select  muser.company_code
+         ,muser.user_id
+         ,muser.user_name
+         ,muser.start_date
+         ,muser.email
+         ,muser.account_kbn
+         ,muser.permission_kbn
+         ,muser.employment_kbn
+         ,userdetail.first_name
+         ,userdetail.last_name
+         ,userdetail.first_name_kana
+         ,userdetail.last_name_kana
+         ,userdetail.birthday
+         ,userdetail.sex
+         ,userdetail.tel
+         ,userdetail.zip
+         ,userdetail.address_prefecture
+         ,userdetail.address_municipality
+         ,userdetail.address_town
+         ,userdetail.address_detail
+         ,userdetail.join_date
+         ,userdetail.leave_date
+         ,company.company_name
+         ,company.company_name_sh
+         ,dept.department_name
+         ,dept.department_name_sh
+         ,belong.department_code
+         ,belong.position_code
+    from m_user muser
+           left join m_user_detail userdetail
+                     on muser.company_code = userdetail.company_code
+                       and muser.user_id = userdetail.user_id
+           left join m_company company
+                     on muser.company_code = company.company_code
+           left join t_belong_dept belong
+                     on muser.company_code = belong.company_code
+                       and muser.user_id = belong.user_id
+                       and belong.priority_level = '1'
+           left join m_department dept
+                     on belong.company_code = dept.company_code
+                       and belong.department_code = dept.department_code
+    where muser.company_code = #{companyCode,jdbcType=CHAR}
+      and (trim(replace(muser.user_id,'　','')) like #{userId,jdbcType=VARCHAR}
+               or trim(replace(muser.user_name,'　','')) like #{userId,jdbcType=VARCHAR})
+      and muser.del_flg != '1'
+  </select>
+    <select id="getUser" parameterType="map" resultType="com.demo.pojo.user.UserDetailDTO">
+        select  muser.company_code
+             ,muser.user_id
+             ,muser.user_name
+             ,userdetail.join_date
+             ,company.company_name
+        from m_user muser
+                 left join m_user_detail userdetail
+                           on muser.company_code = userdetail.company_code
+                               and muser.user_id = userdetail.user_id
+                 left join m_company company
+                           on muser.company_code = company.company_code
+        where muser.company_code = #{companyCode,jdbcType=CHAR}
+          and muser.user_id = #{userId,jdbcType=VARCHAR}
+          and muser.del_flg != '1'
+    </select>
+    <select id="getAllUserByCompanyCode" parameterType="map" resultType="com.demo.entity.UserMaster">
+        select muser.company_code
+             ,muser.user_id
+        from m_user muser
+        where muser.company_code = #{companyCode,jdbcType=CHAR}
+          and muser.del_flg != '1'
+    </select>
+    <select id="updatePassward" parameterType="map" resultType="int">
+        update m_user
+        set pass_word = #{passWord,jdbcType=VARCHAR},
+            upd_account = #{updAccount,jdbcType=VARCHAR},
+            upd_time = #{updTime,jdbcType=TIMESTAMP}
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+<!--有給残数取得テーブル-->
+    <select id="getUserRemainHolidayList" parameterType="map" resultType="com.demo.pojo.user.UserRemainHolidayDTO">
+        select
+            uses.company_code
+             , uses.user_id
+             , uses.user_name
+             , dept.department_code
+             ,MAX(month_close.close_month) as close_month
+             , r_holidays.paid_holiday_remaining
+             ,
+            left (m_user_detail.paid_holiday_start_day, 4) as paid_holiday_start_year
+             ,
+            left (CURRENT_DATE (), 4) -
+            left (m_user_detail.paid_holiday_start_day, 4) as work_history_year
+             , substr(m_user_detail.paid_holiday_start_day, 5, 2) as paid_holiday_start_month
+             , substr(CURRENT_DATE (), 6, 2) - substr(m_user_detail.paid_holiday_start_day, 5, 2) as next_assignment_month
+        from
+            m_user as uses
+            left join t_belong_dept as dept
+        on dept.user_id = uses.user_id
+            left join t_month_close_process as month_close
+            on month_close.tgt_user_id = uses.user_id
+            left join (
+            select
+            company_code
+            , user_id
+            , ifnull(sum(paid_holiday_remaining), 0) as paid_holiday_remaining
+            from
+            t_paid_holiday
+            where
+            t_paid_holiday.assignment_day is not null
+            and t_paid_holiday.expired_ymd > CURRENT_DATE ()
+            group by
+            company_code
+            , user_id
+            ) as r_holidays
+            on r_holidays.user_id = uses.user_id
+            left join m_user_detail
+            on m_user_detail.user_id = uses.user_id
+
+
+        where
+            uses.company_code =#{companyCode,jdbcType=CHAR}
+          and month_close.close_month is not null
+          and month_close.process_status ='1'
+
+        group by
+            uses.company_code
+                , uses.user_id
+                , uses.user_name
+                , dept.department_code
+                , r_holidays.paid_holiday_remaining
+                , paid_holiday_start_year
+                , work_history_year
+                , paid_holiday_start_month
+                , next_assignment_month
+    </select>
+    <!--    権限付与画面：検索押下時の処理-->
+    <select id="research" parameterType="map" resultType="com.demo.pojo.user.UserDTO">
+        select      m_user.company_code
+                    ,m_user.user_id
+                    ,m_user.user_name
+        from        m_user
+        where       m_user.company_code    =        #{companyCode,jdbcType=CHAR}
+          and       (m_user.user_id        like     #{userId,jdbcType=CHAR}
+            or       m_user.user_name       like     #{userId,jdbcType=CHAR})
+    </select>
+</mapper>

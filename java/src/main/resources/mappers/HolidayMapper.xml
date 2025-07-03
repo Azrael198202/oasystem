@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.HolidayMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Holiday">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="holiday_date" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="holiday_year" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="holiday_month" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="holiday_day" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="holiday_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="holiday_remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="del_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, company_code, holiday_date, holiday_year, holiday_month, holiday_day, holiday_name, 
+    holiday_remark, del_flg, reg_account, reg_time, upd_account, upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_holiday
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from m_holiday
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Holiday">
+    insert into m_holiday (ID, company_code, holiday_date, 
+      holiday_year, holiday_month, holiday_day, 
+      holiday_name, holiday_remark, del_flg, 
+      reg_account, reg_time, upd_account, 
+      upd_time)
+    values (#{id,jdbcType=INTEGER}, #{companyCode,jdbcType=CHAR}, #{holidayDate,jdbcType=VARCHAR}, 
+      #{holidayYear,jdbcType=VARCHAR}, #{holidayMonth,jdbcType=VARCHAR}, #{holidayDay,jdbcType=VARCHAR}, 
+      #{holidayName,jdbcType=VARCHAR}, #{holidayRemark,jdbcType=VARCHAR}, #{delFlg,jdbcType=CHAR}, 
+      #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, #{updAccount,jdbcType=VARCHAR}, 
+      #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Holiday">
+    insert into m_holiday
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="holidayDate != null">
+        holiday_date,
+      </if>
+      <if test="holidayYear != null">
+        holiday_year,
+      </if>
+      <if test="holidayMonth != null">
+        holiday_month,
+      </if>
+      <if test="holidayDay != null">
+        holiday_day,
+      </if>
+      <if test="holidayName != null">
+        holiday_name,
+      </if>
+      <if test="holidayRemark != null">
+        holiday_remark,
+      </if>
+      <if test="delFlg != null">
+        del_flg,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="holidayDate != null">
+        #{holidayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayYear != null">
+        #{holidayYear,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayMonth != null">
+        #{holidayMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayDay != null">
+        #{holidayDay,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayName != null">
+        #{holidayName,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayRemark != null">
+        #{holidayRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Holiday">
+    update m_holiday
+    <set>
+      <if test="companyCode != null">
+        company_code = #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="holidayDate != null">
+        holiday_date = #{holidayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayYear != null">
+        holiday_year = #{holidayYear,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayMonth != null">
+        holiday_month = #{holidayMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayDay != null">
+        holiday_day = #{holidayDay,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayName != null">
+        holiday_name = #{holidayName,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayRemark != null">
+        holiday_remark = #{holidayRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        del_flg = #{delFlg,jdbcType=CHAR},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Holiday">
+    update m_holiday
+    set company_code = #{companyCode,jdbcType=CHAR},
+      holiday_date = #{holidayDate,jdbcType=VARCHAR},
+      holiday_year = #{holidayYear,jdbcType=VARCHAR},
+      holiday_month = #{holidayMonth,jdbcType=VARCHAR},
+      holiday_day = #{holidayDay,jdbcType=VARCHAR},
+      holiday_name = #{holidayName,jdbcType=VARCHAR},
+      holiday_remark = #{holidayRemark,jdbcType=VARCHAR},
+      del_flg = #{delFlg,jdbcType=CHAR},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByDate" parameterType="map" resultType="java.lang.Integer">
+    select
+    count(*)
+    from m_holiday
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and holiday_date = #{holidayDate,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByYear" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_holiday
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and holiday_year = #{holidayYear}
+  </select>
+</mapper>

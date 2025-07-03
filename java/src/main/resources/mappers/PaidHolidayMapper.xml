@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.PaidHolidayMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.PaidHoliday">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="date_ym" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="assignment_year" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="assignment_day" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="paid_holiday_remaining" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="expired_ymd" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, date_ym, assignment_year,assignment_day, paid_holiday_remaining, expired_ymd,
+    registration_user, registration_datetime, update_user, update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_paid_holiday
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and date_ym = #{dateYm,jdbcType=CHAR}
+      and assignment_year = #{assignmentYear,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_paid_holiday
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and date_ym = #{dateYm,jdbcType=CHAR}
+      and assignment_year = #{assignmentYear,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.PaidHoliday">
+    insert into t_paid_holiday (company_code, user_id, date_ym, 
+      assignment_year,assignment_day, paid_holiday_remaining, expired_ymd,
+      registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{dateYm,jdbcType=CHAR}, 
+      #{assignmentYear,jdbcType=CHAR},#{assignmentDay,jdbcType=CHAR} ,#{paidHolidayRemaining,jdbcType=REAL}, #{expiredYmd,jdbcType=CHAR},
+      #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.PaidHoliday">
+    insert into t_paid_holiday
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="dateYm != null">
+        date_ym,
+      </if>
+      <if test="assignmentYear != null">
+        assignment_year,
+      </if>
+      <if test="assignmentDay != null">
+        assignment_day,
+      </if>
+      <if test="paidHolidayRemaining != null">
+        paid_holiday_remaining,
+      </if>
+      <if test="expiredYmd != null">
+        expired_ymd,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="dateYm != null">
+        #{dateYm,jdbcType=CHAR},
+      </if>
+      <if test="assignmentYear != null">
+        #{assignmentYear,jdbcType=CHAR},
+      </if>
+      <if test="assignmentDay != null">
+        #{assignmentDay,jdbcType=CHAR},
+      </if>
+      <if test="paidHolidayRemaining != null">
+        #{paidHolidayRemaining,jdbcType=REAL},
+      </if>
+      <if test="expiredYmd != null">
+        #{expiredYmd,jdbcType=CHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.PaidHoliday">
+    update t_paid_holiday
+    <set>
+      <if test="paidHolidayRemaining != null">
+        paid_holiday_remaining = #{paidHolidayRemaining,jdbcType=REAL},
+      </if>
+      <if test="expiredYmd != null">
+        expired_ymd = #{expiredYmd,jdbcType=CHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and date_ym = #{dateYm,jdbcType=CHAR}
+      and assignment_year = #{assignmentYear,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.PaidHoliday">
+    update t_paid_holiday
+    set paid_holiday_remaining = #{paidHolidayRemaining,jdbcType=REAL},
+      expired_ymd = #{expiredYmd,jdbcType=CHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and date_ym = #{dateYm,jdbcType=CHAR}
+      and assignment_year = #{assignmentYear,jdbcType=CHAR}
+  </update>
+  <select id="getRequestPaidHoliday" parameterType="map" resultType="float">
+    <!--前月末残取得-->
+    select   ifnull(sum(paid_holiday_remaining),0)
+      from   t_paid_holiday
+     where   company_code            =  #{companyCode,jdbcType=CHAR}
+       and   user_id                 =  #{userId,jdbcType=VARCHAR}
+       and   date_ym                 =  (select max(close_month)from   t_month_close_history where    user_id = #{userId,jdbcType=VARCHAR})
+       and   paid_holiday_remaining  >  0
+       and  left(expired_ymd, 6) > (select (max(close_month)) from t_month_close_history where user_id = #{userId,jdbcType=VARCHAR})
+       and  (select (max(close_month)) from t_month_close_history where user_id = #{userId,jdbcType=VARCHAR}) >= replace(left(DATE_ADD(STR_TO_DATE(concat(expired_ymd,'01'),'%Y%m%d'),interval -2 year), 7), '-', '')
+  </select>
+  <select  id="EndMonthPaidHoliday" parameterType="map" resultType="float">
+    <!--今月末残取得-->
+    select fnc_getPaidHolidayDays(#{companyCode,jdbcType=CHAR},#{userId,jdbcType=VARCHAR},(select replace(LAST_DAY(DATE_ADD(STR_TO_DATE(concat(max(close_month),'01'),'%Y%m%d'),interval 1 month)), '-', '') from   t_month_close_history where    user_id = #{userId,jdbcType=VARCHAR}))
+  </select>
+  <select  id="EndMonthAfterNextPaidHoliday" parameterType="map" resultType="float">
+    <!--翌月・翌々月末残取得-->
+    select fnc_getPaidHolidayDays(#{companyCode,jdbcType=CHAR},#{userId,jdbcType=VARCHAR},(select replace(LAST_DAY(DATE_ADD(STR_TO_DATE(concat(max(close_month),'01'),'%Y%m%d'),interval 3 month)), '-', '') from   t_month_close_history where    user_id = #{userId,jdbcType=VARCHAR}))
+  </select>
+  <select  id="getPaidHolidayMaintenance"  parameterType="map" resultType="com.demo.pojo.paidHoliday.PaidHolidayMaintenanceDTO">
+    select
+    m_user.company_code
+    ,m_user.user_id
+    , m_user.user_name
+    , t_belong_dept1.department_code
+    , m_department.department_name
+    , m_user_detail.join_date
+    , m_user_detail.paid_holiday_start_day
+    , next_paid3.next_paid_holiday_flag
+    , paid_holiday1.paid_holiday_remaining
+    , next_paid_2d.next_paid_fullday
+    , next_paid3.category_kbn_option2
+      ,ifnull(t_paid_holiday2.Jan_crt,0)as Jan_crt
+      ,ifnull(t_paid_holiday2.Feb_crt,0)as Feb_crt
+      ,ifnull(t_paid_holiday2.Mar_crt,0)as Mar_crt
+      ,ifnull(t_paid_holiday2.Apl_crt,0)as Apl_crt
+      ,ifnull(t_paid_holiday2.May_crt,0)as May_crt
+      ,ifnull(t_paid_holiday2.Jun_crt,0)as Jun_crt
+      ,ifnull(t_paid_holiday2.Jul_crt,0)as Jul_crt
+      ,ifnull(t_paid_holiday2.Aug_crt,0)as Aug_crt
+      ,ifnull(t_paid_holiday2.Sep_crt,0)as Sep_crt
+      ,ifnull(t_paid_holiday2.Oct_crt,0)as Oct_crt
+      ,ifnull(t_paid_holiday2.Nov_crt,0)as Nov_crt
+      ,ifnull(t_paid_holiday2.Dec_crt,0)as Dec_crt
+      ,ifnull(t_paid_holiday2.Jan_next,0)as Jan_next
+      ,ifnull(t_paid_holiday2.Feb_next,0)as Feb_next
+      ,ifnull(t_paid_holiday2.Mar_next,0)as Mar_next
+      ,ifnull(t_paid_holiday2.Apl_next,0)as Apl_next
+      ,ifnull(t_paid_holiday2.May_next,0)as May_next
+      ,ifnull(t_paid_holiday2.Jun_next,0)as Jun_next
+      ,ifnull(t_paid_holiday2.Jul_next,0)as Jul_next
+      ,ifnull(t_paid_holiday2.Aug_next,0)as Aug_next
+      ,ifnull(t_paid_holiday2.Sep_next,0)as Sep_next
+      ,ifnull(t_paid_holiday2.Oct_next,0)as Oct_next
+      ,ifnull(t_paid_holiday2.Nov_next,0)as Nov_next
+      ,ifnull(t_paid_holiday2.Dec_next,0)as Dec_next
+
+
+from
+    m_user
+    left join (
+        select
+            m_user.user_id
+            , min(t_belong_dept.department_code) as department_code
+        from
+            m_user
+            left join t_belong_dept
+                on t_belong_dept.user_id = m_user.user_id
+        group by
+            m_user.user_id
+    ) as t_belong_dept1
+        on t_belong_dept1.user_id = m_user.user_id
+    left join m_department
+        on t_belong_dept1.department_code = m_department.department_code
+    left join m_user_detail
+        on m_user_detail.user_id = m_user.user_id
+    left join (
+        select
+            company_code
+            , user_id
+            , ifnull(sum(paid_holiday_remaining), 0) as paid_holiday_remaining
+        from
+            t_paid_holiday
+        where
+            t_paid_holiday.assignment_day is not null
+            and t_paid_holiday.expired_ymd > CURRENT_DATE ()
+        group by
+            company_code
+            , user_id
+    ) as paid_holiday1
+        on paid_holiday1.user_id = m_user.user_id
+    left join (
+        select
+            user_id
+            , (
+                case
+                    when next_assignment_month > month (current_date ())
+                        then concat(
+                        year (current_date ())
+                        , next_assignment_month
+                        , '01'
+                    )
+                    when month (current_date ()) >= next_assignment_month
+                        then concat(
+                        year (current_date ()) + 1
+                        , next_assignment_month
+                        , '01'
+                    )
+                    else null
+                    end
+            ) as next_paid_fullday
+        from
+            (
+                select
+                    m_user_detail.user_id
+                    , substr(m_user_detail.paid_holiday_start_day, 5, 2) as next_assignment_month
+                from
+                    m_user_detail
+            ) as next_paid_1d
+    ) as next_paid_2d
+        on next_paid_2d.user_id = m_user.user_id
+    left join (
+        select
+            m_category.category_class_number
+            , m_category.category_kbn_option2
+            , m_user.user_id
+            ,next_paid2.next_paid_holiday_flag
+        from
+            (
+                select
+                    user_id
+                    ,next_paid_holiday_flag
+                    , (
+                        case
+                            when next_paid_holiday_flag >= 6
+                                then '6'
+                            else next_paid_holiday_flag
+                            end
+                    ) as next_paid_holiday_flag2
+                from
+                    (
+                        select
+                            user_id
+                            , (
+                                case
+                                    when 0 > next_assignment_month
+                                        then work_history_year
+                                    when next_assignment_month >= 0
+                                        then work_history_year + 1
+                                    else null
+                                    end
+                            ) as next_paid_holiday_flag
+                        from
+                            (
+                                select
+                                    m_user_detail.user_id
+                                    , year (CURRENT_DATE ()) -
+                                    left (m_user_detail.paid_holiday_start_day, 4) as work_history_year
+                                    , month (CURRENT_DATE ()) - substr(m_user_detail.paid_holiday_start_day, 5, 2) as next_assignment_month
+                                from
+                                    m_user_detail
+                            ) as next_date
+                    ) as next_paid
+            ) as next_paid2
+            left join m_category
+                on next_paid_holiday_flag2 = m_category.category_kbn_option1
+            left join m_user
+                on next_paid2.user_id = m_user.user_id
+    ) as next_paid3
+        on next_paid3.user_id = m_user.user_id
+
+        left join(
+        select
+t_paid_holiday1.company_code
+,t_paid_holiday1.user_id
+
+     ,sum((case when t_paid_holiday1.date_m='01' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Jan_crt
+      ,sum((case when t_paid_holiday1.date_m='02' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Feb_crt
+      ,sum((case when t_paid_holiday1.date_m='03' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Mar_crt
+      ,sum((case when t_paid_holiday1.date_m='04' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Apl_crt
+      ,sum((case when t_paid_holiday1.date_m='05' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as May_crt
+      ,sum((case when t_paid_holiday1.date_m='06' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Jun_crt
+      ,sum((case when t_paid_holiday1.date_m='07' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Jul_crt
+      ,sum((case when t_paid_holiday1.date_m='08' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Aug_crt
+      ,sum((case when t_paid_holiday1.date_m='09' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Sep_crt
+      ,sum((case when t_paid_holiday1.date_m='10' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Oct_crt
+      ,sum((case when t_paid_holiday1.date_m='11' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Nov_crt
+      ,sum((case when t_paid_holiday1.date_m='12' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR} then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Dec_crt
+
+      ,sum((case when t_paid_holiday1.date_m='01' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Jan_next
+      ,sum((case when t_paid_holiday1.date_m='02' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Feb_next
+      ,sum((case when t_paid_holiday1.date_m='03' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Mar_next
+      ,sum((case when t_paid_holiday1.date_m='04' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Apl_next
+      ,sum((case when t_paid_holiday1.date_m='05' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as May_next
+      ,sum((case when t_paid_holiday1.date_m='06' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Jun_next
+      ,sum((case when t_paid_holiday1.date_m='07' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Jul_next
+      ,sum((case when t_paid_holiday1.date_m='08' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Aug_next
+      ,sum((case when t_paid_holiday1.date_m='09' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Sep_next
+      ,sum((case when t_paid_holiday1.date_m='10' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Oct_next
+      ,sum((case when t_paid_holiday1.date_m='11' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Nov_next
+      ,sum((case when t_paid_holiday1.date_m='12' and t_paid_holiday1.date_y=#{dateY,jdbcType=CHAR}+1 then t_paid_holiday1.paid_holiday_remaining
+      else 0 end))as Dec_next
+      from(
+select
+t_paid_holiday.company_code
+,t_paid_holiday.user_id
+
+,t_paid_holiday.assignment_year
+,left(t_paid_holiday.date_ym,4)as date_y
+,substr(t_paid_holiday.date_ym,5,2)as date_m
+,t_paid_holiday.paid_holiday_remaining
+
+
+
+from t_paid_holiday
+)as t_paid_holiday1
+group by
+t_paid_holiday1.company_code
+,t_paid_holiday1.user_id
+) as t_paid_holiday2
+on t_paid_holiday2.user_id=m_user.user_id
+where
+    m_user.company_code =#{companyCode,jdbcType=CHAR}
+    and next_paid3.category_class_number = '013'
+order by
+    m_user.user_id
+  </select>
+  <update id="updatePaidHolidayRemaining" parameterType="com.demo.entity.PaidHoliday">
+    update t_paid_holiday
+    set paid_holiday_remaining = paid_holiday_remaining+#{paidHolidayRemaining,jdbcType=REAL},
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and date_ym = #{dateYm,jdbcType=CHAR}
+      and assignment_year = #{assignmentYear,jdbcType=CHAR}
+  </update>
+<select id="getPaidHoliday" parameterType="map" resultType="com.demo.entity.PaidHoliday">
+    select
+        *
+    from t_paid_holiday
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and date_ym =#{dateYm,jdbcType=CHAR}
+      and assignment_year = #{assignmentYear,jdbcType=CHAR}
+</select>
+    <select id="getPaidHolidayRemaining" parameterType="map" resultType="float">
+        select
+            COALESCE(sum(paid_holiday_remaining),0)
+        from t_paid_holiday
+        where company_code = #{companyCode,jdbcType=CHAR}
+          and user_id = #{userId,jdbcType=VARCHAR}
+          and date_ym = #{dateYm,jdbcType=CHAR}
+          and assignment_year = #{assignmentYear,jdbcType=CHAR}
+    </select>
+    <select id="getPaidHolidayAssignmentYear" parameterType="map" resultType="com.demo.entity.PaidHoliday">
+        select
+            *
+        from t_paid_holiday as main
+        where company_code =#{companyCode,jdbcType=CHAR}
+          and user_id = #{userId,jdbcType=VARCHAR}
+          and expired_ymd>current_date
+          and date_ym=(
+            select
+                max(kari.date_ym)
+            from  t_paid_holiday as kari
+            where
+                kari.user_id=main.user_id
+            group by
+                kari.user_id
+        )
+    </select>
+
+</mapper>

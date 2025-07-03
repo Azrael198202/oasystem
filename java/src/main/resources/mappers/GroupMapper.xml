@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.GroupMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Group">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="group_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="group_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, group_code, group_name, registration_user, registration_datetime, update_user, 
+    update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    where g.company_code = #{companyCode,jdbcType=CHAR}
+      and g.group_code = #{groupCode,jdbcType=CHAR}
+      and g.group_name = #{groupName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_group
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and group_code = #{groupCode,jdbcType=CHAR}
+      and group_name = #{groupName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Group">
+    insert into t_group (company_code, group_code, group_name, 
+      registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{groupCode,jdbcType=CHAR}, #{groupName,jdbcType=VARCHAR}, 
+      #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Group">
+    insert into t_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="groupCode != null">
+        group_code,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="groupCode != null">
+        #{groupCode,jdbcType=CHAR},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Group">
+    update t_group
+    <set>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and group_code = #{groupCode,jdbcType=CHAR}
+      and group_name = #{groupName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Group">
+    update t_group
+    set registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and group_code = #{groupCode,jdbcType=CHAR}
+      and group_name = #{groupName,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="map" resultType="com.demo.pojo.group.GroupDTO">
+    select
+      g.company_code
+         ,g.group_code
+         ,g.group_name
+         ,m.group_user_id
+         ,u.user_name
+         ,dept.department_name
+    from t_group g
+           left join t_group_member m
+                     on g.company_code = m.company_code
+                       and g.group_code = m.group_code
+           inner join m_user u
+                      on g.company_code = u.company_code
+                        and m.group_user_id = u.user_id
+           left join t_belong_dept b
+                     on b.company_code = g.company_code
+                       and m.group_user_id = b.user_id
+                       and b.priority_level = '1'
+           left join m_department dept
+                     on b.company_code = dept.company_code
+                       and b.department_code = dept.department_code
+    where g.company_code = #{companyCode,jdbcType=CHAR}
+      and g.group_code = #{groupCode,jdbcType=CHAR}
+      and g.group_name = #{groupName,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByCode" parameterType="map">
+    delete from t_group
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and group_code = #{groupCode,jdbcType=CHAR}
+  </delete>
+
+  <select id="selectCode" parameterType="map" resultType="java.lang.String">
+    select
+      group_code
+    from t_group
+    where company_code = #{companyCode,jdbcType=CHAR}
+    order by group_code desc limit 1
+  </select>
+
+  <select id="selectName" parameterType="map" resultType="java.lang.Integer">
+    select
+      count(group_name)
+    from t_group
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and group_name = #{groupName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectGroup" parameterType="map" resultType="com.demo.pojo.group.GroupDTO">
+    select DISTINCT
+      group_name
+      ,group_code
+    from t_group
+    where company_code = #{companyCode,jdbcType=CHAR}
+  </select>
+</mapper>

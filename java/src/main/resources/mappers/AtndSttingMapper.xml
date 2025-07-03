@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.AtndSttingMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.AtndStting">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="application_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="work_prescribed_time" javaType="java.util.Date" jdbcType="TIME" />
+      <arg column="work_every_time" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="work_start_time" javaType="java.util.Date" jdbcType="TIME" />
+      <arg column="work_end_time" javaType="java.util.Date" jdbcType="TIME" />
+      <arg column="work_break_start1" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="work_break_end1" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="work_break_start2" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="work_break_end2" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="work_break_start3" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="work_break_end3" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="reg_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reg_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="upd_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upd_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, application_date, work_prescribed_time, work_every_time, work_start_time, 
+    work_end_time, work_break_start1, work_break_end1, work_break_start2, work_break_end2, 
+    work_break_start3, work_break_end3, reg_account, reg_time, upd_account, upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_attendance_stting
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and application_date = #{applicationDate,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_attendance_stting
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and application_date = #{applicationDate,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.AtndStting">
+    insert into t_attendance_stting (company_code, user_id, application_date, 
+      work_prescribed_time, work_every_time, work_start_time, 
+      work_end_time, work_break_start1, work_break_end1, 
+      work_break_start2, work_break_end2, work_break_start3, 
+      work_break_end3, reg_account, reg_time, 
+      upd_account, upd_time)
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{applicationDate,jdbcType=CHAR}, 
+      #{workPrescribedTime,jdbcType=TIME}, #{workEveryTime,jdbcType=TINYINT}, #{workStartTime,jdbcType=TIME}, 
+      #{workEndTime,jdbcType=TIME}, #{workBreakStart1,jdbcType=TIMESTAMP}, #{workBreakEnd1,jdbcType=TIMESTAMP}, 
+      #{workBreakStart2,jdbcType=TIMESTAMP}, #{workBreakEnd2,jdbcType=TIMESTAMP}, #{workBreakStart3,jdbcType=TIMESTAMP}, 
+      #{workBreakEnd3,jdbcType=TIMESTAMP}, #{regAccount,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{updAccount,jdbcType=VARCHAR}, #{updTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.AtndStting">
+    insert into t_attendance_stting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="applicationDate != null">
+        application_date,
+      </if>
+      <if test="workPrescribedTime != null">
+        work_prescribed_time,
+      </if>
+      <if test="workEveryTime != null">
+        work_every_time,
+      </if>
+      <if test="workStartTime != null">
+        work_start_time,
+      </if>
+      <if test="workEndTime != null">
+        work_end_time,
+      </if>
+      <if test="workBreakStart1 != null">
+        work_break_start1,
+      </if>
+      <if test="workBreakEnd1 != null">
+        work_break_end1,
+      </if>
+      <if test="workBreakStart2 != null">
+        work_break_start2,
+      </if>
+      <if test="workBreakEnd2 != null">
+        work_break_end2,
+      </if>
+      <if test="workBreakStart3 != null">
+        work_break_start3,
+      </if>
+      <if test="workBreakEnd3 != null">
+        work_break_end3,
+      </if>
+      <if test="regAccount != null">
+        reg_account,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="updAccount != null">
+        upd_account,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationDate != null">
+        #{applicationDate,jdbcType=CHAR},
+      </if>
+      <if test="workPrescribedTime != null">
+        #{workPrescribedTime,jdbcType=TIME},
+      </if>
+      <if test="workEveryTime != null">
+        #{workEveryTime,jdbcType=TINYINT},
+      </if>
+      <if test="workStartTime != null">
+        #{workStartTime,jdbcType=TIME},
+      </if>
+      <if test="workEndTime != null">
+        #{workEndTime,jdbcType=TIME},
+      </if>
+      <if test="workBreakStart1 != null">
+        #{workBreakStart1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakEnd1 != null">
+        #{workBreakEnd1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakStart2 != null">
+        #{workBreakStart2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakEnd2 != null">
+        #{workBreakEnd2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakStart3 != null">
+        #{workBreakStart3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakEnd3 != null">
+        #{workBreakEnd3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regAccount != null">
+        #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.AtndStting">
+    update t_attendance_stting
+    <set>
+      <if test="workPrescribedTime != null">
+        work_prescribed_time = #{workPrescribedTime,jdbcType=TIME},
+      </if>
+      <if test="workEveryTime != null">
+        work_every_time = #{workEveryTime,jdbcType=TINYINT},
+      </if>
+      <if test="workStartTime != null">
+        work_start_time = #{workStartTime,jdbcType=TIME},
+      </if>
+      <if test="workEndTime != null">
+        work_end_time = #{workEndTime,jdbcType=TIME},
+      </if>
+      <if test="workBreakStart1 != null">
+        work_break_start1 = #{workBreakStart1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakEnd1 != null">
+        work_break_end1 = #{workBreakEnd1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakStart2 != null">
+        work_break_start2 = #{workBreakStart2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakEnd2 != null">
+        work_break_end2 = #{workBreakEnd2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakStart3 != null">
+        work_break_start3 = #{workBreakStart3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workBreakEnd3 != null">
+        work_break_end3 = #{workBreakEnd3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regAccount != null">
+        reg_account = #{regAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updAccount != null">
+        upd_account = #{updAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and application_date = #{applicationDate,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.AtndStting">
+    update t_attendance_stting
+    set work_prescribed_time = #{workPrescribedTime,jdbcType=TIME},
+      work_every_time = #{workEveryTime,jdbcType=TINYINT},
+      work_start_time = #{workStartTime,jdbcType=TIME},
+      work_end_time = #{workEndTime,jdbcType=TIME},
+      work_break_start1 = #{workBreakStart1,jdbcType=TIMESTAMP},
+      work_break_end1 = #{workBreakEnd1,jdbcType=TIMESTAMP},
+      work_break_start2 = #{workBreakStart2,jdbcType=TIMESTAMP},
+      work_break_end2 = #{workBreakEnd2,jdbcType=TIMESTAMP},
+      work_break_start3 = #{workBreakStart3,jdbcType=TIMESTAMP},
+      work_break_end3 = #{workBreakEnd3,jdbcType=TIMESTAMP},
+      reg_account = #{regAccount,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      upd_account = #{updAccount,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and application_date = #{applicationDate,jdbcType=CHAR}
+  </update>
+  <select id="searchData" parameterType="map" resultType="com.demo.pojo.atndStting.AtndSttingRpnDTO">
+    select
+      company_code
+         , user_id
+         , application_date
+         , DATE_FORMAT(work_prescribed_time,'%H:%i')work_prescribed_time
+         , work_every_time
+         , DATE_FORMAT(work_start_time,'%H:%i')work_start_time
+         , DATE_FORMAT(work_end_time,'%H:%i')work_end_time
+         , DATE_FORMAT(work_break_start1,'%H:%i')work_break_start1
+         , DATE_FORMAT(work_break_end1,'%H:%i')work_break_end1
+         , DATE_FORMAT(work_break_start2,'%H:%i')work_break_start2
+         , DATE_FORMAT(work_break_end2,'%H:%i')work_break_end2
+         , DATE_FORMAT(work_break_start3,'%H:%i')work_break_start3
+         , DATE_FORMAT(work_break_end3,'%H:%i')work_break_end3
+    from
+      t_attendance_stting
+    where company_code = #{companyCode,jdbcType=CHAR}
+    and user_id = #{userId,jdbcType=VARCHAR}
+    and application_date &lt;= DATE_FORMAT(now(),'%Y%m%d')
+    order by application_date  desc limit 1
+  </select>
+  <select id="searchByDate" parameterType="map" resultType="com.demo.pojo.atndStting.AtndSttingRpnDTO">
+    select
+      company_code
+         , user_id
+         , application_date
+         , DATE_FORMAT(work_prescribed_time,'%H:%i')work_prescribed_time
+         , work_every_time
+         , DATE_FORMAT(work_start_time,'%H:%i')work_start_time
+         , DATE_FORMAT(work_end_time,'%H:%i')work_end_time
+         , DATE_FORMAT(work_break_start1,'%H:%i')work_break_start1
+         , DATE_FORMAT(work_break_end1,'%H:%i')work_break_end1
+         , DATE_FORMAT(work_break_start2,'%H:%i')work_break_start2
+         , DATE_FORMAT(work_break_end2,'%H:%i')work_break_end2
+         , DATE_FORMAT(work_break_start3,'%H:%i')work_break_start3
+         , DATE_FORMAT(work_break_end3,'%H:%i')work_break_end3
+    from
+      t_attendance_stting
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and substring(application_date,1,6) &lt;= #{applicationDate,jdbcType=CHAR}
+  </select>
+</mapper>

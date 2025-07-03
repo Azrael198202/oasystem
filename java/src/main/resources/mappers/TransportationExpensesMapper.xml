@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.TransportationExpensesMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.TransportationExpenses">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="apply_ym" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="request_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="request_sub_number" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="request_user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="start_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="end_date" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="month_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="days" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="apply_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="travel_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="departure" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="arrival" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="way_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="destination" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="amount" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="recipient_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, apply_ym, request_number, request_sub_number, request_user_id, start_date, 
+    end_date, month_kbn, days, apply_kbn, travel_kbn, departure, arrival, way_kbn, destination, 
+    amount, recipient_kbn, remark, image, registration_user, registration_datetime, update_user, 
+    update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_transportation_expenses
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and apply_ym = #{applyYm,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_sub_number = #{requestSubNumber,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_transportation_expenses
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and apply_ym = #{applyYm,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_sub_number = #{requestSubNumber,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.TransportationExpenses">
+    insert into t_transportation_expenses (company_code, apply_ym, request_number, 
+      request_sub_number, request_user_id, start_date, 
+      end_date, month_kbn, days, 
+      apply_kbn, travel_kbn, departure, 
+      arrival, way_kbn, destination, 
+      amount, recipient_kbn, remark, 
+      image, registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{applyYm,jdbcType=CHAR}, #{requestNumber,jdbcType=VARCHAR}, 
+      #{requestSubNumber,jdbcType=TINYINT}, #{requestUserId,jdbcType=VARCHAR}, #{startDate,jdbcType=CHAR}, 
+      #{endDate,jdbcType=CHAR}, #{monthKbn,jdbcType=CHAR}, #{days,jdbcType=INTEGER}, 
+      #{applyKbn,jdbcType=CHAR}, #{travelKbn,jdbcType=CHAR}, #{departure,jdbcType=VARCHAR}, 
+      #{arrival,jdbcType=VARCHAR}, #{wayKbn,jdbcType=CHAR}, #{destination,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=INTEGER}, #{recipientKbn,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.TransportationExpenses">
+    insert into t_transportation_expenses
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="applyYm != null">
+        apply_ym,
+      </if>
+      <if test="requestNumber != null">
+        request_number,
+      </if>
+      <if test="requestSubNumber != null">
+        request_sub_number,
+      </if>
+      <if test="requestUserId != null">
+        request_user_id,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="monthKbn != null">
+        month_kbn,
+      </if>
+      <if test="days != null">
+        days,
+      </if>
+      <if test="applyKbn != null">
+        apply_kbn,
+      </if>
+      <if test="travelKbn != null">
+        travel_kbn,
+      </if>
+      <if test="departure != null">
+        departure,
+      </if>
+      <if test="arrival != null">
+        arrival,
+      </if>
+      <if test="wayKbn != null">
+        way_kbn,
+      </if>
+      <if test="destination != null">
+        destination,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="recipientKbn != null">
+        recipient_kbn,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="applyYm != null">
+        #{applyYm,jdbcType=CHAR},
+      </if>
+      <if test="requestNumber != null">
+        #{requestNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="requestSubNumber != null">
+        #{requestSubNumber,jdbcType=TINYINT},
+      </if>
+      <if test="requestUserId != null">
+        #{requestUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=CHAR},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=CHAR},
+      </if>
+      <if test="monthKbn != null">
+        #{monthKbn,jdbcType=CHAR},
+      </if>
+      <if test="days != null">
+        #{days,jdbcType=INTEGER},
+      </if>
+      <if test="applyKbn != null">
+        #{applyKbn,jdbcType=CHAR},
+      </if>
+      <if test="travelKbn != null">
+        #{travelKbn,jdbcType=CHAR},
+      </if>
+      <if test="departure != null">
+        #{departure,jdbcType=VARCHAR},
+      </if>
+      <if test="arrival != null">
+        #{arrival,jdbcType=VARCHAR},
+      </if>
+      <if test="wayKbn != null">
+        #{wayKbn,jdbcType=CHAR},
+      </if>
+      <if test="destination != null">
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="recipientKbn != null">
+        #{recipientKbn,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.TransportationExpenses">
+    update t_transportation_expenses
+    <set>
+      <if test="requestUserId != null">
+        request_user_id = #{requestUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=CHAR},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=CHAR},
+      </if>
+      <if test="monthKbn != null">
+        month_kbn = #{monthKbn,jdbcType=CHAR},
+      </if>
+      <if test="days != null">
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="applyKbn != null">
+        apply_kbn = #{applyKbn,jdbcType=CHAR},
+      </if>
+      <if test="travelKbn != null">
+        travel_kbn = #{travelKbn,jdbcType=CHAR},
+      </if>
+      <if test="departure != null">
+        departure = #{departure,jdbcType=VARCHAR},
+      </if>
+      <if test="arrival != null">
+        arrival = #{arrival,jdbcType=VARCHAR},
+      </if>
+      <if test="wayKbn != null">
+        way_kbn = #{wayKbn,jdbcType=CHAR},
+      </if>
+      <if test="destination != null">
+        destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="recipientKbn != null">
+        recipient_kbn = #{recipientKbn,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and apply_ym = #{applyYm,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_sub_number = #{requestSubNumber,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.TransportationExpenses">
+    update t_transportation_expenses
+    set request_user_id = #{requestUserId,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=CHAR},
+      end_date = #{endDate,jdbcType=CHAR},
+      month_kbn = #{monthKbn,jdbcType=CHAR},
+      days = #{days,jdbcType=INTEGER},
+      apply_kbn = #{applyKbn,jdbcType=CHAR},
+      travel_kbn = #{travelKbn,jdbcType=CHAR},
+      departure = #{departure,jdbcType=VARCHAR},
+      arrival = #{arrival,jdbcType=VARCHAR},
+      way_kbn = #{wayKbn,jdbcType=CHAR},
+      destination = #{destination,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      recipient_kbn = #{recipientKbn,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and apply_ym = #{applyYm,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_sub_number = #{requestSubNumber,jdbcType=TINYINT}
+  </update>
+  <select id="selectAll" parameterType="map" resultType="com.demo.pojo.transportationExpenses.TransportationExpensesDTO">
+    select
+      t.company_code
+     ,t.apply_ym
+     ,t.request_number
+     ,t.request_sub_number
+     ,t.request_user_id
+     ,t.start_date
+     ,t.end_date
+     ,t.month_kbn
+     ,t.days
+     ,t.apply_kbn
+     ,t.travel_kbn
+     ,t.departure
+     ,t.arrival
+     ,t.way_kbn
+     ,t.destination
+     ,t.amount
+     ,t.recipient_kbn
+     ,t.remark
+     ,t.image
+    from
+      t_transportation_expenses as t
+    where t.company_code = #{ companyCode, jdbcType = CHAR }
+      and t.request_user_id = #{ requestUserId, jdbcType=VARCHAR }
+      and t.request_number = #{ requestNumber, jdbcType=VARCHAR }
+  </select>
+  <delete id="deleteTransportationExpenses" parameterType="map">
+    delete
+    from t_transportation_expenses
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </delete>
+  <select id="searchRefMonthData" parameterType="map" resultType="com.demo.pojo.transportationExpenses.TransportationExpensesDTO">
+    select
+          t_transportation_expenses.company_code
+         ,t_transportation_expenses.apply_ym
+         ,t_transportation_expenses.request_number
+         ,t_transportation_expenses.request_sub_number
+         ,t_transportation_expenses.request_user_id
+         ,t_transportation_expenses.start_date
+         ,t_transportation_expenses.end_date
+         ,t_transportation_expenses.month_kbn
+         ,t_transportation_expenses.days
+         ,t_transportation_expenses.apply_kbn
+         ,t_transportation_expenses.travel_kbn
+         ,t_transportation_expenses.departure
+         ,t_transportation_expenses.arrival
+         ,t_transportation_expenses.way_kbn
+         ,t_transportation_expenses.destination
+         ,t_transportation_expenses.amount
+         ,t_transportation_expenses.recipient_kbn
+         ,t_transportation_expenses.remark
+         ,t_transportation_expenses.image
+    from
+          t_transportation_expenses
+    left join
+          t_request
+      on
+          t_request.request_number = t_transportation_expenses.request_number
+    where t_transportation_expenses.company_code = #{ companyCode, jdbcType = CHAR }
+      and t_transportation_expenses.apply_ym = #{ applyYm, jdbcType=VARCHAR }
+      and t_transportation_expenses.request_user_id = #{ requestUserId, jdbcType=VARCHAR }
+      and t_request.request_status_kbn = '999'
+  </select>
+  <select id="searchImage" parameterType="map" resultType="com.demo.pojo.transportationExpenses.TransportationExpensesDTO">
+    select
+      image
+    from
+      t_transportation_expenses
+    where request_number = #{requestNumber,jdbcType=VARCHAR}
+  </select>
+  <select id="selectMonth" parameterType="map" resultType="com.demo.pojo.transportationExpenses.SelectApplyMonthTpDTO">
+    select
+          t_transportation_expenses.company_code
+         ,t_transportation_expenses.request_user_id
+         ,max(t_transportation_expenses.apply_ym) as apply_ym
+    from
+          t_transportation_expenses
+    left
+    join
+          t_request
+      on
+          t_transportation_expenses.request_number = t_request.request_number
+   where  t_transportation_expenses.company_code = #{ companyCode, jdbcType = CHAR }
+     and  t_transportation_expenses.request_user_id = #{ requestUserId, jdbcType=VARCHAR }
+     and  t_request.request_status_kbn = '999'
+  </select>
+  <select id="selectTransportPdfData" parameterType="map" resultType="com.demo.entity.report.TransportationExpensesTransportPdf">
+    SELECT
+      sCategory.category_kbn_name AS compass_transport,
+      CONCAT(DATE_FORMAT(mTable.start_date,'%Y/%m/%d'),'　～　',DATE_FORMAT(mTable.end_date,'%Y/%m/%d')) AS compass_period,
+      CONCAT(mTable.departure,'　～　',mTable.arrival) AS compass_section,
+      FORMAT(mTable.amount, 'C', 'ja-JP') AS compass_amount,
+      mTable.amount,
+      mTable.image,
+      CONCAT(mTable.month_kbn, 'ヶ月') AS compass_invoice_category
+    FROM t_transportation_expenses AS mTable
+           LEFT OUTER JOIN (SELECT * FROM m_category WHERE category_class_number = '051') AS sCategory
+                           ON mTable.travel_kbn = sCategory.category_kbn
+    WHERE mTable.apply_kbn = '010' AND mTable.company_code = #{companyCode,jdbcType=CHAR}
+      AND mTable.request_user_id = #{requestUserId,jdbcType=VARCHAR}
+      AND mTable.request_number = #{requestNumber,jdbcType=VARCHAR}
+    ORDER BY mTable.request_sub_number ASC
+  </select>
+  <select id="selectOtherTransportPdfData" parameterType="map" resultType="com.demo.entity.report.TransportationExpensesOtherTransportPdf">
+    SELECT sCategory.category_kbn_name AS other_transport,
+           CONCAT(DATE_FORMAT(mTable.start_date,'%Y/%m/%d'),'　～　',DATE_FORMAT(mTable.end_date,'%Y/%m/%d')) AS other_period,
+           CASE WHEN mTable.travel_kbn IN ('030','040')
+                  THEN mTable.destination
+                ELSE CONCAT(mTable.departure,'　～　',mTable.arrival) END AS other_section,
+           FORMAT(mTable.amount, 'C', 'ja-JP') AS other_amount,
+           mTable.amount,
+           mTable.image,
+           CASE WHEN mTable.recipient_kbn = '010'
+                  THEN '社内費用'
+                WHEN  mTable.recipient_kbn = '020'
+                  THEN '顧客精算' ELSE '' END AS other_recipient_kbn
+    FROM t_transportation_expenses AS mTable
+           LEFT OUTER JOIN (SELECT * FROM m_category WHERE category_class_number = '051') AS sCategory
+                           ON mTable.travel_kbn = sCategory.category_kbn
+    WHERE mTable.apply_kbn = '020' AND mTable.company_code = #{companyCode,jdbcType=CHAR}
+      AND mTable.request_user_id = #{requestUserId,jdbcType=VARCHAR}
+      AND mTable.request_number = #{requestNumber,jdbcType=VARCHAR}
+    ORDER BY mTable.request_sub_number ASC
+  </select>
+  <select id="selectExpensePdfData" parameterType="map" resultType="com.demo.entity.report.ExpensePdf">
+    SELECT sCategory.category_kbn_name AS expense,
+           CONCAT(DATE_FORMAT(mTable.start_date,'%Y/%m/%d'),'　～　',DATE_FORMAT(mTable.end_date,'%Y/%m/%d')) AS expense_period,
+           CASE WHEN mTable.travel_kbn IN ('050')
+                  THEN mTable.destination
+                ELSE CONCAT(mTable.departure,'　～　',mTable.arrival) END AS expense_section,
+           FORMAT(mTable.amount, 'C', 'ja-JP') AS expense_amount,
+           mTable.amount,
+           mTable.image,
+           CASE WHEN mTable.recipient_kbn = '010'
+                  THEN '社内費用'
+                WHEN  mTable.recipient_kbn = '020'
+                  THEN '顧客精算' ELSE '' END AS expense_recipient_kbn
+    FROM t_transportation_expenses AS mTable
+           LEFT OUTER JOIN (SELECT * FROM m_category WHERE category_class_number = '051') AS sCategory
+                           ON mTable.travel_kbn = sCategory.category_kbn
+    WHERE mTable.apply_kbn = '030' AND mTable.company_code = #{companyCode,jdbcType=CHAR}
+      AND mTable.request_user_id = #{requestUserId,jdbcType=VARCHAR}
+      AND mTable.request_number = #{requestNumber,jdbcType=VARCHAR}
+    ORDER BY mTable.request_sub_number ASC
+  </select>
+  <select id="searchImageOne" parameterType="map" resultType="com.demo.pojo.transportationExpenses.TransportationExpensesDTO">
+    select
+      image
+    from
+      t_transportation_expenses
+    where request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_sub_number = #{requestSubNumber,jdbcType=TINYINT}
+      and  company_code = #{ companyCode, jdbcType = CHAR }
+  </select>
+</mapper>

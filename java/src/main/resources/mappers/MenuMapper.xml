@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.Menu">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="menu_number" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="permission_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="available_flg" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="option_value1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value3" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value4" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value5" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value6" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value1_exp" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value2_exp" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value3_exp" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value4_exp" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value5_exp" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="option_value6_exp" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, menu_number, permission_kbn, available_flg, option_value1, option_value2, 
+    option_value3, option_value4, option_value5, option_value6, option_value1_exp, option_value2_exp, 
+    option_value3_exp, option_value4_exp, option_value5_exp, option_value6_exp, registration_user, 
+    registration_datetime, update_user, update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_menu
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and menu_number = #{menuNumber,jdbcType=CHAR}
+      and permission_kbn = #{permissionKbn,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from m_menu
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and menu_number = #{menuNumber,jdbcType=CHAR}
+      and permission_kbn = #{permissionKbn,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Menu">
+    insert into m_menu (company_code, menu_number, permission_kbn, 
+      available_flg, option_value1, option_value2, 
+      option_value3, option_value4, option_value5, 
+      option_value6, option_value1_exp, option_value2_exp, 
+      option_value3_exp, option_value4_exp, option_value5_exp, 
+      option_value6_exp, registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{menuNumber,jdbcType=CHAR}, #{permissionKbn,jdbcType=CHAR}, 
+      #{availableFlg,jdbcType=CHAR}, #{optionValue1,jdbcType=VARCHAR}, #{optionValue2,jdbcType=VARCHAR}, 
+      #{optionValue3,jdbcType=VARCHAR}, #{optionValue4,jdbcType=VARCHAR}, #{optionValue5,jdbcType=VARCHAR}, 
+      #{optionValue6,jdbcType=VARCHAR}, #{optionValue1Exp,jdbcType=VARCHAR}, #{optionValue2Exp,jdbcType=VARCHAR}, 
+      #{optionValue3Exp,jdbcType=VARCHAR}, #{optionValue4Exp,jdbcType=VARCHAR}, #{optionValue5Exp,jdbcType=VARCHAR}, 
+      #{optionValue6Exp,jdbcType=VARCHAR}, #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Menu">
+    insert into m_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="menuNumber != null">
+        menu_number,
+      </if>
+      <if test="permissionKbn != null">
+        permission_kbn,
+      </if>
+      <if test="availableFlg != null">
+        available_flg,
+      </if>
+      <if test="optionValue1 != null">
+        option_value1,
+      </if>
+      <if test="optionValue2 != null">
+        option_value2,
+      </if>
+      <if test="optionValue3 != null">
+        option_value3,
+      </if>
+      <if test="optionValue4 != null">
+        option_value4,
+      </if>
+      <if test="optionValue5 != null">
+        option_value5,
+      </if>
+      <if test="optionValue6 != null">
+        option_value6,
+      </if>
+      <if test="optionValue1Exp != null">
+        option_value1_exp,
+      </if>
+      <if test="optionValue2Exp != null">
+        option_value2_exp,
+      </if>
+      <if test="optionValue3Exp != null">
+        option_value3_exp,
+      </if>
+      <if test="optionValue4Exp != null">
+        option_value4_exp,
+      </if>
+      <if test="optionValue5Exp != null">
+        option_value5_exp,
+      </if>
+      <if test="optionValue6Exp != null">
+        option_value6_exp,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="menuNumber != null">
+        #{menuNumber,jdbcType=CHAR},
+      </if>
+      <if test="permissionKbn != null">
+        #{permissionKbn,jdbcType=CHAR},
+      </if>
+      <if test="availableFlg != null">
+        #{availableFlg,jdbcType=CHAR},
+      </if>
+      <if test="optionValue1 != null">
+        #{optionValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue2 != null">
+        #{optionValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue3 != null">
+        #{optionValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue4 != null">
+        #{optionValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue5 != null">
+        #{optionValue5,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue6 != null">
+        #{optionValue6,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue1Exp != null">
+        #{optionValue1Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue2Exp != null">
+        #{optionValue2Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue3Exp != null">
+        #{optionValue3Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue4Exp != null">
+        #{optionValue4Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue5Exp != null">
+        #{optionValue5Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue6Exp != null">
+        #{optionValue6Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Menu">
+    update m_menu
+    <set>
+      <if test="availableFlg != null">
+        available_flg = #{availableFlg,jdbcType=CHAR},
+      </if>
+      <if test="optionValue1 != null">
+        option_value1 = #{optionValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue2 != null">
+        option_value2 = #{optionValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue3 != null">
+        option_value3 = #{optionValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue4 != null">
+        option_value4 = #{optionValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue5 != null">
+        option_value5 = #{optionValue5,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue6 != null">
+        option_value6 = #{optionValue6,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue1Exp != null">
+        option_value1_exp = #{optionValue1Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue2Exp != null">
+        option_value2_exp = #{optionValue2Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue3Exp != null">
+        option_value3_exp = #{optionValue3Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue4Exp != null">
+        option_value4_exp = #{optionValue4Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue5Exp != null">
+        option_value5_exp = #{optionValue5Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue6Exp != null">
+        option_value6_exp = #{optionValue6Exp,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and menu_number = #{menuNumber,jdbcType=CHAR}
+      and permission_kbn = #{permissionKbn,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Menu">
+    update m_menu
+    set available_flg = #{availableFlg,jdbcType=CHAR},
+      option_value1 = #{optionValue1,jdbcType=VARCHAR},
+      option_value2 = #{optionValue2,jdbcType=VARCHAR},
+      option_value3 = #{optionValue3,jdbcType=VARCHAR},
+      option_value4 = #{optionValue4,jdbcType=VARCHAR},
+      option_value5 = #{optionValue5,jdbcType=VARCHAR},
+      option_value6 = #{optionValue6,jdbcType=VARCHAR},
+      option_value1_exp = #{optionValue1Exp,jdbcType=VARCHAR},
+      option_value2_exp = #{optionValue2Exp,jdbcType=VARCHAR},
+      option_value3_exp = #{optionValue3Exp,jdbcType=VARCHAR},
+      option_value4_exp = #{optionValue4Exp,jdbcType=VARCHAR},
+      option_value5_exp = #{optionValue5Exp,jdbcType=VARCHAR},
+      option_value6_exp = #{optionValue6Exp,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and menu_number = #{menuNumber,jdbcType=CHAR}
+      and permission_kbn = #{permissionKbn,jdbcType=CHAR}
+  </update>
+  <select id="selectByKbn" parameterType="map" resultType="com.demo.pojo.common.MenuInfo">
+    select
+      m.company_code, m.permission_kbn, m.menu_number,
+      ms.menu_button_name, ms.menu_disp_url,m. available_flg,
+      ms.button_color, ms.button_color, ms.font_color,
+      ms.font_color, ms.font_size, ms.menu_icon,
+      m.option_value1, m.option_value2, m.option_value3,
+      m.option_value4, m.option_value5, m.option_value6,
+      m.option_value1_exp, m.option_value2_exp, m.option_value3_exp,
+      m.option_value4_exp, m.option_value5_exp, m.option_value6_exp
+    from m_menu m
+           left join m_menu_style ms
+                     on m.company_code = ms.company_code
+                       and m.menu_number = ms.menu_number
+    where m.company_code = #{companyCode,jdbcType=CHAR}
+    and m.permission_kbn = #{permissionKbn,jdbcType=CHAR}
+  </select>
+<!--  &amp;lt;select id="selectById" parameterType="map" resultType="com.demo.pojo.common.MenuInfo"&amp;gt;-->
+<!--    select-->
+<!--      company_code, permission_kbn, menu_number,-->
+<!--      menu_button_name, menu_disp_url, available_flg,-->
+<!--      option_value1, option_value2, option_value3,-->
+<!--      option_value4, option_value5, option_value6,-->
+<!--      option_value1_exp, option_value2_exp, option_value3_exp,-->
+<!--      option_value4_exp, option_value5_exp, option_value6_exp-->
+<!--    from m_menu-->
+<!--    where company_code = #{companyCode,jdbcType=CHAR}-->
+<!--      and permission_kbn = #{permissionKbn,jdbcType=CHAR}-->
+<!--      and menu_number = #{menuNumber,jdbcType=CHAR}-->
+<!--  &amp;lt;/select&amp;gt;-->
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.DayCheckHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.DayCheckHistory">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="check_day" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="branch_number" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="err_cd" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="err_message" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, user_id, check_day, branch_number, err_cd, err_message, registration_user, 
+    registration_datetime, update_user, update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_day_check_history
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and check_day = #{checkDay,jdbcType=CHAR}
+      and branch_number = #{branchNumber,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_day_check_history
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and check_day = #{checkDay,jdbcType=CHAR}
+      and branch_number = #{branchNumber,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.DayCheckHistory">
+    insert into t_day_check_history (company_code, user_id, check_day, 
+      branch_number, err_cd, err_message, 
+      registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{checkDay,jdbcType=CHAR}, 
+      #{branchNumber,jdbcType=INTEGER}, #{errCd,jdbcType=CHAR}, #{errMessage,jdbcType=VARCHAR}, 
+      #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.DayCheckHistory">
+    insert into t_day_check_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="checkDay != null">
+        check_day,
+      </if>
+      <if test="branchNumber != null">
+        branch_number,
+      </if>
+      <if test="errCd != null">
+        err_cd,
+      </if>
+      <if test="errMessage != null">
+        err_message,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDay != null">
+        #{checkDay,jdbcType=CHAR},
+      </if>
+      <if test="branchNumber != null">
+        #{branchNumber,jdbcType=INTEGER},
+      </if>
+      <if test="errCd != null">
+        #{errCd,jdbcType=CHAR},
+      </if>
+      <if test="errMessage != null">
+        #{errMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.DayCheckHistory">
+    update t_day_check_history
+    <set>
+      <if test="errCd != null">
+        err_cd = #{errCd,jdbcType=CHAR},
+      </if>
+      <if test="errMessage != null">
+        err_message = #{errMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and check_day = #{checkDay,jdbcType=CHAR}
+      and branch_number = #{branchNumber,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.DayCheckHistory">
+    update t_day_check_history
+    set err_cd = #{errCd,jdbcType=CHAR},
+      err_message = #{errMessage,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+      and check_day = #{checkDay,jdbcType=CHAR}
+      and branch_number = #{branchNumber,jdbcType=INTEGER}
+  </update>
+  <select id="getDayCheckHistory" parameterType="map" resultType="com.demo.pojo.dayCheckHistory.DayCheckHistoryDTO">
+    select
+      d.company_code,
+      d.user_id,
+      d.check_day,
+      d.branch_number,
+      d.err_cd,
+      d.err_message,
+      d.registration_user,
+      d.registration_datetime,
+      d.update_user,
+      d.update_datetime,
+      u1.user_name
+    from
+      t_day_check_history as d
+        left join
+      m_user as u1
+      on
+        u1.user_id = d.user_id
+    where d.company_code = #{ companyCode, jdbcType = CHAR }
+  </select>
+  <select id="searchDayCheckHistory" parameterType="map" resultType="com.demo.pojo.dayCheckHistory.DayCheckHistoryDTO">
+    select
+      d.company_code,
+      d.user_id,
+      d.check_day,
+      d.branch_number,
+      d.err_cd,
+      d.err_message,
+      d.registration_user,
+      d.registration_datetime,
+      d.update_user,
+      d.update_datetime,
+      u1.user_name
+    from
+      t_day_check_history as d
+        left join
+      m_user as u1
+      on
+        u1.user_id = d.user_id
+    where d.company_code = #{ companyCode, jdbcType = CHAR }
+    and replace(u1.user_name,'　','')  like #{ userName, jdbcType = CHAR }
+    and d.check_day like #{ checkDay, jdbcType = CHAR }
+  </select>
+</mapper>

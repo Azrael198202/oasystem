@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.ExchangedWorkDayMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entity.ExchangedWorkDay">
+    <constructor>
+      <idArg column="company_code" javaType="java.lang.String" jdbcType="CHAR" />
+      <idArg column="request_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="request_user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="work_type_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="scheduled_work_day" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="work_time_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="dayoff_exchanged" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="dayoff_time_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="dayoff_reason_kbn" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registration_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_datetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_code, request_number, request_user_id, work_type_kbn, scheduled_work_day, 
+    work_time_kbn, dayoff_exchanged, dayoff_time_kbn, dayoff_reason_kbn, remark, registration_user, 
+    registration_datetime, update_user, update_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_exchanged_workday
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_exchanged_workday
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.ExchangedWorkDay">
+    insert into t_exchanged_workday (company_code, request_number, request_user_id, 
+      work_type_kbn, scheduled_work_day, work_time_kbn, 
+      dayoff_exchanged, dayoff_time_kbn, dayoff_reason_kbn, 
+      remark, registration_user, registration_datetime, 
+      update_user, update_datetime)
+    values (#{companyCode,jdbcType=CHAR}, #{requestNumber,jdbcType=VARCHAR}, #{requestUserId,jdbcType=VARCHAR}, 
+      #{workTypeKbn,jdbcType=CHAR}, #{scheduledWorkDay,jdbcType=CHAR}, #{workTimeKbn,jdbcType=CHAR}, 
+      #{dayoffExchanged,jdbcType=CHAR}, #{dayoffTimeKbn,jdbcType=CHAR}, #{dayoffReasonKbn,jdbcType=CHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{registrationUser,jdbcType=VARCHAR}, #{registrationDatetime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP})
+    ON DUPLICATE KEY UPDATE
+      company_code = VALUES(company_code),
+      request_number = VALUES(request_number),
+      request_user_id = VALUES(request_user_id),
+      work_type_kbn = VALUES(work_type_kbn),
+      scheduled_work_day = VALUES(scheduled_work_day),
+      work_time_kbn = VALUES(work_time_kbn),
+      dayoff_exchanged = VALUES(dayoff_exchanged),
+      dayoff_time_kbn = VALUES(dayoff_time_kbn),
+      dayoff_reason_kbn = VALUES(dayoff_reason_kbn),
+      remark = VALUES(remark),
+      registration_user = VALUES(registration_user),
+      registration_datetime = VALUES(registration_datetime),
+      update_user = VALUES(update_user),
+      update_datetime = VALUES(update_datetime)
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.ExchangedWorkDay">
+    insert into t_exchanged_workday
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="requestNumber != null">
+        request_number,
+      </if>
+      <if test="requestUserId != null">
+        request_user_id,
+      </if>
+      <if test="workTypeKbn != null">
+        work_type_kbn,
+      </if>
+      <if test="scheduledWorkDay != null">
+        scheduled_work_day,
+      </if>
+      <if test="workTimeKbn != null">
+        work_time_kbn,
+      </if>
+      <if test="dayoffExchanged != null">
+        dayoff_exchanged,
+      </if>
+      <if test="dayoffTimeKbn != null">
+        dayoff_time_kbn,
+      </if>
+      <if test="dayoffReasonKbn != null">
+        dayoff_reason_kbn,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="registrationUser != null">
+        registration_user,
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=CHAR},
+      </if>
+      <if test="requestNumber != null">
+        #{requestNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUserId != null">
+        #{requestUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="workTypeKbn != null">
+        #{workTypeKbn,jdbcType=CHAR},
+      </if>
+      <if test="scheduledWorkDay != null">
+        #{scheduledWorkDay,jdbcType=CHAR},
+      </if>
+      <if test="workTimeKbn != null">
+        #{workTimeKbn,jdbcType=CHAR},
+      </if>
+      <if test="dayoffExchanged != null">
+        #{dayoffExchanged,jdbcType=CHAR},
+      </if>
+      <if test="dayoffTimeKbn != null">
+        #{dayoffTimeKbn,jdbcType=CHAR},
+      </if>
+      <if test="dayoffReasonKbn != null">
+        #{dayoffReasonKbn,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.ExchangedWorkDay">
+    update t_exchanged_workday
+    <set>
+      <if test="workTypeKbn != null">
+        work_type_kbn = #{workTypeKbn,jdbcType=CHAR},
+      </if>
+      <if test="scheduledWorkDay != null">
+        scheduled_work_day = #{scheduledWorkDay,jdbcType=CHAR},
+      </if>
+      <if test="workTimeKbn != null">
+        work_time_kbn = #{workTimeKbn,jdbcType=CHAR},
+      </if>
+      <if test="dayoffExchanged != null">
+        dayoff_exchanged = #{dayoffExchanged,jdbcType=CHAR},
+      </if>
+      <if test="dayoffTimeKbn != null">
+        dayoff_time_kbn = #{dayoffTimeKbn,jdbcType=CHAR},
+      </if>
+      <if test="dayoffReasonKbn != null">
+        dayoff_reason_kbn = #{dayoffReasonKbn,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationUser != null">
+        registration_user = #{registrationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDatetime != null">
+        registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.ExchangedWorkDay">
+    update t_exchanged_workday
+    set work_type_kbn = #{workTypeKbn,jdbcType=CHAR},
+      scheduled_work_day = #{scheduledWorkDay,jdbcType=CHAR},
+      work_time_kbn = #{workTimeKbn,jdbcType=CHAR},
+      dayoff_exchanged = #{dayoffExchanged,jdbcType=CHAR},
+      dayoff_time_kbn = #{dayoffTimeKbn,jdbcType=CHAR},
+      dayoff_reason_kbn = #{dayoffReasonKbn,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      registration_user = #{registrationUser,jdbcType=VARCHAR},
+      registration_datetime = #{registrationDatetime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectExchangedWorkDay" parameterType="map" resultType="com.demo.pojo.exchangedWorkDay.ExchangedWorkDayDTO">
+    select * from t_exchanged_workday
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and request_number = #{requestNumber,jdbcType=VARCHAR}
+  </select>
+  <select id="countExchangedWorkDay" parameterType="map" resultType="int">
+    select count(*)
+    from
+      (
+        select
+          company_code,
+          scheduled_work_day as scheduled_day,
+          request_user_id
+        from t_exchanged_workday
+        union
+        select
+          company_code,
+          holiday_plan_day as scheduled_day,
+          request_user_id
+        from t_request_holiday
+      )as duplicateData
+    where company_code = #{companyCode,jdbcType=CHAR}
+      and scheduled_day = #{scheduledWorkDay,jdbcType=CHAR}
+      and request_user_id = #{requestUserId,jdbcType=VARCHAR}
+  </select>
+</mapper>
