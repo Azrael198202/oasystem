@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flutter: Run on iOS Simulator",
+            "type": "dart",
+            "request": "launch",
+            "cwd": "app",   
+            "program": "lib/main.dart",
+            "args": ["-d", "2417B3E5-2E17-4701-9C8F-286A85EE848F"] // chrome、windows、linux、macos、android、ios
+        },
+        {
+            "name": "oa_app",
+            "cwd": "app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "oa_app (profile mode)",
+            "cwd": "app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "oa_app (release mode)",
+            "cwd": "app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
