@@ -1,16 +1,20 @@
-# oa_app
+# oa app
 
 A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### the projec's instruction
+lib/
+├── api/              # ✅ api
+├── assets/           # ✅ static resources
+├── components/       # ✅ public components
+├── pages/            # ✅ pages
+│   ├── login_page.dart
+│   └── toppage.dart
+├── router/           # ✅ router(go_router)
+├── store/            # ✅ status management（ provider、riverpod、bloc）
+├── styles/           # ✅ styles（font、color、 theme）
+├── utils/            # ✅ utilitis
+├── config/           # ✅ config、circuments
+├── main.dart         # enterance
