@@ -18,3 +18,8 @@ lib/
 ├── utils/            # ✅ utilitis
 ├── config/           # ✅ config、circuments
 ├── main.dart         # enterance
+
+
+✅ 生成图标命令
+flutter pub get
+flutter pub run flutter_launcher_icons:main
