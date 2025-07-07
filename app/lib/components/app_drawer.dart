@@ -5,11 +5,33 @@ import '../utils/global.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
+  
 
   Future<void> _logout(BuildContext context) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-    navigatorKey.currentState?.pushNamedAndRemoveUntil('/login', (_) => false);
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('ログアウト確認'),
+        content: const Text('ログアウトしてもよろしいですか？'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('キャンセル'),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);    // Close the dialog
+              Navigator.of(context).pop(); // Close the drawer
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.clear();     // Clear shared preferences
+              navigatorKey.currentState?.pushNamedAndRemoveUntil('/login', (_) => false);
+            },
+            child: const Text('ログアウト'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -25,7 +47,17 @@ class AppDrawer extends StatelessWidget {
               child: Text('17:33', style: TextStyle(fontSize: 18)),
             ),
             _drawerItem(icon: Icons.history, text: '閲覧履歴'),
-            _drawerItem(icon: Icons.settings, text: '各種設定', showArrow: true),
+            ExpansionTile(  // 👇 这部分是你新增的子菜单
+              leading: Icon(Icons.settings, color: Colors.indigo[900]),
+              title: Text('各種設定', style: TextStyle(color: Colors.indigo[900])),
+              iconColor: Colors.indigo[900],
+              collapsedIconColor: Colors.indigo[900],
+              children: [
+                _subDrawerItem(context, text: 'アカウント設定', route: '/account'),
+                _subDrawerItem(context, text: 'メール設定', route: '/mail'),
+                _subDrawerItem(context, text: 'プッシュ通知', route: '/push'),
+              ],
+            ),
             _drawerItem(icon: Icons.support_agent, text: 'サポートと利用規約', showArrow: true),
             _drawerItem(
               icon: Icons.lock,
@@ -35,7 +67,7 @@ class AppDrawer extends StatelessWidget {
             const Spacer(),
             const Padding(
               padding: EdgeInsets.all(16),
-              child: Text('version 2.1.7', style: TextStyle(color: Colors.grey)),
+              child: Text('version 0.0.1', style: TextStyle(color: Colors.grey)),
             ),
           ],
         ),
@@ -54,6 +86,17 @@ class AppDrawer extends StatelessWidget {
       title: Text(text, style: TextStyle(color: Colors.indigo[900])),
       trailing: showArrow ? const Icon(Icons.keyboard_arrow_right) : null,
       onTap: onTap ?? () {},
+    );
+  }
+
+  Widget _subDrawerItem(BuildContext context, {required String text, required String route}) {
+    return ListTile(
+      contentPadding: const EdgeInsets.only(left: 72, right: 16),
+      title: Text(text, style: const TextStyle(fontSize: 14)),
+      onTap: () {
+        Navigator.of(context).pop(); /// Close the drawer
+        navigatorKey.currentState?.pushNamed(route);
+      },
     );
   }
 }
